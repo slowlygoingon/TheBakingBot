@@ -63,7 +63,7 @@ uptimedict = {
 
 
 @bot.command(aliases=['say', 'talk'])
-async def echo(ctx, *, message):
+async def echo(ctx, *, something):
     error = discord.Embed(
         title='Error!', description="Don't ping with bot commands, thank you.", colour=discord.Colour.red())
     errorm = discord.Embed(
@@ -75,7 +75,7 @@ async def echo(ctx, *, message):
         await ctx.send(embed=errorm)
         await (await bot.get_user_info(345307151989997568)).send(messagetosend)
     if ('@' not in ctx.message.content) or ('@someone' in ctx.message.content):
-        await ctx.send(message)
+        await ctx.send(something)
 
 
 @bot.command(aliases=['urgentreport', 'reporturgent'])
