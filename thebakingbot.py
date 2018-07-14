@@ -38,6 +38,12 @@ async def givehug(ctx):
         await ctx.send('You just received a warm hug!')
     elif 'me' in ctx.message.content:
         await ctx.send('All the hugs for you!')
+        
+@bot.command()
+async def hello(ctx):
+    """This is the command description.
+    It can span multiple lines."""
+    await ctx.send("Hello world!")
 
 
 @bot.event
@@ -98,10 +104,6 @@ class Info():
     async def uptime(self, ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
-
-    @commands.command()
-    async def ping(self, ctx):
-        await ctx.send('Pong!')
 
     @commands.command(aliases=['about'])
     async def info(self, ctx):
