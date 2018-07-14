@@ -59,19 +59,6 @@ uptimedict = {
     'timeuptime': 0,
 }
 
-
-#@bot.command(aliases=['say', 'talk'])
-#async def echo(ctx, *, something):
- #   error = discord.Embed(title='Error!', description="Don't ping with bot commands, thank you.", colour=discord.Colour.red())
-  #  errorm = discord.Embed(title='Error!', description='Did you seriously just try to mass-ping?', colour=discord.Colour.red())
-   # messagetosend = '{0.author} just tried to mass-ping.'.format(ctx.message)
-    #if ('@' in ctx.message.content) and ('@someone' not in ctx.message.content):
-    #    await ctx.send(embed=error)
-    #if '@everyone' in ctx.message.content:
-    #    await ctx.send(embed=errorm)
-    #    await (await bot.get_user_info(345307151989997568)).send(messagetosend)
-    #if ('@' not in ctx.message.content) or ('@someone' in ctx.message.content):
-    #    await ctx.send(something)
         
 @bot.command()
 async def say(ctx, *, something):
