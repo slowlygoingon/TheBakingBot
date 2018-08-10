@@ -113,8 +113,8 @@ class Moderating():
             
     @commands.command()
     @commands.has_role('Staff')
-    async def kick ctx, userName: discord.User):
-            await bot.kick(userName)
+    async def kick(ctx, userName: discord.User):
+        await bot.kick(userName)
 
 
 class Info():
