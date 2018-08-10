@@ -28,6 +28,10 @@ async def givecookie(ctx):
         await ctx.send('You just gave them a cookie. How sweet of you!')
     elif ('me' in ctx.message.content) or ('Me' in ctx.message.content):
         await ctx.send('Enjoy your cookie!')
+        
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong!')
 
 
 @bot.command(aliases=['hug', 'hugs', 'givehugs'])
@@ -111,10 +115,6 @@ class Info():
     async def uptime(ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
-
-    @commands.command()
-    async def ping(ctx):
-        await ctx.send('Pong!')
 
     @commands.command(aliases=['about'])
     async def info(self, ctx):
