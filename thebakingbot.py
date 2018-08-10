@@ -108,12 +108,12 @@ class Moderating():
 
 class Info():
     @commands.command()
-    async def uptime(self, ctx):
+    async def uptime(ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
 
     @commands.command()
-    async def ping(self, ctx):
+    async def ping(ctx):
         await ctx.send('Pong!')
 
     @commands.command(aliases=['about'])
