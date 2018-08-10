@@ -49,12 +49,12 @@ async def on_member_join(member):
     msg = discord.Embed(
         title='Welcome!',
         description=
-        'Welcome to The Baking Spot!\nTBS is a server centered around **community** (events, fun, and making friends) and **mental health** (recovery and awareness).\nThe main purpose of this server is to relax, have fun, discuss mental health with people who can understand your mental health journey, and encourage each other positively.\n\n.',
+        'Welcome to The Baking Spot!\nTBS is a server centered around **community** (events, fun, and making friends) and **mental health** (recovery and awareness).\nThe main purpose of this server is to relax, have fun, discuss mental health with people who can understand your journey through healing, and encourage each other positively.\n\n.',
         colour=discord.Colour.green())
     msg.add_field(
         name='How to enter',
         value=
-        "It's normal if you see few channels: to get full access, just read the #rules channel from the beginning. It should take no more than about 3-4 minutes, but don't skip any part!\nWe have 2+5 channels (many are opt-in) about any kind of topic and interest - yes even baking!\nIf you have any problem, contact @Staff.\n\nWe hope you have fun with us!",
+        "It's normal if you see few channels: to get full access, just read the #rules channel from the beginning. It should take no more than about 3-4 minutes, but don't skip any part!\nWe have 200+ members, and 25+ channels (many are opt-in) about any kind of topic and interest - yes even baking! Why don't you join your big family ASAP?!\nIf you have any problem, contact @Staff.\n\nWe hope you have fun with us!",
         inline=False)
     await member.send(embed=msg)
 
