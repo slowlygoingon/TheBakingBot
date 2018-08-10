@@ -138,21 +138,11 @@ class Info():
     async def faq(self, ctx):
         await ctx.send("Here is a link with all FAQ's.\nhttps://thebakingspot.tumblr.com/faq")
 
-    @commands.command(aliases=['app', 'staffapp', 'staffapps', 'application'])
-    async def apps(self, ctx):
-        await ctx.send(
-            'Here is the app to become event manager.\nhttps://goo.gl/forms/JDNVlMFNb34vk2Ko2\nHere is the app to become staff.\nhttps://goo.gl/forms/u8EuMf6RiBSFjxqy1'
-        )
-
     @commands.command(aliases=['feedbackform'])
     async def feedback(self, ctx):
         await ctx.send(
             'Send a completely anonymous report or feedback regarding the server, other members, or Staff.\nhttps://goo.gl/forms/2pO3gDoxKz45mNh92'
         )
-
-    @commands.command()
-    async def invite(self, ctx):
-        await ctx.send('https://discord.gg/WFuCf24')
 
     @commands.command(aliases=['help', 'cmds', 'commandlist', 'commandslist'])
     async def commands(self, ctx):
@@ -183,7 +173,7 @@ class Info():
         em.add_field(
             name='SERVER-RELATED',
             value=
-            '**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**staffapp**   -   Link to all the application forms. [apps]\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]\n**invite**   -   Permanent invite to The Baking Spot!'
+            '**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]'
         )
         await ctx.send(embed=em)
 
