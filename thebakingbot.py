@@ -38,12 +38,6 @@ async def givehug(ctx):
         await ctx.send('You just received a warm hug!')
     elif 'me' in ctx.message.content:
         await ctx.send('All the hugs for you!')
-        
-@bot.command()
-async def hello(ctx):
-    """This is the command description.
-    It can span multiple lines."""
-    await ctx.send("Hello world!")
 
 
 @bot.event
@@ -61,14 +55,27 @@ async def on_member_join(member):
     await member.send(embed=msg)
 
 
+blacklistn = ['nsfw', 'porn', 'explicit']
+blacklistg = ['gore', 'violence', 'horror', 'screamer', 'jumpscare']
 uptimedict = {
     'timeuptime': 0,
 }
 
-        
-@bot.command()
-async def say(ctx, *, something):
-    await ctx.send(something)
+
+@bot.command(aliases=['say', 'talk'])
+async def echo(ctx, *, something):
+    error = discord.Embed(
+        title='Error!', description="Don't ping with bot commands, thank you.", colour=discord.Colour.red())
+    errorm = discord.Embed(
+        title='Error!', description='Did you seriously just try to mass-ping?', colour=discord.Colour.red())
+    messagetosend = '{0.author} just tried to mass-ping.'.format(ctx.message)
+    if ('@' in ctx.message.content) and ('@someone' not in ctx.message.content):
+        await ctx.send(embed=error)
+    if '@everyone' in ctx.message.content:
+        await ctx.send(embed=errorm)
+        await (await bot.get_user_info(345307151989997568)).send(messagetosend)
+    if ('@' not in ctx.message.content) or ('@someone' in ctx.message.content):
+        await ctx.send(something)
 
 
 @bot.command(aliases=['urgentreport', 'reporturgent'])
@@ -104,6 +111,10 @@ class Info():
     async def uptime(self, ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
+
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send('Pong!')
 
     @commands.command(aliases=['about'])
     async def info(self, ctx):
