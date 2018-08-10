@@ -334,7 +334,7 @@ class Fun():
             "An Italian chef has died. He pasta way.",
             "What kind of cup can't you drink out of? A cup-cake.",
             """Two antennas met on a roof, fell in love and got married. The ceremony wasn't much, but the reception
-            was excellent.""",
+was excellent.""",
             "An Irishman walks out of a bar.",
             "I was diagnosed with clinical depression the other day... Which made me sad.",
             "I spent five minutes fixing a broken clock yesterday. At least, I *think* it was five minutes...",
@@ -346,16 +346,16 @@ class Fun():
             "There's been an explosion at a cheese factory in Paris. There's nothing left but de Brie.",
             "No matter how kind you are, German children are kinder.",
             """I've fallen in love with a pencil and we're getting married. I can't wait to introduce my parents to my
-            bride 2B.""",
+bride 2B.""",
             "What did the baby corn say to the mama corn? 'Where is my pop corn?'",
             "Not all math puns are bad. Just sum.",
             "I went to the zoo the other day, there was only one dog in it. It was a shitzu...",
             "RIP boiled water. You will be mist.",
             """- Knock knock.
-            - Who's there?
-            - To.
-            - To who?
-            - To ***whom***."""
+- Who's there?
+- To.
+- To who?
+- To ***whom***."""
 
         ])
         await ctx.send(randomjoke)
