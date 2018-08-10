@@ -15,7 +15,8 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    await client.change_presence(game=discord.Game(name='with a cake'))
+    game=discord.Game(name="Test")
+    await self.bot.change_presence(status=discord.Status.online, activity=game)
     readymessage = "Hello, I'm ready! It is " + str(timenow)
     uptimedict['timeuptime'] = timenow
     print(readymessage)
