@@ -1,4 +1,4 @@
-# Copyright 2018 slowlygoingon, Chanku/Sapein
+# Copyright 2018 Slowly/slowlygoingon, Chanku/Sapein
 
 import discord
 import random
@@ -110,6 +110,11 @@ class Moderating():
         channel = ctx.channel
         for amount in range(int(amount), 0, (-100)):
             await channel.purge(limit=int(amount))
+            
+    @commands.command()
+    @commands.has_role('Staff')
+    async def kick ctx, userName: discord.User):
+            await bot.kick(userName)
 
 
 class Info():
