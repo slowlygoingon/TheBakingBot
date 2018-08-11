@@ -263,11 +263,8 @@ class MentalHealth():
         
         def check(a):
             return a.content=="next"
-        try:
             client.wait_for("message", check=check)
             await ctx.send(websites2)
-        except asyncio.TimeoutError:
-            await ctx.send('Timeout. Please use the command again.')
 
 
 class Fun():
