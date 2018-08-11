@@ -263,7 +263,7 @@ class MentalHealth():
         def check(a):
             return a.content == "next"
 
-        msg = await client.wait_for('message', check=check)
+        msg = await bot.wait_for('message', check=check)
         await ctx.send(websites2.format(msg))
 
 
