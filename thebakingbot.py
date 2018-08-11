@@ -246,25 +246,25 @@ class MentalHealth():
         websites = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>"
         await ctx.send(websites)
 
-
-    @commands.command(aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
+    @commands.command(
+        aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
         message = discord.Embed(title='Commands', description="""Hello! What are you looking for?\n
 :one: If you are looking for low-cost or free therapy, please usethe command `tbs!freetherapy`.\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n :three: If you're looking for live support, please type `tbs!livesupport`.""",
-        colour=discord.Colour.green())
+                                colour=discord.Colour.green())
         await ctx.send(embed=message)
-
 
     @commands.command(aliases=['database', 'databasetherapy'])
     async def therapydatabase(self, ctx):
         websites1 = "Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.trylevel.com/>\n<https://www.findatherapist.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n<https://treatment.homewoodhealth.com/ptsd-trauma/>\n"
         websites2 = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n**UK**\n<https://www.nacro.org.uk/service-finder/>\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n\nAdditionally, try checking these links: \n <http://this-is-not-dissociative.tumblr.com/resources>\n<https://trauma-crocodile.tumblr.com/help>\n"""
         await ctx.send(websites1)
-        
+
         def check(a):
-            return a.content=="next"
-            client.wait_for("message", check=check)
-            await ctx.send(websites2)
+            return a.content == "next"
+
+        msg = await client.wait_for('message', check=check)
+        await ctx.send(websites2.format(msg))
 
 
 class Fun():
@@ -416,4 +416,4 @@ bot.add_cog(Info())
 bot.add_cog(Fun())
 bot.add_cog(MentalHealth())
 bot.add_cog(Moderating())
-bot.run(os.getenv('discord_client_key'))
+bot.run('NDI4MjYwODc2NzIyNjM0NzY1.Dk8Nfw.EO9y7sgQmhK_NbuThGjH5x1OD4o')
