@@ -264,11 +264,10 @@ class MentalHealth():
         def check(a):
             return a.content=="next"
         try:
-            bot.wait_for("message", check=check)
+            client.wait_for("message", check=check)
+            await ctx.send(websites2)
         except asyncio.TimeoutError:
             await ctx.send('Timeout. Please use the command again.')
-        else:
-            await ctx.send(websites2)
 
 
 class Fun():
