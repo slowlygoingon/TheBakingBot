@@ -1,6 +1,7 @@
 # Copyright 2018 Slowly/slowlygoingon, Chanku/Sapein
 
 import discord
+import asyncio
 import random
 import datetime
 from discord.ext import commands
@@ -242,43 +243,38 @@ class MentalHealth():
 
     @commands.command(aliases=['cheaptherapy', 'lowcosttherapy', 'onlinetherapy'])
     async def freetherapy(self, ctx):
-        websites1 = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>"
+        websites = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>"
         await ctx.send(websites)
-        
-         def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '👍'
 
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        else:
-            await ctx.send('👍')
 
-    @commands.command(
-        aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
-    async def therapy(self, ctx):
-        message = discord.Embed(
-            title='Commands',
-            description=
-            """Hello! What are you looking for?\n
+@commands.command(
+    aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
+async def therapy(self, ctx):
+    message = discord.Embed(
+        title='Commands',
+        description=
+        """Hello! What are you looking for?\n
 :one: If you are looking for low-cost or free therapy, please usethe command `tbs!freetherapy`.\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n :three: If you're looking for live support, please type `tbs!livesupport`.""",
-            colour=discord.Colour.green())
-        await ctx.send(embed=message)
+        colour=discord.Colour.green())
+    await ctx.send(embed=message)
 
-    @commands.command(aliases=['database', 'databasetherapy'])
-    async def therapydatabase(self, ctx):
-        websites1 = """Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.trylevel.com/>\n<https://www.findatherapist.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n<https://treatment.homewoodhealth.com/ptsd-trauma/>\n"""
-        websites2 = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n**UK**\n<https://www.nacro.org.uk/service-finder/>\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n\nAdditionally, try checking these links: \n <http://this-is-not-dissociative.tumblr.com/resources>\n<https://trauma-crocodile.tumblr.com/help>\n"""
-        await ctx.send(websites1)
-        
-        def check(reaction, user):
-            return user == message.author and str(reaction.emoji) == '➡️'
-        try:
-            reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-        except asyncio.TimeoutError:
-            await ctx.send('Timeout. Please use the command again.')
-        else:
-            await channel.send(websites2)
-      
+
+@commands.command(aliases=['database', 'databasetherapy'])
+async def therapydatabase(self, ctx, message):
+    websites1 = "Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.trylevel.com/>\n<https://www.findatherapist.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n<https://treatment.homewoodhealth.com/ptsd-trauma/>\n"
+    websites2 = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n**UK**\n<https://www.nacro.org.uk/service-finder/>\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n\nAdditionally, try checking these links: \n <http://this-is-not-dissociative.tumblr.com/resources>\n<https://trauma-crocodile.tumblr.com/help>\n"""
+    await ctx.send(websites1)
+
+    def check(reaction, user):
+        return user == message.author and str(reaction.emoji) == '➡️'
+
+    try:
+        reaction, user = await bot.wait_for('reaction_add', timeout=60.0, check=check)
+    except asyncio.TimeoutError:
+        await ctx.send('Timeout. Please use the command again.')
+    else:
+        await ctx.send(websites2)
+
 
 class Fun():
     @commands.command(aliases=['coin', 'flip', 'flipcoin'])
@@ -321,7 +317,7 @@ class Fun():
     async def emergency(self, ctx):
         await ctx.send(
             'Hey there {0}, if anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!help`, `tbs!support` and `tbs!therapy` commands - in the appropriate bot channel.'.
-            format(ctx.author.mention))
+                format(ctx.author.mention))
 
     @commands.command(
         aliases=['joke', 'jokes', 'cheesyjoke', 'randomjoke', 'pun', 'randompun', 'cheesypun', 'cornypun', 'puns'])
