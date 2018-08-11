@@ -6,16 +6,19 @@ import datetime
 from discord.ext import commands
 import os
 import sys
+
 print(sys.version)
 
-bot = commands.Bot(description='The Baking Bot is the amazing official bot for the community & mental health server The Baking Spot. As of now, it has very basic commands, but we hope to implement more of them in the future!', command_prefix='tbs!')
+bot = commands.Bot(
+    description='The Baking Bot is the amazing official bot for the community & mental health server The Baking Spot. As of now, it has very basic commands, but we hope to implement more of them in the future!',
+    command_prefix='tbs!')
 timenow = datetime.datetime.utcnow()
 bot.remove_command('help')
 
 
 @bot.event
 async def on_ready():
-    game=discord.Game(name="with a cake | tbs!help")
+    game = discord.Game(name="with a cake | tbs!help")
     await bot.change_presence(status=discord.Status.online, activity=game)
     readymessage = "Hello, I'm ready! It is " + str(timenow)
     uptimedict['timeuptime'] = timenow
@@ -30,7 +33,8 @@ async def givecookie(ctx):
         await ctx.send('You just gave them a cookie. How sweet of you!')
     elif ('me' in ctx.message.content) or ('Me' in ctx.message.content):
         await ctx.send('Enjoy your cookie!')
-        
+
+
 @bot.command()
 async def ping(ctx):
     await ctx.send('Pong!')
@@ -110,7 +114,7 @@ class Moderating():
         channel = ctx.channel
         for amount in range(int(amount), 0, (-100)):
             await channel.purge(limit=int(amount))
-            
+
     @commands.command()
     @commands.has_role('Staff')
     async def kick(ctx, member: discord.Member):
@@ -241,7 +245,8 @@ class MentalHealth():
         websites = 'Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://inpathy.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>'
         await ctx.send(websites)
 
-    @commands.command(aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
+    @commands.command(
+        aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
         message = discord.Embed(
             title='Commands',
@@ -253,9 +258,11 @@ class MentalHealth():
 
     @commands.command(aliases=['database', 'databasetherapy'])
     async def therapydatabase(self, ctx):
-        websites = 'Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n\n**UK**\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n
+        websites = """Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n\n**UK**\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n
 
-Moreover, try checking these links: \n<http://this-is-not-dissociative.tumblr.com/resources>\n<https://trauma-crocodile.tumblr.com/help>\n"""
+
+Additionally, try checking these links: \n <http://this-is-not-dissociative.tumblr.com/resources>\n <https://trauma-crocodile.tumblr.com/help>\n
+"""
         await ctx.send(websites)
 
 
@@ -341,8 +348,7 @@ class Fun():
             "What do you call a pile of cats? A meow-ntain.",
             "An Italian chef has died. He pasta way.",
             "What kind of cup can't you drink out of? A cup-cake.",
-            """Two antennas met on a roof, fell in love and got married. The ceremony wasn't much, but the reception
-was excellent.""",
+            """Two antennas met on a roof, fell in love and got married. The ceremony wasn't much, but the reception was excellent.""",
             "An Irishman walks out of a bar.",
             "I was diagnosed with clinical depression the other day... Which made me sad.",
             "I spent five minutes fixing a broken clock yesterday. At least, I *think* it was five minutes...",
@@ -353,8 +359,7 @@ was excellent.""",
             "Why do Norwegians build their own tables? No Ikea!",
             "There's been an explosion at a cheese factory in Paris. There's nothing left but de Brie.",
             "No matter how kind you are, German children are kinder.",
-            """I've fallen in love with a pencil and we're getting married. I can't wait to introduce my parents to my
-bride 2B.""",
+            """I've fallen in love with a pencil and we're getting married. I can't wait to introduce my parents to my bride 2B.""",
             "What did the baby corn say to the mama corn? 'Where is my pop corn?'",
             "Not all math puns are bad. Just sum.",
             "I went to the zoo the other day, there was only one dog in it. It was a shitzu...",
