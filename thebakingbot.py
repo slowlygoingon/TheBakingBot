@@ -165,7 +165,7 @@ class Info():
         em.add_field(
             name='MENTAL HEALTH',
             value=
-            "**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? [therapist, counsellor, counselling]\n**cheaptherapy**   -   If you're looking for low-cost/online therapy. [onlinetherapy, lowcosttherapy]\n**database**   -   Various databases for group therapy, therapists, and so on. [therapydatabase]\n",
+            "**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
             inline=False)
         em.add_field(
             name='FUN AND MISC.',
@@ -231,28 +231,31 @@ class MentalHealth():
         ])
         await ctx.send(ground)
 
-    @commands.command(aliases=['gethelp', 'getsupport'])
-    async def support(self, ctx):
-        websites = 'If you need advice/help or to vent, here are some links for you.\n<https://www.7cups.com>\n<https://mellowtalk.com/>\n<http://blahtherapy.com/chat-hub/>\n<https://ginger.io/>\n<https://kooth.com/>\n<https://www.iprevail.com/>\n<https://www.imalive.org/>\n<https://www.reddit.com/r/KindVoice/>\n<https://thebakingspot.tumblr.com/ineedhelp>'
+    @commands.command(aliases=['getlivehelp', 'getlivesupport'])
+    async def livesupport(self, ctx):
+        websites = 'If you need advice/help or to vent, here are some links for you. These include mainly live chats with volounteers and other websites that offer peer-support.\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\<https://www.7cups.com>\n<https://mellowtalk.com/>\n<http://blahtherapy.com/chat-hub/>\<https://www.vetsprevail.org/> (For veterans)\n<https://ginger.io/>\n<https://kooth.com/>\n<https://www.iprevail.com/>\n<https://www.imalive.org/>\n<https://www.reddit.com/r/KindVoice/>'
         await ctx.send(websites)
 
     @commands.command(aliases=['cheaptherapy', 'lowcosttherapy', 'onlinetherapy'])
     async def freetherapy(self, ctx):
-        websites = 'Here are some places to get free or low-cost professional help online.\nWe also recommend you try the `tbs!database` command.\n\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>\n<https://trauma-crocodile.tumblr.com/supportmentalhealth>'
+        websites = 'Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://inpathy.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>'
         await ctx.send(websites)
 
-    @commands.command(aliases=['counsellor', 'therapist', 'counselling'])
+    @commands.command(aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
         message = discord.Embed(
             title='Commands',
             description=
-            "Hello! If you are looking for low-cost or free therapy, please use\nthe command `tbs!freetherapy`.\nIf you're looking for therapist databases instead, please use\nthe command `tbs!database`.",
+            """Hello! What are you looking for?\n
+:one: If you are looking for low-cost or free therapy, please usethe command `tbs!freetherapy`.\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n :three: If you're looking for live support, please type `tbs!livesupport`.""",
             colour=discord.Colour.green())
         await ctx.send(embed=message)
 
     @commands.command(aliases=['database', 'databasetherapy'])
     async def therapydatabase(self, ctx):
-        websites = 'Here are some databases to find a therapist (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n\n**UK**\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n'
+        websites = 'Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n\n**UK**\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n
+
+Moreover, try checking these links: \n<http://this-is-not-dissociative.tumblr.com/resources>\n<https://trauma-crocodile.tumblr.com/help>\n"""
         await ctx.send(websites)
 
 
