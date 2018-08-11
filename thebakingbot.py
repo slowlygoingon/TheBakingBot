@@ -63,7 +63,7 @@ async def on_member_join(member):
         value=
         "It's normal if you see few channels: to get full access, just read the #rules channel from the beginning. It should take no more than about 3-4 minutes, but don't skip any part!\nWe have 200+ members, and 25+ channels (many are opt-in) about any kind of topic and interest - yes even baking! Why don't you join your big family ASAP?!\nIf you have any problem, contact @Staff.\n\nWe hope you have fun with us!",
         inline=False)
-    if discord.Server.id == "369918224713908226":
+    if server.id == "369918224713908226":
         await member.send(embed=msg)
 
 
