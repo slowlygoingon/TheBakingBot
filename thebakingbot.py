@@ -271,7 +271,7 @@ class MentalHealth():
         msg = await bot.wait_for('message', check=check)
 
         try:
-            await self.bot.edit_message(websites1, embed = websites2)
+            await websites1.edit_message(embed = websites2)
 
         except asyncio.TimeoutError:
             await ctx.send('Sorry, command timed out!')
