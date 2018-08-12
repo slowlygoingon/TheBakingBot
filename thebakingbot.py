@@ -19,7 +19,7 @@ bot.remove_command('help')
 async def on_ready():
     game = discord.Game(name="with a cake | tbs!help")
     await bot.change_presence(status=discord.Status.online, activity=game)
-    readymessage = "Hello, I'm up and running! It is " + str(timenow) + "\n" + "System version:" + (sys.version)
+    readymessage = "Hello, I'm up and running! It is " + str(timenow) + "\n" + "System version: " + (sys.version)
     uptimedict['timeuptime'] = timenow
     print(readymessage)
 
@@ -263,7 +263,7 @@ class MentalHealth():
         websites2.add_field(name="United Kingdom", value="\n<https://www.nacro.org.uk/service-finder/>\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n", inline=False)
         websites2.add_field(name="Australia", value="\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n\nAdditionally, try checking this page:\n<https://sunrayresources.tumblr.com/resources>", inline=False)
         
-        await ctx.send(websites1)
+        await ctx.send(embed=websites1)
         
         def check(a):
             return a.content == "next"
@@ -271,7 +271,7 @@ class MentalHealth():
         msg = await bot.wait_for('message', check=check)
 
         try:
-            await ctx.send(websites2.format(msg))
+            await ctx.send(embed=websites2.format(msg))
 
         except asyncio.TimeoutError:
             await ctx.send('Sorry, command timed out!')
