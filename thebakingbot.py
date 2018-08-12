@@ -259,14 +259,16 @@ class MentalHealth():
         websites.add_field(name="Canada and USA", value="<https://help.recoverywarriors.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://members.adaa.org/page/FATMain>\n<https://www.theravive.com/zip/>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>", inline=False)
         websites.set_footer(text="(Page 1/2)")
         embedone = await ctx.send(embed=websites)
+        
+        websites2 = discord.Embed(description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.")
+        websites2.add_field(name="UK", value="<https://www.bps.org.uk/public/find-psychologist>\n<http://www.cmha.org.uk/>\n<https://www.psychologytoday.com/gb/counselling>\n<http://www.nhsdirect.wales.nhs.uk/localservices/> (Wales)\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.psychotherapy.org.uk/find-a-therapist/>\n<https://www.bacp.co.uk/search/Therapists>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>")
 
         def check(a):
             return a.content == "next"
 
         try:
             await bot.wait_for("message",timeout=60.0,check=check)
-            await embedone.edit(embed=discord.Embed(description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`."))
-            embed.add_field(name="UK", value="<https://www.bps.org.uk/public/find-psychologist>\n<http://www.cmha.org.uk/>\n<https://www.psychologytoday.com/gb/counselling>\n<http://www.nhsdirect.wales.nhs.uk/localservices/> (Wales)\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.psychotherapy.org.uk/find-a-therapist/>\n<https://www.bacp.co.uk/search/Therapists>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>")
+            await embedone.edit(embed=websites2)
 
 
         except asyncio.TimeoutError:
