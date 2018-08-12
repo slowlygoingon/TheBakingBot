@@ -255,7 +255,6 @@ class MentalHealth():
     @commands.command()
     async def databasetest(self,ctx):
         websites = discord.Embed(title="Test for database command", description="This is a test. Let's hope it works.")
-        await ctx.send(embed=websites)
         embedone = await ctx.send(embed=websites)
 
         def check(a):
