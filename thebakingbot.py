@@ -8,8 +8,6 @@ from discord.ext import commands
 import os
 import sys
 
-print(sys.version)
-
 bot = commands.Bot(
     description='The Baking Bot is the amazing official bot for the community & mental health server The Baking Spot. As of now, it has very basic commands, but we hope to implement more of them in the future!',
     command_prefix='tbs!')
@@ -21,7 +19,7 @@ bot.remove_command('help')
 async def on_ready():
     game = discord.Game(name="with a cake | tbs!help")
     await bot.change_presence(status=discord.Status.online, activity=game)
-    readymessage = "Hello, I'm ready! It is " + str(timenow)
+    readymessage = "Hello, I'm up and running! It is " + str(timenow) + "\n" + "System version:" + (sys.version)
     uptimedict['timeuptime'] = timenow
     print(readymessage)
 
@@ -256,22 +254,28 @@ class MentalHealth():
 
     @commands.command(aliases=['database', 'databasetherapy'])
     async def therapydatabase(self, ctx):
-        websites1 = "**TYPE next TO GO TO THE NEXT PAGE**\n\n(page 1/2)\nHere are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**International or multiple countries**\n<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n**USA & Canada**\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.trylevel.com/>\n<https://www.findatherapist.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n<https://treatment.homewoodhealth.com/ptsd-trauma/>\n"
-        websites2 = "(page 2/2) Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.\n\n**UK**\n<https://www.nacro.org.uk/service-finder/>\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n**Australia**\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n\nAdditionally, try checking this page:\n<https://sunrayresources.tumblr.com/resources>"""
-        await ctx.send(websites1)
+        websites1 = discord.Embed(title="Therapy Database (page 1/2)", description="Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.", color=0x525ce4)
+        embed.add_field(name="International or multiple countries", value="<https://members.nielasher.com/>\n<http://www.therapistlocator.net/imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>\n<https://help.recoverywarriors.com/listings/?search_keywords=&search_location=&search_radius=500&search_lat=0&search_lng=0&search_region=>\n\n", inline=False)
+        embed.add_field(name="USA and Canada", value="\n<https://www.allaboutcounseling.com/local/>\n<http://www.211.org/>\n<https://www.malesurvivor.org/resource-directory/?page=resourcedirectory>\n<https://www.malesurvivor.org/support_groups/>\n<http://www.ementalhealth.ca/>\n<https://www.trylevel.com/>\n<https://www.findatherapist.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://anxietydepressionassoc.site-ym.com/?page=FATMain>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n<https://treatment.homewoodhealth.com/ptsd-trauma/>\n\n\nAdditionally, try checking this page:\n<https://sunrayresources.tumblr.com/resources>", inline=False)
+        embed.set_footer(text="**Type next to go to next page** (1/2)")
 
+        websites2 = discord.Embed(title="Therapy Database (page 2/2)", description="Here are some databases to find a mental health professional (counsellor, psychologist, psychiatrist, LMFT, etc.) or other types of treatment, such as support groups or facilities.", color=0x525ce4)
+        embed.add_field(name="United Kingdom", value="\n<https://www.nacro.org.uk/service-finder/>\n<https://www.bps.org.uk/public/find-psychologist>\n<https://www.psychotherapy.org.uk/>\n<https://www.bacp.co.uk/>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.osrclinics.com/>\n<http://www.gofal.org.uk/journeys/>\n<https://www.bpdworld.org/therapeutic-communities.html>\n<https://www.beateatingdisorders.org.uk/support-services/online-groups>\n\n", inline=False)
+        embed.add_field(name="Australia", value="\n<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n\nAdditionally, try checking this page:\n<https://sunrayresources.tumblr.com/resources>", inline=False)
+        
+        await ctx.send(websites1)
+        
         def check(a):
             return a.content == "next"
-        
+
         msg = await bot.wait_for('message', check=check)
-        
+
         try:
             await ctx.send(websites2.format(msg))
-            
+
         except asyncio.TimeoutError:
             await ctx.send('Sorry, command timed out!')
             return
-        
 
 
 class Fun():
