@@ -273,7 +273,7 @@ class MentalHealth():
         msg = await bot.wait_for('message', check=check)
 
         try:
-            await websites1.edit(websites2)
+            await websites1.edit(content=websites2)
 
         except asyncio.TimeoutError:
             await ctx.send('Sorry, command timed out!')
