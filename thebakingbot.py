@@ -252,7 +252,7 @@ class MentalHealth():
                                 colour=discord.Colour.green())
         await ctx.send(embed=message)
 
-    @commands.command(aliases=['therapydatabase', 'databasetherapy')
+    @commands.command(aliases=['therapydatabase', 'databasetherapy'])
     async def database(self,ctx):
         websites = discord.Embed(title="Type 'next' to go to next page.", description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.")
         websites.add_field(name="International/Multiple countries", value="<https://members.nielasher.com/>\n<https://www.therapistlocator.net//imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.therapytribe.com/>\n<http://www.istss.org/find-a-clinician.aspx>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>", inline=False)
