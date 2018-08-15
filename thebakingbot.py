@@ -131,7 +131,7 @@ class Info():
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
         
-    @commands.command(aliases=['git', 'github'])
+    @commands.command(aliases=['git', 'github', 'src'])
     async def source(self, ctx):
         link = "https://github.com/slowlygoingon/TheBakingBot/"
         await ctx.send(link)
