@@ -50,7 +50,7 @@ async def givehug(ctx):
 
 
 @bot.event
-async def on_member_join(server):
+async def on_member_join(member):
     msg = discord.Embed(
         title='Welcome!',
         description=
@@ -62,8 +62,11 @@ async def on_member_join(server):
         "It's normal if you see few channels: to get full access, just read the #rules channel from the beginning. It should take no more than about 3-4 minutes, but don't skip any part!\nWe have 200+ members, and 25+ channels (many are opt-in) about any kind of topic and interest - yes even baking! Why don't you join your big family ASAP?!\nIf you have any problem, contact @Staff.\n\nWe hope you have fun with us!",
         inline=False)
 
-    if server.id is "369918224713908226":
-        await server.member.send(embed=msg)
+    if guild.id == 369918224713908226:
+        print("Message sent.")
+        member.send(embed=msg)
+    else:
+        print("Welcome message was not sent because server ID did not match TBS' ID.")
 
 
 blacklistn = ['nsfw', 'porn', 'explicit']
