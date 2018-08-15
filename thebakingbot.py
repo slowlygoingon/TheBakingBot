@@ -258,7 +258,7 @@ class MentalHealth():
         aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
         message = discord.Embed(title='Commands', description="""Hello! What are you looking for?\n
-:one: If you are looking for low-cost or free therapy, please usethe command `tbs!freetherapy`.\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n :three: If you're looking for live support, please type `tbs!livesupport`.""",
+:one: If you are looking for low-cost or free therapy, please use the command `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n\n :three: If you're looking for live support, please type `tbs!livesupport`.""",
                                 colour=discord.Colour.green())
         await ctx.send(embed=message)
 
