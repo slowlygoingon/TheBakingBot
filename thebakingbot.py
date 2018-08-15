@@ -108,6 +108,7 @@ async def suggestion(ctx, *, message):
 
 
 class Moderating():
+    
     @commands.command(aliases=['prune', 'purge', 'delete'])
     @commands.has_role('Staff')
     async def clear(self, ctx, amount):
@@ -118,7 +119,11 @@ class Moderating():
     @commands.command()
     @commands.has_role('Staff')
     async def kick(ctx, user: discord.Member):
+        print("Step 1")
         await ctx.guild.kick(user)
+        print("Step 2")
+        await ctx.send(f'{user.name} has been kicked.')
+        print("Step 3)
 
 
 class Info():
