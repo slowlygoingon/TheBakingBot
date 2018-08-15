@@ -132,8 +132,9 @@ class Info():
         await ctx.send(uptimemessage)
         
     @commands.command(aliases=['git', 'github'])
-    async def source(ctx):
-        await ctx.send("https://github.com/slowlygoingon/TheBakingBot/")
+    async def source(self, ctx):
+        link = "https://github.com/slowlygoingon/TheBakingBot/"
+        await ctx.send(link)
 
     @commands.command(aliases=['about'])
     async def info(self, ctx):
