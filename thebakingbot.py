@@ -117,7 +117,7 @@ class Moderating():
         errormessage = discord.Embed(title="Error!", description="You can delete min 1 / max 100 messages at once.", color=0xd90000)
         channel = ctx.channel
         for amount in range(int(amount), 0, (-100)):
-            if amount < 101 and > 0:
+            if 101 > amount > 0:
                 await channel.purge(limit=int(amount))
             else:
                 await ctx.send(embed=errormessage)
