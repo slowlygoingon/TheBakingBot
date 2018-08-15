@@ -106,6 +106,15 @@ async def suggestion(ctx, *, message):
     await channel.send(messagetosend)
     await ctx.message.delete()
 
+    
+@bot.command()
+@commands.has_role('Staff')
+async def kick(ctx, user: discord.Member):
+    print("Step 1")
+    await ctx.guild.kick(user)
+    print("Step 2")
+    await ctx.send(f'{user.name} has been kicked.')
+    print("Step 3")
 
 class Moderating():
     
@@ -115,15 +124,6 @@ class Moderating():
         channel = ctx.channel
         for amount in range(int(amount), 0, (-100)):
             await channel.purge(limit=int(amount))
-
-    @commands.command()
-    @commands.has_role('Staff')
-    async def kick(ctx, user: discord.Member):
-        print("Step 1")
-        await ctx.guild.kick(user)
-        print("Step 2")
-        await ctx.send(f'{user.name} has been kicked.')
-        print("Step 3")
 
 
 class Info():
