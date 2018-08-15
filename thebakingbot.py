@@ -123,7 +123,7 @@ class Moderating():
         await ctx.guild.kick(user)
         print("Step 2")
         await ctx.send(f'{user.name} has been kicked.')
-        print("Step 3)
+        print("Step 3")
 
 
 class Info():
