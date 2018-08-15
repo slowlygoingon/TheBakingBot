@@ -47,9 +47,6 @@ async def givehug(ctx):
         await ctx.send('You just received a warm hug!')
     elif 'me' in ctx.message.content:
         await ctx.send('All the hugs for you!')
-        
-
-
 
 @bot.event
 async def on_member_join(member):
@@ -70,9 +67,6 @@ async def on_member_join(member):
     else:
         print("Welcome message was not sent because server ID did not match TBS' ID.")
 
-
-blacklistn = ['nsfw', 'porn', 'explicit']
-blacklistg = ['gore', 'violence', 'horror', 'screamer', 'jumpscare']
 uptimedict = {
     'timeuptime': 0,
 }
@@ -123,8 +117,8 @@ class Moderating():
 
     @commands.command()
     @commands.has_role('Staff')
-    async def kick(ctx, member: discord.Member):
-        await member.kick()
+    async def kick(ctx, user: discord.Member):
+        await ctx.guild.kick(user)
 
 
 class Info():
