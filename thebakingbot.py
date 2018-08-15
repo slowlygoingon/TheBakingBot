@@ -130,6 +130,10 @@ class Info():
     async def uptime(ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
+        
+    @commands.command(aliases=['git', 'github'])
+    async def source(ctx):
+        await ctx.send("https://github.com/slowlygoingon/TheBakingBot/")
 
     @commands.command(aliases=['about'])
     async def info(self, ctx):
