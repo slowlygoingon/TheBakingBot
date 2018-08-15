@@ -48,6 +48,7 @@ async def givehug(ctx):
     elif 'me' in ctx.message.content:
         await ctx.send('All the hugs for you!')
 
+
 @bot.event
 async def on_member_join(member):
     msg = discord.Embed(
@@ -66,6 +67,7 @@ async def on_member_join(member):
 
     else:
         print("Welcome message was not sent because server ID did not match TBS' ID.")
+
 
 uptimedict = {
     'timeuptime': 0,
@@ -106,24 +108,24 @@ async def suggestion(ctx, *, message):
     await channel.send(messagetosend)
     await ctx.message.delete()
 
-    
-@bot.command()
-@commands.has_role('Staff')
-async def kick(ctx, user: discord.Member):
-    print("Step 1")
-    await ctx.guild.kick(user)
-    print("Step 2")
-    await ctx.send(f'{user.name} has been kicked.')
-    print("Step 3")
 
 class Moderating():
-    
+
     @commands.command(aliases=['prune', 'purge', 'delete'])
     @commands.has_role('Staff')
     async def clear(self, ctx, amount):
+        errormessage = discord.Embed(title="Error!", description="You can delete min 1 / max 100 messages at once.", color=0xd90000)
         channel = ctx.channel
         for amount in range(int(amount), 0, (-100)):
             await channel.purge(limit=int(amount))
+        else:
+            await ctx.send(embed=errormessage)
+
+    @commands.command()
+    @commands.has_role('Staff')
+    async def kick(self, ctx, user: discord.Member):
+        await ctx.guild.kick(user)
+        await ctx.send(f'{user.name} has been kicked.')
 
 
 class Info():
@@ -131,12 +133,12 @@ class Info():
     async def uptime(ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
-        
+
     @commands.command()
     async def invite(ctx):
         invitelink = "https://discordapp.com/oauth2/authorize?client_id=428260876722634765&scope=bot"
         await ctx.send(invitelink)
-        
+
     @commands.command(aliases=['git', 'github', 'src'])
     async def source(self, ctx):
         link = "https://github.com/slowlygoingon/TheBakingBot/"
@@ -146,7 +148,7 @@ class Info():
     async def info(self, ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         em = discord.Embed(
-            title='About this bot', description='All about The Baking Bot.', colour=discord.Colour.green())
+            title='About this bot', description='All about The Baking Bot.', colour=0x082E6F)
         em.add_field(name='Developers', value='Slowly#1846, Chanku#4372', inline=False)
         em.add_field(
             name='Thank-yous',
@@ -174,8 +176,7 @@ class Info():
     async def commands(self, ctx):
         em = discord.Embed(
             description=
-            'These are all the commands of The Baking Bot, the official bot for The Baking Spot.\nThe words in [] are aliases.\nIf you need help with mental health, please check the Mental Health section on the server and in this message.\n\n•  •  •  •  •  •  •  •',
-            colour=discord.Colour.green())
+            'These are all the commands of The Baking Bot, the official bot for The Baking Spot.\nThe words in [] are aliases.\nIf you need help with mental health, please check the Mental Health section on the server and in this message.\n\n•  •  •  •  •  •  •  •', colour=0x082E6F)
         em.add_field(
             name='INFO',
             value=
@@ -252,48 +253,52 @@ class MentalHealth():
 
     @commands.command(aliases=['getlivehelp', 'getlivesupport'])
     async def livesupport(self, ctx):
-        websites = 'If you need advice/help or to vent, here are some links for you. These include mainly live chats with volounteers and other websites that offer peer-support.\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.7cups.com>\n<https://mellowtalk.com/>\n<http://blahtherapy.com/chat-hub/>\n<https://www.vetsprevail.org/> (For veterans)\n<https://ginger.io/>\n<https://kooth.com/>\n<https://www.iprevail.com/>\n<https://www.imalive.org/>\n<https://www.reddit.com/r/KindVoice/>'
-        await ctx.send(websites)
+        websites = discord.Embed(title="Live Support Online", description="If you need advice/help or to vent, here are some links for you. These include mainly live chats with volounteers and other websites that offer peer-support.\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.7cups.com>\n<https://mellowtalk.com/>\n<http://blahtherapy.com/chat-hub/>\n<https://www.vetsprevail.org/> (For veterans)\n<https://ginger.io/>\n<https://kooth.com/>\n<https://www.iprevail.com/>\n<https://www.imalive.org/>\n<https://www.reddit.com/r/KindVoice/>", colour=0x082E6F)
+        await ctx.send(embed=websites)
 
     @commands.command(aliases=['cheaptherapy', 'lowcosttherapy', 'onlinetherapy'])
     async def freetherapy(self, ctx):
-        websites = "Here are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>"
-        await ctx.send(websites)
+        websites = discord.Embed(title="Low-Cost Therapy", description="It's possible to get low-cost or free therapy in various ways. Examples are: insurances, charity counselling, school/college counselling, local associations, or getting therapy in hospitals/clinics.\n\nHere are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>", colour=0x082E6F)
+        await ctx.send(embed=websites)
 
     @commands.command(
         aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
-        message = discord.Embed(title='Commands', description="""Hello! What are you looking for?\n
-:one: If you are looking for low-cost or free therapy, please use the command `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n\n :three: If you're looking for live support, please type `tbs!livesupport`.""",
-                                colour=discord.Colour.green())
-        await ctx.send(embed=message)
+        messagetosend = discord.Embed(title='Commands', description="""Hello! What are you looking for?\n
+:one: If you are looking for low-cost or free therapy, please use the command `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n\n :three: If you're looking for live support, please type `tbs!livesupport`.""", colour = 0x082E6F)
+        messagetosend.set_thumbnail(url="https://cdn.discordapp.com/attachments/369960338436915210/479411887583395850/Embrace-nowledge.png")
+        await ctx.send(embed=messagetosend)
 
     @commands.command(aliases=['therapydatabase', 'databasetherapy'])
-    async def database(self,ctx):
-        websites = discord.Embed(title="Type 'next' to go to next page.", description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.")
-        websites.add_field(name="International/Multiple countries", value="<https://members.nielasher.com/>\n<https://www.therapistlocator.net//imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.therapytribe.com/>\n<http://www.istss.org/find-a-clinician.aspx>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>", inline=False)
-        websites.add_field(name="Canada and USA", value="<https://help.recoverywarriors.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://members.adaa.org/page/FATMain>\n<https://www.theravive.com/zip/>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n\nAdditionally, check **this page**, which is always up-to-date and has more resources for you:\n\n<https://sunrayresources.tumblr.com/resources>", inline=False)
+    async def database(self, ctx):
+        websites = discord.Embed(title="Type 'next' to go to next page.",
+                                 description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.", colour=0x082E6F)
+        websites.add_field(name="International/Multiple countries",
+                           value="<https://members.nielasher.com/>\n<https://www.therapistlocator.net//imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.therapytribe.com/>\n<http://www.istss.org/find-a-clinician.aspx>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>",
+                           inline=False)
+        websites.add_field(name="Canada and USA",
+                           value="<https://help.recoverywarriors.com/>\n<https://www.sidran.org/help-desk/get-help/>\n<https://www.networktherapy.com/directory/find_therapist.asp>\n<https://members.adaa.org/page/FATMain>\n<https://www.theravive.com/zip/>\n<https://www.psychologytoday.com/us/therapists/>\n<http://www.findcbt.org/xFAT/index.cfm>\n<http://www.isst-d.org/default.asp?contentID=18>\n\nAdditionally, check **this page**, which is always up-to-date and has more resources for you:\n\n<https://sunrayresources.tumblr.com/resources>",
+                           inline=False)
         websites.set_footer(text="(Page 1/2) Type 'next' to go to next page.")
         embedone = await ctx.send(embed=websites)
-        
-        websites2 = discord.Embed(description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.")
-        websites2.add_field(name="UK", value="<https://bpdworld.org/specialist/> (Various services)\<https://www.bps.org.uk/public/find-psychologist>\n<http://www.cmha.org.uk/>\n<https://www.psychologytoday.com/gb/counselling>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.psychotherapy.org.uk/find-a-therapist/>\n<https://www.bacp.co.uk/search/Therapists>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>")
-        websites2.add_field(name="Australia", value="<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n Additionally, check **this page**, which is always up-to-date and has more resources for you:\n\n <https://sunrayresources.tumblr.com/resources>")
+
+        websites2 = discord.Embed(
+            description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.", colour=0x082E6F)
+        websites2.add_field(name="UK",
+                            value="<https://bpdworld.org/specialist/> (Various services)\<https://www.bps.org.uk/public/find-psychologist>\n<http://www.cmha.org.uk/>\n<https://www.psychologytoday.com/gb/counselling>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.psychotherapy.org.uk/find-a-therapist/>\n<https://www.bacp.co.uk/search/Therapists>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>")
+        websites2.add_field(name="Australia",
+                            value="<https://www.1800respect.org.au/services/>\n<http://www.oneinthree.com.au/servicesandresources/>\n<https://lysnhealth.com.au/>\n<https://www.psychology.org.au/Find-a-Psychologist>\n\n Additionally, check **this page**, which is always up-to-date and has more resources for you:\n\n <https://sunrayresources.tumblr.com/resources>")
         websites2.set_footer(text="(Page 2/2)")
-                               
+
         def check(a):
             return a.content == "next"
 
         try:
-            await bot.wait_for("message",timeout=60.0,check=check)
+            await bot.wait_for("message", timeout=60.0, check=check)
             await embedone.edit(embed=websites2)
-
 
         except asyncio.TimeoutError:
             return await ctx.send('Sorry, command timed out!')
-
-
-
 
 
 class Fun():
