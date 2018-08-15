@@ -47,6 +47,8 @@ async def givehug(ctx):
         await ctx.send('You just received a warm hug!')
     elif 'me' in ctx.message.content:
         await ctx.send('All the hugs for you!')
+        
+
 
 
 @bot.event
@@ -130,6 +132,11 @@ class Info():
     async def uptime(ctx):
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         await ctx.send(uptimemessage)
+        
+    @commands.command()
+    async def invite(ctx):
+        invitelink = "https://discordapp.com/oauth2/authorize?client_id=428260876722634765&scope=bot"
+        await ctx.send(invitelink)
         
     @commands.command(aliases=['git', 'github', 'src'])
     async def source(self, ctx):
