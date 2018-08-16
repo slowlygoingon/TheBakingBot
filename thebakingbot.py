@@ -292,13 +292,13 @@ class Fun():
     @commands.command(aliases=['hug', 'hugs', 'givehugs'])
     async def givehug(self, ctx):
         botmention = discord.Embed(description="T-thank you! I feel so loved now >///<", colour=0x082E6F)
-        botmention.add_thumbnail(
+        botmention.set_thumbnail(
             url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
         normalmention = discord.Embed(description="Aw, you just gave them a cookie. How sweet of you!", colour=0x082E6F)
-        normalmention.add_thumbnail(
+        normalmention.set_thumbnail(
             url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
         me = discord.Embed(description="There you go. Enjoy your cookie!", colour=0x082E6F)
-        me.add_thumbnail(
+        me.set_thumbnail(
             url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
 
         if ctx.me.mention in ctx.message.content:
@@ -342,11 +342,11 @@ class Fun():
     @commands.command(aliases=['cookie'])
     async def givecookie(self, ctx):
         botmention = discord.Embed(description="Wow, thanks! I love cookies >///<", colour=0x082E6F)
-        botmention.add_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        botmention.set_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
         normalmention = discord.Embed(description="Aw, you just gave them a cookie. How sweet of you!", colour=0x082E6F)
-        normalmention.add_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        normalmention.set_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
         me = discord.Embed(description="There you go. Enjoy your cookie!", colour=0x082E6F)
-        me.add_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        me.set_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
 
         if ctx.me.mention in ctx.message.content:
             await ctx.send(embed=botmention)
