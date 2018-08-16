@@ -1,4 +1,4 @@
-# Copyright 2018 Slowly/slowlygoingon, Chanku/Sapein
+# Copyright 2018 Slowly/slowlygoingon
 
 import discord
 import asyncio
@@ -171,7 +171,7 @@ class MentalHealth():
     @commands.command()
     async def emergency(self, ctx):
         messagetosend = discord.Embed(title="Emergency", description="If anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!livesupport` and `tbs!therapy` commands.", colour=0x082E6F)
-        await ctx.send(messagetosend)
+        await ctx.send(embed=messagetosend)
 
     @commands.command(aliases=['positive'])
     async def positivity(self, ctx):
