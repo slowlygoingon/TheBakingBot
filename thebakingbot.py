@@ -24,31 +24,6 @@ async def on_ready():
     print(readymessage)
 
 
-@bot.command(aliases=['cookie'])
-async def givecookie(ctx):
-    if ctx.me.mention in ctx.message.content:
-        await ctx.send('Thank you, I love cookies!')
-    elif '@' in ctx.message.content:
-        await ctx.send('You just gave them a cookie. How sweet of you!')
-    elif ('me' in ctx.message.content) or ('Me' in ctx.message.content):
-        await ctx.send('Enjoy your cookie!')
-
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send('Pong!')
-
-
-@bot.command(aliases=['hug', 'hugs', 'givehugs'])
-async def givehug(ctx):
-    if ctx.me.mention in ctx.message.content:
-        await ctx.send('T-thank you! I feel so loved now...')
-    elif '@' in ctx.message.content:
-        await ctx.send('You just received a warm hug!')
-    elif 'me' in ctx.message.content:
-        await ctx.send('All the hugs for you!')
-
-
 @bot.event
 async def on_member_join(member):
     msg = discord.Embed(
@@ -73,21 +48,6 @@ uptimedict = {
     'timeuptime': 0,
 }
 
-
-@bot.command(aliases=['say', 'talk'])
-async def echo(ctx, *, something):
-    error = discord.Embed(
-        title='Error!', description="Don't ping with bot commands, thank you.", colour=discord.Colour.red())
-    errorm = discord.Embed(
-        title='Error!', description='Did you seriously just try to mass-ping?', colour=discord.Colour.red())
-    messagetosend = '{0.author} just tried to mass-ping.'.format(ctx.message)
-    if ('@' in ctx.message.content) and ('@someone' not in ctx.message.content):
-        await ctx.send(embed=error)
-    if '@everyone' in ctx.message.content:
-        await ctx.send(embed=errorm)
-        await (await bot.get_user_info(345307151989997568)).send(messagetosend)
-    if ('@' not in ctx.message.content) or ('@someone' in ctx.message.content):
-        await ctx.send(something)
 
 
 @bot.command(aliases=['urgentreport', 'reporturgent'])
@@ -132,14 +92,13 @@ class Moderating():
 
 class Info():
     @commands.command()
-    async def uptime(ctx):
-        uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
-        await ctx.send(uptimemessage)
+    async def ping(self, ctx):
+        await ctx.send("Pong! I'm alive.")
 
     @commands.command()
-    async def invite(ctx):
-        invitelink = "https://discordapp.com/oauth2/authorize?client_id=428260876722634765&scope=bot"
-        await ctx.send(invitelink)
+    async def invite(self, ctx):
+        invitelink = discord.Embed(title="Invite me!", description="https://discordapp.com/oauth2/authorize?client_id=428260876722634765&scope=bot", colour=0x082E6F)
+        await ctx.send(embed=invitelink)
 
     @commands.command(aliases=['git', 'github', 'src'])
     async def source(self, ctx):
@@ -182,7 +141,7 @@ class Info():
         em.add_field(
             name='INFO',
             value=
-            "**info**   -   Shows basic info about the bot. [about]\n**uptime**   -   Shows the bot's uptime.\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?",
+            "**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]",
             inline=False)
         em.add_field(
             name='MENTAL HEALTH',
@@ -197,7 +156,7 @@ class Info():
         em.add_field(
             name='MODERATING (Staff only)',
             value=
-            '**clear**   -   Delete messages. [prune, purge, delete]\n',
+            '**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.',
             inline=False)
         em.add_field(
             name='SERVER-RELATED',
@@ -208,6 +167,12 @@ class Info():
 
 
 class MentalHealth():
+
+    @commands.command()
+    async def emergency(self, ctx):
+        messagetosend = discord.Embed(title="Emergency", description="If anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!livesupport` and `tbs!therapy` commands.", colour=0x082E6F)
+        await ctx.send(messagetosend)
+
     @commands.command(aliases=['positive'])
     async def positivity(self, ctx):
         pos = random.choice([
@@ -309,6 +274,40 @@ class Fun():
         choices = random.choice(['Heads!', 'Tails!'])
         await ctx.send(choices)
 
+    @commands.command(aliases=['say', 'talk'])
+    async def echo(self, ctx, *, something):
+        error = discord.Embed(
+            title='Error!', description="Don't ping with bot commands, thank you.", colour=discord.Colour.red())
+        errorm = discord.Embed(
+            title='Error!', description='Did you seriously just try to mass-ping?', colour=discord.Colour.red())
+        messagetosend = '{0.author} just tried to mass-ping.'.format(ctx.message)
+        if ('@' in ctx.message.content) and ('@someone' not in ctx.message.content):
+            await ctx.send(embed=error)
+        if '@everyone' in ctx.message.content:
+            await ctx.send(embed=errorm)
+            await (await bot.get_user_info(345307151989997568)).send(messagetosend)
+        if ('@' not in ctx.message.content) or ('@someone' in ctx.message.content):
+            await ctx.send(something)
+
+    @commands.command(aliases=['hug', 'hugs', 'givehugs'])
+    async def givehug(self, ctx):
+        botmention = discord.Embed(description="T-thank you! I feel so loved now >///<", colour=0x082E6F)
+        botmention.add_thumbnail(
+            url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
+        normalmention = discord.Embed(description="Aw, you just gave them a cookie. How sweet of you!", colour=0x082E6F)
+        normalmention.add_thumbnail(
+            url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
+        me = discord.Embed(description="There you go. Enjoy your cookie!", colour=0x082E6F)
+        me.add_thumbnail(
+            url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
+
+        if ctx.me.mention in ctx.message.content:
+            await ctx.send(embed=botmention)
+        elif '@' in ctx.message.content:
+            await ctx.send(embed=normalmention)
+        elif 'me' in ctx.message.content:
+            await ctx.send(embed=me)
+
     @commands.command(aliases=['reassuring', 'randomcompliment', 'comfort', 'comforting'])
     async def compliment(self, ctx):
         randomcomp = random.choice([
@@ -340,11 +339,21 @@ class Fun():
         throw = random.choice(['1.', '2.', '3.', '4.', '5.', '6.'])
         await ctx.send(throw)
 
-    @commands.command()
-    async def emergency(self, ctx):
-        await ctx.send(
-            'Hey there {0}, if anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!help`, `tbs!support` and `tbs!therapy` commands - in the appropriate bot channel.'.
-                format(ctx.author.mention))
+    @commands.command(aliases=['cookie'])
+    async def givecookie(self, ctx):
+        botmention = discord.Embed(description="Wow, thanks! I love cookies >///<", colour=0x082E6F)
+        botmention.add_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        normalmention = discord.Embed(description="Aw, you just gave them a cookie. How sweet of you!", colour=0x082E6F)
+        normalmention.add_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        me = discord.Embed(description="There you go. Enjoy your cookie!", colour=0x082E6F)
+        me.add_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+
+        if ctx.me.mention in ctx.message.content:
+            await ctx.send(embed=botmention)
+        elif '@' in ctx.message.content:
+            await ctx.send(embed=normalmention)
+        elif ('me' in ctx.message.content) or ('Me' in ctx.message.content):
+            await ctx.send(embed=me)
 
     @commands.command(
         aliases=['joke', 'jokes', 'cheesyjoke', 'randomjoke', 'pun', 'randompun', 'cheesypun', 'cornypun', 'puns'])
@@ -353,8 +362,7 @@ class Fun():
             'What do you call a thieving alligator? A crookodile.',
             "What did the watermelon say to the cantaloupe? You're one in a melon.",
             'How do you put a baby alien to sleep? You rocket.', 'How do you throw a space party? You planet.',
-            'What do you call a bear with no teeth? A gummy-bear.',
-            'What happens if you eat too much Eastern food? You falafel.', 'What does a house wear? Address.',
+            'What do you call a bear with no teeth? A gummy-bear.', 'What does a house wear? Address.',
             'Why is it hard to be in a relationship with a thief? Because they always take things... literally.',
             "Why can't a bycycle stand on its own? Because it's two tired.", 'Do french people play videogames? Wii.',
             "Did you hear about the joke about German sausages? It's the wurst.",
@@ -405,7 +413,8 @@ class Fun():
 - Who's there?
 - To.
 - To who?
-- To ***whom***."""
+- To ***whom***.""",
+            "Working in a bank must be awful. I bet it gets loanly in there sometimes."
 
         ])
         await ctx.send(randomjoke)
@@ -414,8 +423,8 @@ class Fun():
     async def question(self, ctx):
         quest = random.choice([
             'Yes.', 'No.', 'Yes!', 'No!', 'What? No!', 'Probably not.', 'Maybe...', 'Always.', 'Never.', 'Sometimes...',
-            'Almost certainly.', 'I hope not!', 'Yep!', 'Yes...?', 'No...?', 'Always!', 'Never!', 'Not sure...',
-            'Of course!', 'Of course not!', 'Of course.', 'DUH!', 'Why not?', 'Why though?'
+            'Almost certainly.', 'I hope not!', "I hope so!", 'Yep!', 'Yes...?', 'No...?', 'Always!', 'Never!', 'Not sure...',
+            'Of course!', 'Of course not!', 'Of course.', 'DUH!', 'Why not?', 'Why though?', "Absolutely not!", "Absolutely not.", "Perhaps.", "Who knows..."
         ])
         await ctx.send(quest)
 
