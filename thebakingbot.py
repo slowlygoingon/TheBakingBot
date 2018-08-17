@@ -294,10 +294,10 @@ class Fun():
         botmention = discord.Embed(description="T-thank you! I feel so loved now >///<", colour=0x082E6F)
         botmention.set_thumbnail(
             url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
-        normalmention = discord.Embed(description="Aw, you just gave them a cookie. How sweet of you!", colour=0x082E6F)
+        normalmention = discord.Embed(description="Aw, you just received a warm hug!", colour=0x082E6F)
         normalmention.set_thumbnail(
             url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
-        me = discord.Embed(description="There you go. Enjoy your cookie!", colour=0x082E6F)
+        me = discord.Embed(description="All the hugs for you!", colour=0x082E6F)
         me.set_thumbnail(
             url="https://media1.tenor.com/images/0be55a868e05bd369606f3684d95bf1e/tenor.gif")
 
@@ -444,14 +444,23 @@ class Fun():
             "Here's your random dessert.\nhttps://giphy.com/gifs/is-reasons-superior-E5efe2XtMUdTq",
             "Here's your random dessert.\nhttps://giphy.com/gifs/food-chocolate-dessert-111oCumklJpuJW",
             "Here's your random dessert.\nhttps://giphy.com/gifs/waffles-tDnKZAsxCZHRC",
-            "Here's your random dessert.\nhttps://giphy.com/gifs/food-dessert-macaroons-KnfnufBkPtGAo",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/cake-cute-t0iiGOtn2oMak",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/cake-dessert-I8iWotgEu6O4g",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/l0HlyXQUez0jHop2g",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/shakingfoodgifs-cookie-food-kawaii-INYRyEM6hPbcQ",
             "Here's your random dessert.\nhttps://giphy.com/gifs/fruit-7z4lmNtTmuREI",
             "Here's your random dessert.\nhttps://giphy.com/gifs/shakingfoodgifs-food-dessert-pie-pdfnRGpNQzePC",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/chocolate-cookie-food-4ji2aiquPipy0",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/artists-on-tumblr-loop-tx8emQv1s5AtO",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/food-gif-gifs-nQxAUnnkBuve0",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/custard-pudding-giga-UiYwzaq7GmViM",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/layer-creme-brulee-KKcuP3xXzs6pG",
+            "Here's your random dessert.\nhttps://giphy.com/gifs/cheddar-food-ice-cream-SbL0eEWeNfQ0cOvrew",
             "Here's your random dessert.\nhttps://giphy.com/gifs/white-dessert-sphere-rczvneQ6Ziwx2",
             "Here's your random dessert.\nhttps://giphy.com/gifs/donut-drool-enchanting-arEGphwGhT7dC",
             "Here's your random dessert.\nhttps://giphy.com/gifs/dessert-ice-cream-food-ApRorrZknEPw4"
-            "Here's your random dessert.\nhttps://78.media.tumblr.com/8a9b6cd2404af6c022d95159ea94956c/tumblr_oli85boOtG1tdnbbbo1_500.gif"
-            "Here's your random dessert.\nhttps://78.media.tumblr.com/10f81a8d89154b697a71680b7ff6b43b/tumblr_oseeo7E0CQ1uxvvvzo1_500.gif"
+            "Here's your random dessert.\nhttps://78.media.tumblr.com/8a9b6cd2404af6c022d95159ea94956c/tumblr_oli85boOtG1tdnbbbo1_500.gif",
+            "Here's your random dessert.\nhttps://78.media.tumblr.com/10f81a8d89154b697a71680b7ff6b43b/tumblr_oseeo7E0CQ1uxvvvzo1_500.gif",
             "Here's your random dessert.\nhttps://78.media.tumblr.com/9f4020f7a39d346a67ab38838d74d4c6/tumblr_om96xsl49Z1vj3zbeo1_500.gif"
         ])
         await ctx.send(dessert)
