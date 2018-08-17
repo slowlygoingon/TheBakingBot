@@ -474,7 +474,7 @@ class Fun():
             "Here's your random dessert.\nhttps://giphy.com/gifs/cheddar-food-ice-cream-SbL0eEWeNfQ0cOvrew",
             "Here's your random dessert.\nhttps://giphy.com/gifs/white-dessert-sphere-rczvneQ6Ziwx2",
             "Here's your random dessert.\nhttps://giphy.com/gifs/donut-drool-enchanting-arEGphwGhT7dC",
-            "Here's your random dessert.\nhttps://giphy.com/gifs/dessert-ice-cream-food-ApRorrZknEPw4"
+            "Here's your random dessert.\nhttps://giphy.com/gifs/dessert-ice-cream-food-ApRorrZknEPw4",
             "Here's your random dessert.\nhttps://78.media.tumblr.com/8a9b6cd2404af6c022d95159ea94956c/tumblr_oli85boOtG1tdnbbbo1_500.gif",
             "Here's your random dessert.\nhttps://78.media.tumblr.com/10f81a8d89154b697a71680b7ff6b43b/tumblr_oseeo7E0CQ1uxvvvzo1_500.gif",
             "Here's your random dessert.\nhttps://78.media.tumblr.com/9f4020f7a39d346a67ab38838d74d4c6/tumblr_om96xsl49Z1vj3zbeo1_500.gif"
