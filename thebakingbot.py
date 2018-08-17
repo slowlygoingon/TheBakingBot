@@ -193,7 +193,12 @@ class MentalHealth():
             "Hey there, here's your daily nice gif. (source: gogh-save-the-bees)\n        https://78.media.tumblr.com/4b8c9b079cd3da2d74275d3063d83b72/tumblr_oxidf7tQjz1ut0lfho1_500.gif",
             "Hey there, here's your daily nice gif. (source: magical-latte)\n        https://78.media.tumblr.com/d2fa0d7d4ca67af23750bb79a674d5c2/tumblr_p67f6ugJp91x69labo1_500.gif",
             "Hey there, here's your daily nice gif.\n        https://78.media.tumblr.com/85efdd7380284bd7279a0839e9674f96/tumblr_oqish5aNqX1ufccs2o1_500.gif",
-            "Hey there, here's your daily nice gif. (source: faiemagick)\n        https://78.media.tumblr.com/bf7cad140e3e113cd4062b0377842ca3/tumblr_otogrpArAo1wo3hpco1_1280.gif"
+            "Hey there, here's your daily nice gif. (source: faiemagick)\n        https://78.media.tumblr.com/bf7cad140e3e113cd4062b0377842ca3/tumblr_otogrpArAo1wo3hpco1_1280.gif",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/studiosoriginals-domitille-collardey-l41Yh1olOKd1Tgbw4",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/help-motivation-positivity-l4pT49ce47qFBdVT2",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/art-animation-illustration-l3q2A6Jn9uo2262pW",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/positive-tEXeL9FRm6PAI",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/destressmonday-destress-red-balloon-3og0IPjBrpAto5yJEs"
         ])
         await ctx.send(pos)
 
