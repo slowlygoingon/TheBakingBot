@@ -198,7 +198,8 @@ class MentalHealth():
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/help-motivation-positivity-l4pT49ce47qFBdVT2",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/art-animation-illustration-l3q2A6Jn9uo2262pW",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/positive-tEXeL9FRm6PAI",
-            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/destressmonday-destress-red-balloon-3og0IPjBrpAto5yJEs"
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/destressmonday-destress-red-balloon-3og0IPjBrpAto5yJEs",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/quotes-calm-keep-RLgIrDgrPMWdy"
         ])
         await ctx.send(pos)
 
@@ -210,6 +211,16 @@ class MentalHealth():
             "Hello there, here's a gif for a breathing exercise.\nhttps://media.giphy.com/media/8YfwmT1T8PsfC/giphy.gif",
             "Hello there, here's a gif for a breathing exercise.\nhttp://karlolabs.com/wp-content/uploads/2017/01/breathing.gif",
             "Hello there, here's a gif for a breathing exercise.\nhttp://i67.tinypic.com/2qant76.gif",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/monday-destress-3o7WTp5nxyRqh6T21O",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/monday-destress-l0NhWtOfbVze6KzFm",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/monday-destress-xThuWwbtRvTFh7fjxu",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/monday-destress-xThuWqxgKOhbutFyCY",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/monday-destress-xThuWkfIpGNrUnhu9O",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/destressmonday-relax-meditation-l1J9MS2Ia617Kky3u",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/meditation-mAsGwBc4pZGYE",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/square-ZwuBxuIHhIkXm",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/yoga-air-relax-3o7aD2T6zL8bKIt2tq",
+            "Hello there, here's a gif for a breathing exercise.\nhttps://giphy.com/gifs/meditation-NwzYTVWay9T6o",
             "Hello there, here's a gif for a breathing exercise.\nhttps://media.boingboing.net/wp-content/uploads/2016/11/tumblr_og31bxrtOn1qls18ho6_400.gif"
         ])
         await ctx.send(image)
