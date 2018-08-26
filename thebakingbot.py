@@ -15,6 +15,13 @@ timenow = datetime.datetime.utcnow()
 bot.remove_command('help')
 
 
+status2str = {
+    discord.Status.dnd: 'Do Not Disturb',
+    discord.Status.idle: 'Idle',
+    discord.Status.online: 'Online',
+    discord.Status.offline: 'Offline'
+}
+
 @bot.event
 async def on_ready():
     game = discord.Game(name="with a cake | tbs!help")
@@ -122,6 +129,31 @@ class Info():
     @commands.command()
     async def tumblr(self, ctx):
         await ctx.send('Here is our official tumblr.\nhttps://thebakingspot.tumblr.com/')
+
+    @commands.command()
+    async def analyze(self, ctx, member: discord.Member):
+        m = "Elaborating..."
+        user = ctx.message.mentions[0]
+        statusconvert = status2str.get(member.status)
+        analyzation = discord.Embed(title="Analyzed!", colour=0x082E6F)
+        analyzation.add_field(name="Name", value=user.name + "#" + user.discriminator + " (" + user.display_name + ")", inline=False)
+        analyzation.add_field(name="ID", value=user.id, inline=False)
+        analyzation.add_field(name="Joined at", value=user.joined_at.__format__('%A %d, %B %Y at %H:%M'), inline=False)
+        analyzation.add_field(name="Status", value=statusconvert, inline=False)
+        analyzation.set_thumbnail(url=user.avatar_url)
+
+        if user.activity == None:
+            analyzation.add_field(name="What you up to?", value="Nothing!")
+            await ctx.send(m, delete_after=4)
+            await asyncio.sleep(4)
+            await ctx.send(embed=analyzation)
+
+        elif user.activity != None:
+            analyzation.add_field(name="What you up to?", value=user.activity)
+            await ctx.send(m, delete_after=4)
+            await asyncio.sleep(4)
+            await ctx.send(embed=analyzation)
+
 
     @commands.command()
     async def faq(self, ctx):
@@ -293,9 +325,9 @@ class Fun():
     @commands.command(aliases=['say', 'talk'])
     async def echo(self, ctx, *, something):
         error = discord.Embed(
-            title='Error!', description="Don't ping with bot commands, thank you.", colour=discord.Colour.red())
+            title='Error!', description="Don't ping with this bot command, thank you.", colour=discord.Colour.red())
         errorm = discord.Embed(
-            title='Error!', description='Did you seriously just try to mass-ping?', colour=discord.Colour.red())
+            title='Error!', description='Did you seriously just try to mass-ping? :/', colour=discord.Colour.red())
         messagetosend = '{0.author} just tried to mass-ping.'.format(ctx.message)
         if ('@' in ctx.message.content) and ('@someone' not in ctx.message.content):
             await ctx.send(embed=error)
