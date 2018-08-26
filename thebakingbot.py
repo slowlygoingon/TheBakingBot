@@ -143,13 +143,13 @@ class Info():
         analyzation.set_thumbnail(url=user.avatar_url)
 
         if user.activity == None:
-            analyzation.add_field(name="What you up to?", value="Nothing!")
+            analyzation.add_field(name="What you up to?", value="Nothing!", inline=True)
             await ctx.send(m, delete_after=4)
             await asyncio.sleep(4)
             await ctx.send(embed=analyzation)
 
         elif user.activity != None:
-            analyzation.add_field(name="What you up to?", value=user.activity)
+            analyzation.add_field(name="What you up to?", value=user.activity, inline=True)
             await ctx.send(m, delete_after=4)
             await asyncio.sleep(4)
             await ctx.send(embed=analyzation)
@@ -173,7 +173,7 @@ class Info():
         em.add_field(
             name='INFO',
             value=
-            "**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]",
+            "**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Shows some basic info about a user you ping.",
             inline=False)
         em.add_field(
             name='MENTAL HEALTH',
