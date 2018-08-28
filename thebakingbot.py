@@ -7,6 +7,9 @@ import datetime
 from discord.ext import commands
 import os
 import sys
+import logging
+
+logging.basicConfig(level="INFO")
 
 bot = commands.Bot(
     description='The Baking Bot is the amazing official bot for the community & mental health server The Baking Spot. As of now, it has very basic commands, but we hope to implement more of them in the future!',
@@ -22,7 +25,7 @@ status2str = {
     discord.Status.offline: 'Offline'
 }
 
-@bot.event
+@bot.listen()
 async def on_ready():
     game = discord.Game(name="with a cake | tbs!help")
     await bot.change_presence(status=discord.Status.online, activity=game)
@@ -31,7 +34,7 @@ async def on_ready():
     print(readymessage)
 
 
-@bot.event
+@bot.listen()
 async def on_member_join(member):
     msg = discord.Embed(
         title='Welcome!',
@@ -74,6 +77,40 @@ async def suggestion(ctx, *, message):
     channel = bot.get_channel(427219707683405844)
     await channel.send(messagetosend)
     await ctx.message.delete()
+
+@suggestion.error
+async def suggestion_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        print("Error")
+    if isinstance(error, commands.UserInputError):
+        print("Error")
+
+@bot.listen()
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.BotMissingPermissions):
+        message1 = discord.Embed(title="Error!", description='I do not know this recipe! (Bot is missing permissions)', color=0xd90000)
+        await ctx.send(embed=message1)
+        return
+
+    if isinstance(error, commands.BadArgument):
+        message2 = discord.Embed(title="Error!", description='I do not quite understand what you want me to do... (User input failed to be converted: what you typed after the command is not correct)', color=0xd90000)
+        await ctx.send(embed=message2)
+        return
+
+    if isinstance(error, commands.MissingRequiredArgument):
+        message3 = discord.Embed(title="Error!", description='You sure this is the whole recipe? (Missing required argument: you should type something after the command)', color=0xd90000)
+        await ctx.send(embed=message3)
+        return
+
+    if isinstance(error, commands.MissingPermissions):
+        message4 = discord.Embed(title="Error!", description='You are not my Chef! (You are missing permissions)', color=0xd90000)
+        await ctx.send(embed=message4)
+        return
+
+    if isinstance(error, commands.UserInputError):
+        message5 = discord.Embed(title="Error!", description="I do not quite understand what you mean... (Invalid user input)", color=0xd90000)
+        await ctx.send(embed=message5)
+        return
 
 
 class Moderating():
@@ -120,7 +157,7 @@ class Info():
         em.add_field(name='Developers', value='Slowly#1846, Chanku#4372', inline=False)
         em.add_field(
             name='Thank-yous',
-            value="Special thanks to Sebi's Bot Tutorial, this bot wouldn't have been possible without your help.",
+            value="Special thanks to: \n- Sebi's Bot Tutorial\n- Espy (Esp#1204)\n- Chanku (Chanku#4372)\n\nThis bot wouldn't have been possible without your help.",
             inline=False)
         em.add_field(name='Uptime', value=uptimemessage, inline=False)
         em.add_field(name='Version', value='Still in development.', inline=False)
@@ -130,7 +167,7 @@ class Info():
     async def tumblr(self, ctx):
         await ctx.send('Here is our official tumblr.\nhttps://thebakingspot.tumblr.com/')
 
-    @commands.command()
+    @commands.command(aliases=['user', 'userinfo'])
     async def analyze(self, ctx, member: discord.Member):
         m = "Elaborating..."
         user = ctx.message.mentions[0]
@@ -143,13 +180,13 @@ class Info():
         analyzation.set_thumbnail(url=user.avatar_url)
 
         if user.activity == None:
-            analyzation.add_field(name="What you up to?", value="Nothing!", inline=True)
+            analyzation.add_field(name="What you up to?", value="Nothing!")
             await ctx.send(m, delete_after=4)
             await asyncio.sleep(4)
             await ctx.send(embed=analyzation)
 
         elif user.activity != None:
-            analyzation.add_field(name="What you up to?", value=user.activity, inline=True)
+            analyzation.add_field(name="What you up to?", value=user.activity)
             await ctx.send(m, delete_after=4)
             await asyncio.sleep(4)
             await ctx.send(embed=analyzation)
@@ -173,7 +210,7 @@ class Info():
         em.add_field(
             name='INFO',
             value=
-            "**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Shows some basic info about a user you ping.",
+            "**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]",
             inline=False)
         em.add_field(
             name='MENTAL HEALTH',
@@ -518,4 +555,3 @@ bot.add_cog(Info())
 bot.add_cog(Fun())
 bot.add_cog(MentalHealth())
 bot.add_cog(Moderating())
-bot.run(os.getenv('discord_client_key'))
