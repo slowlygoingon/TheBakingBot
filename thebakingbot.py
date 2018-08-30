@@ -180,7 +180,6 @@ class Info():
         m = "Elaborating..."
         user = ctx.message.mentions[0]
         statusconvert = status2str.get(member.status)
-        await ctx.send("Test")
 
         analyzation = discord.Embed(title="Analyzed!", colour=0x082E6F)
         analyzation.add_field(name="Name", value=user.name + "#" + user.discriminator + " (" + user.display_name + ")", inline=False)
@@ -188,7 +187,6 @@ class Info():
         analyzation.add_field(name="Joined at", value=f"{user.joined_at:%A %d, %B %Y at %H:%M}", inline=False)
         analyzation.add_field(name="Status", value=statusconvert, inline=False)
         analyzation.set_thumbnail(url=user.avatar_url)
-        await ctx.send(embed=analyzation)
 
         if user.activity is None:
             analyzation.add_field(name="What you up to?", value="Nothing!")
