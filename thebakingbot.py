@@ -211,7 +211,7 @@ class Info():
             'Send a completely anonymous report or feedback regarding the server, other members, or Staff.\nhttps://goo.gl/forms/2pO3gDoxKz45mNh92'
         )
 
-    @commands.group(aliases=['cmds', 'commandlist', 'commandslist'])
+    @commands.group(invoke_without_command=True, aliases=['cmds', 'commandlist', 'commandslist'])
     async def help(self, ctx):
         em = discord.Embed(
             description=
@@ -225,30 +225,30 @@ Server**""", colour=0x082E6F)
 
     @help.command(name="info")
     async def infomenu(self, ctx):
-        em = discord.Embed(
-            description="**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]")
+        em = discord.Embed(title="Info commands",
+            description="**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="mentalhealth")
     async def mentalhealthmenu(self, ctx):
-        em = discord.Embed(
-            description="**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]")
+        em = discord.Embed(title="Info commands", 
+            description="**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="fun")
     async def funmenu(self,ctx):
-        em = discord.Embed(description="**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]")
+        em = discord.Embed(title="Info commands", description="**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="moderating")
     async def moderatingmenu(self,ctx):
-        em = discord.Embed(description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.")
+        em = discord.Embed(title="Info commands", description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="server")
     async def servermenu(self, ctx):
-        em = discord.Embed(
-            description="**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]")
+        em = discord.Embed(title="Info commands", 
+            description="**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]", colour=0x082E6F)
         await ctx.send(embed=em)
 
 
