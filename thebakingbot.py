@@ -13,7 +13,7 @@ logging.basicConfig(level="INFO")
 
 bot = commands.Bot(
     description='The Baking Bot is the amazing official bot for the community & mental health server The Baking Spot. As of now, it has very basic commands, but we hope to implement more of them in the future!',
-    command_prefix='tbs!')
+    command_prefix='tbs!', case_insensitive=True)
 timenow = datetime.datetime.utcnow()
 bot.remove_command('help')
 
@@ -23,6 +23,13 @@ status2str = {
     discord.Status.idle: 'Idle',
     discord.Status.online: 'Online',
     discord.Status.offline: 'Offline'
+}
+
+activity2str = {
+    discord.ActivityType.playing: 'Playing ',
+    discord.ActivityType.streaming: 'Streaming ',
+    discord.ActivityType.watching: 'Watching ',
+    discord.ActivityType.unknown: 'Unknown - '
 }
 
 @bot.listen()
@@ -172,6 +179,7 @@ class Info():
         m = "Elaborating..."
         user = ctx.message.mentions[0]
         statusconvert = status2str.get(member.status)
+        activityconvert = activity2str.get(user.activity.type)
         analyzation = discord.Embed(title="Analyzed!", colour=0x082E6F)
         analyzation.add_field(name="Name", value=user.name + "#" + user.discriminator + " (" + user.display_name + ")", inline=False)
         analyzation.add_field(name="ID", value=user.id, inline=False)
@@ -179,16 +187,16 @@ class Info():
         analyzation.add_field(name="Status", value=statusconvert, inline=False)
         analyzation.set_thumbnail(url=user.avatar_url)
 
-        if user.activity == None:
+        if user.activity is None:
             analyzation.add_field(name="What you up to?", value="Nothing!")
-            await ctx.send(m, delete_after=4)
-            await asyncio.sleep(4)
+            await ctx.send(m, delete_after=3)
+            await asyncio.sleep(3)
             await ctx.send(embed=analyzation)
 
-        elif user.activity != None:
-            analyzation.add_field(name="What you up to?", value=user.activity)
-            await ctx.send(m, delete_after=4)
-            await asyncio.sleep(4)
+        else:
+            analyzation.add_field(name="What you up to?", value="{} {}".format(activityconvert, user.activity.name))
+            await ctx.send(m, delete_after=3)
+            await asyncio.sleep(3)
             await ctx.send(embed=analyzation)
 
 
@@ -215,7 +223,7 @@ class Info():
         em.add_field(
             name='MENTAL HEALTH',
             value=
-            "**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
+            "**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
             inline=False)
         em.add_field(
             name='FUN AND MISC.',
@@ -236,6 +244,116 @@ class Info():
 
 
 class MentalHealth():
+
+    @commands.group(invoke_without_command=True, aliases=["define", "definition"])
+    async def whatis(self, ctx):
+        errormessage = discord.Embed(title="Error!", description="You must specify what you want to know about. The correct format is: `tbs!whatis whateveryouwant`, the command is not case sensitive.\n\nTo know the available definitions, type `tbs!whatis list`.", colour=discord.Colour.red())
+        await ctx.send(embed=errormessage)
+
+    @whatis.command(name="list")
+    async def whatis_list(self,ctx):
+        list = discord.Embed(title="List of available definitions", description="anxiety, bipolar, counsellor, depression, DID, DSM, ICD, OSDD, psychiatrist, psychologist, schizophrenia, therapist")
+        await ctx.send(embed=list)
+
+    @whatis.command(name="did")
+    async def whatis_did1(self, ctx):
+        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
+DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
+\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
+\nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
+        await ctx.send(embed=didosddmessage)
+
+    @whatis.command(name="DID")
+    async def whatis_did2(self, ctx):
+        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
+DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
+\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
+\nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
+        await ctx.send(embed=didosddmessage)
+
+    @whatis.command(name="osdd")
+    async def whatis_osdd1(self, ctx):
+        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
+DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
+\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
+\nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
+        await ctx.send(embed=didosddmessage)
+
+    @whatis.command(name="OSDD")
+    async def whatis_osdd2(self, ctx):
+        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
+DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
+\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
+\nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
+        await ctx.send(embed=didosddmessage)
+
+    @whatis.command(name="dsm")
+    async def whatis_dsm(self, ctx):
+        dsmmessage = discord.Embed(title="What is the DSM?", description="""The Diagnostic and Statistical Manual of Mental Disorders (DSM) is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
+        await ctx.send(embed=dsmmessage)
+
+    @whatis.command(name="DSM")
+    async def whatis_dsm(self, ctx):
+        dsmmessage = discord.Embed(title="What is the DSM?", description="""The Diagnostic and Statistical Manual of Mental Disorders (DSM) is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
+        await ctx.send(embed=dsmmessage)
+
+    @whatis.command(name="icd")
+    async def whatis_icd(self, ctx):
+        icdmessage = discord.Embed(title="What is the ICD?", description="""The International Statistical Classification of Diseases and Related Health Problems (ICD) is a manual that server for the identification of health trends and statistics globally, and the international standard for reporting diseases and health conditions. It is the diagnostic classification standard for all clinical and research purposes. The latest version (ICD-11) was released in 2018 and is currently used worldwide.""")
+        await ctx.send(embed=icdmessage)
+
+    @whatis.command(name="schizophrenia")
+    async def whatis_schizophrenia(self, ctx):
+        schizophreniamessage = discord.Embed(title="What is schizophrenia?", description="""Schizophrenia is a chronic and severe mental disorder that affects how a person thinks, feels, and behaves. People with schizophrenia may seem like they have lost touch with reality. Symptoms include: delusions, hallucinations, trouble with thinking and concentration, difficulty feeling or expressing emotions, lack of motivation, and more.\n
+While there is no cure for schizophrenia, research is leading to more advanced treatments. Researches also are unraveling its causes studying genetics and the brain’s structure and functions. These promising approaches make us hope for more effective therapies soon.""")
+        await ctx.send(embed=schizophreniamessage)
+
+    @whatis.command(name="depression")
+    async def whatis_depression(self, ctx):
+        depressionmessage = discord.Embed(title="What is depression?", description="""Depression is often an umbrella term for a variety of mood disorders, including major depressive mood disorder, post-partum depression, seasonal affective disorder, etc.
+\nThe common features of all these disorders can be mild to severe and include loss of interest or pleasure in activities one usually enjoy(ed), negative thoughts about oneself, suicidal or self-harming tendencies or thoughts, difficulty concentrating, trouble maintaining a healthy sleep schedule, and more.
+Fortunately, depression is farily easily treatable compared to other disorders.  The earlier that treatment can begin, the more effective it is. Usually, people with a mood disorder can find relief in talking therapy (such as DBT, CBT, etc.), art therapy, medications, and other types of therapy/treatments.""")
+        await ctx.send(embed=depressionmessage)
+
+    @whatis.command(name="anxiety")
+    async def whatis_anxiety(self, ctx):
+        anxietymessage = discord.Embed(title="What is anxiety?", description="""Anxiety is often an umbrella term for disorders such as generalized anxiety disorder, panic disorder, or social anxiety disorder, or can be seen as a symptom that accompanies other disorders. Keep in mind everyone experiences anxiety from time to time, so it only becomes worrisome when it's so strong or frequent that it prevents you from living your life to the fullest or causes significant distress.
+\nAnxiety disorders are treatable and generally psychotherapy and/or medication is what works best. CBT is an example of a specific kind of therapy that can help with anxiety disorders.""")
+        await ctx.send(embed=anxietymessage)
+
+    @whatis.command(name="bipolar")
+    async def whatis_bipolar(self, ctx):
+        bipolarmessage = discord.Embed(title="What is bipolar disorder?", description="""**Bipolar disorder** is a brain disorder that causes unusual and extreme shifts in mood, energy, activity levels, and productivity.
+\nIndividuals with bipolar disorder may experience:
+- **manic episodes**, which means they might feel very jumpy, restless and irritable, they may want to do dangerous things, feel like being super productive at the expense of their own health, and more
+- **hypomanic episodes**, during which they may feel very good, be highly productive, and function well. The person may not feel that anything is wrong, but loved ones may recognize the mood swings and changes.
+- **depressive episodes**, which make the person feel depressed, empty, hopeless, have trouble sleeping, think about self-harm, and other depressive symptoms.
+\nThere are four types of bipolar disorder: Bipolar I, defined by manic, depressive, and mixed episodes; Bipolar II, defined by hypomanic and depressive episodes; cyclothymia, defined by hypomanic and depressive episodes which however do not meet the requirements for Bipolar II; and Other Specified and Unspecified Bipolar and Related Disorders, defined by bipolar disorder symptoms that do not match the three categories listed above.
+\nAn effective treatment plan for bipolar disorder usually includes both medication and psychotherapy, such as CBT or interpersonal therapy.""")
+        await ctx.send(embed=bipolarmessage)
+
+    @whatis.command(name="therapist")
+    async def whatis_therapist(self, ctx):
+        therapistmessage = discord.Embed(title="Who is a therapist?", description="""The word **therapist** is an umbrella term for professionals who are trained (and/or licensed) to provide a variety of treatments, rehabilitation and support to people.\nExamples include psychologists, LMFT's, social workers, etc.""")
+        await ctx.send(embed=therapistmessage)
+
+    @whatis.command(name="psychologist")
+    async def whatis_psychologist(self, ctx):
+        psychologistmessage = discord.Embed(title="Who is a psychologist?", description="""A **psychologist** is a doctor who can diagnose mental disorders, do testings and assessments, and provide treatment plans to patients.""")
+        await ctx.send(embed=psychologistmessage)
+
+    @whatis.command(name="counsellor")
+    async def whatis_counsellor(self, ctx):
+        counsellormessage = discord.Embed(title="Who is a counsellor?", description="""The term **counsellor** is rather vague and can include a variety of professionals or trained individuals, including life coaches.
+\nIf you meant a **Mental Health Counsellor (MHC)**, they are a mental health professional who rovides support and guidance along the way, for example, when you feel stressed because of whatever reason and need additional support in your life. A MHC could work in schools, facilities, and other settings and is often low-cost or free. Some MHC's are trained in a specific area, such as substance abuse or youth. However, they cannot diagnose or provide more in-depth treatment plans.
+\nIf you meant **Licensed Professional Counsellor (LPC)** (also known as Licensed Clinical Professional Counsellor or Licensed Mental Health Counsellor), these professionals work with families, individuals, and groups for a variety of problems, similar to a MHC. However, they have more training than MHC's and can provide diagnoses and treatment plans.""")
+        await ctx.send(embed=counsellormessage)
+
+    @whatis.command(name="psychiatrist")
+    async def whatis_psychiatrist(self, ctx):
+        psychiatristmessage = discord.Embed(title="Who is a psychiatrist?", description="""A **psychiatrist** is a medical doctor who can offer assessments, testings, talking therapy and other types of treatment. Usually, they work along with other mental health professionals to decide what kind of meds to prescribe to a client. They may also be researchers.""")
+        await ctx.send(embed=psychiatristmessage)
+
 
     @commands.command()
     async def emergency(self, ctx):
@@ -323,7 +441,7 @@ class MentalHealth():
 
     @commands.command(aliases=['therapydatabase', 'databasetherapy'])
     async def database(self, ctx):
-        websites = discord.Embed(title="__TYPE 'NEXT' TO GO TO THE NEXT PAGE.__",
+        websites = discord.Embed(title="Type 'next' to go to next page.",
                                  description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.", colour=0x082E6F)
         websites.add_field(name="International/Multiple countries",
                            value="<https://members.nielasher.com/>\n<https://www.therapistlocator.net//imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.therapytribe.com/>\n<http://www.istss.org/find-a-clinician.aspx>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>",
