@@ -175,18 +175,20 @@ class Info():
     async def tumblr(self, ctx):
         await ctx.send('Here is our official tumblr.\nhttps://thebakingspot.tumblr.com/')
 
-    @commands.command(aliases=['user', 'userinfo'])
+    @commands.command()
     async def analyze(self, ctx, member: discord.Member):
         m = "Elaborating..."
         user = ctx.message.mentions[0]
         statusconvert = status2str.get(member.status)
-        activityconvert = activity2str.get(user.activity.type)
+        await ctx.send("Test")
+
         analyzation = discord.Embed(title="Analyzed!", colour=0x082E6F)
         analyzation.add_field(name="Name", value=user.name + "#" + user.discriminator + " (" + user.display_name + ")", inline=False)
         analyzation.add_field(name="ID", value=user.id, inline=False)
-        analyzation.add_field(name="Joined at", value=user.joined_at.__format__('%A %d, %B %Y at %H:%M'), inline=False)
+        analyzation.add_field(name="Joined at", value=f"{user.joined_at:%A %d, %B %Y at %H:%M}", inline=False)
         analyzation.add_field(name="Status", value=statusconvert, inline=False)
         analyzation.set_thumbnail(url=user.avatar_url)
+        await ctx.send(embed=analyzation)
 
         if user.activity is None:
             analyzation.add_field(name="What you up to?", value="Nothing!")
@@ -195,6 +197,7 @@ class Info():
             await ctx.send(embed=analyzation)
 
         else:
+            activityconvert = activity2str.get(user.activity.type)
             analyzation.add_field(name="What you up to?", value="{} {}".format(activityconvert, user.activity.name))
             await ctx.send(m, delete_after=3)
             await asyncio.sleep(3)
