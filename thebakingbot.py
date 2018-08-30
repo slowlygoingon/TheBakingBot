@@ -302,13 +302,13 @@ While there is no cure for schizophrenia, research is leading to more advanced t
     async def whatis_depression(self, ctx):
         depressionmessage = discord.Embed(title="What is depression?", description="""Depression is often an umbrella term for a variety of mood disorders, including major depressive mood disorder, post-partum depression, seasonal affective disorder, etc.
 \nThe common features of all these disorders can be mild to severe and include loss of interest or pleasure in activities one usually enjoy(ed), negative thoughts about oneself, suicidal or self-harming tendencies or thoughts, difficulty concentrating, trouble maintaining a healthy sleep schedule, and more.
-Fortunately, depression is farily easily treatable compared to other disorders.  The earlier that treatment can begin, the more effective it is. Usually, people with a mood disorder can find relief in talking therapy (such as DBT, CBT, etc.), art therapy, medications, and other types of therapy/treatments.""")
+Fortunately, depression is farily easily treatable compared to other disorders.  The earlier that treatment can begin, the more effective it is. Usually, people with a mood disorder can find relief in talking therapy (such as dialectical-behavioral therapy (DBT), cognitive behavioral therapy (CBT), etc.), art therapy, medications, and other types of therapy/treatments.""")
         await ctx.send(embed=depressionmessage)
 
     @whatis.command(name="anxiety")
     async def whatis_anxiety(self, ctx):
         anxietymessage = discord.Embed(title="What is anxiety?", description="""Anxiety is often an umbrella term for disorders such as generalized anxiety disorder, panic disorder, or social anxiety disorder, or can be seen as a symptom that accompanies other disorders. Keep in mind everyone experiences anxiety from time to time, so it only becomes worrisome when it's so strong or frequent that it prevents you from living your life to the fullest or causes significant distress.
-\nAnxiety disorders are treatable and generally psychotherapy and/or medication is what works best. CBT is an example of a specific kind of therapy that can help with anxiety disorders.""")
+\nAnxiety disorders are treatable and generally psychotherapy and/or medication is what works best. Cognitive-behavioral therapy (CBT) is an example of a specific kind of therapy that can help with anxiety disorders.""")
         await ctx.send(embed=anxietymessage)
 
     @whatis.command(name="bipolar")
