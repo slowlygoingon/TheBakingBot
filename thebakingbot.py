@@ -233,12 +233,12 @@ Server**""", colour=0x082E6F)
     @help.command(name="mentalhealth")
     async def mentalhealthmenu(self, ctx):
         em = discord.Embed(title="Mental health commands", 
-            description="**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]", colour=0x082E6F)
+            description="**comfort**   -   Tells you something comforting. [comforting, comfortme]\n**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="fun")
     async def funmenu(self,ctx):
-        em = discord.Embed(title="Fun commands", description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]", colour=0x082E6F)
+        em = discord.Embed(title="Fun commands", description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="moderating")
@@ -257,12 +257,12 @@ class MentalHealth():
 
     @commands.group(invoke_without_command=True, aliases=["define", "definition"])
     async def whatis(self, ctx):
-        errormessage = discord.Embed(title="Error!", description="You must specify what you want to know about. The correct format is: `tbs!whatis whateveryouwant`, the command is not case sensitive.\n\nTo know the available definitions, type `tbs!whatis list`.", colour=discord.Colour.red())
+        errormessage = discord.Embed(title="Error!", description="You must specify what you want to know about. The correct format is: `tbs!whatis whateveryouwant`, the command is case sensitive.\n\nTo know the available definitions, type `tbs!whatis list`.", colour=discord.Colour.red())
         await ctx.send(embed=errormessage)
 
     @whatis.command(name="list")
     async def whatis_list(self,ctx):
-        list = discord.Embed(title="List of available definitions", description="anxiety, bipolar, counsellor, depression, DID, DSM, ICD, OSDD, psychiatrist, psychologist, schizophrenia, therapist")
+        list = discord.Embed(title="List of available definitions", description="anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist")
         await ctx.send(embed=list)
 
     @whatis.command(name="did")
@@ -294,33 +294,49 @@ class MentalHealth():
 
     @whatis.command(name="schizophrenia")
     async def whatis_schizophrenia(self, ctx):
-        schizophreniamessage = discord.Embed(title="What is schizophrenia?", description="""Schizophrenia is a chronic and severe mental disorder that affects how a person thinks, feels, and behaves. People with schizophrenia may seem like they have lost touch with reality. Symptoms include: delusions, hallucinations, trouble with thinking and concentration, difficulty feeling or expressing emotions, lack of motivation, and more.\n
+        schizophreniamessage = discord.Embed(title="What is schizophrenia?", description="""**Schizophrenia** is a chronic and severe mental disorder that affects how a person thinks, feels, and behaves. People with schizophrenia may seem like they have lost touch with reality. Symptoms include: delusions, hallucinations, trouble with thinking and concentration, difficulty feeling or expressing emotions, lack of motivation, and more.\n
 While there is no cure for schizophrenia, research is leading to more advanced treatments. Researches also are unraveling its causes studying genetics and the brain’s structure and functions. These promising approaches make us hope for more effective therapies soon. Medication and talking therapy, such as cognitive-behavioral therapy (CBT), cognitive enhancement therapy (CET) and others are usually recommended.""")
         await ctx.send(embed=schizophreniamessage)
 
     @whatis.command(name="depression")
     async def whatis_depression(self, ctx):
-        depressionmessage = discord.Embed(title="What is depression?", description="""Depression is often an umbrella term for a variety of mood disorders, including major depressive mood disorder, post-partum depression, seasonal affective disorder, etc.
-\nThe common features of all these disorders can be mild to severe and include loss of interest or pleasure in activities one usually enjoy(ed), negative thoughts about oneself, suicidal or self-harming tendencies or thoughts, difficulty concentrating, trouble maintaining a healthy sleep schedule, and more.
-Fortunately, depression is farily easily treatable compared to other disorders.  The earlier that treatment can begin, the more effective it is. Usually, people with a mood disorder can find relief in talking therapy (such as dialectical-behavioral therapy (DBT), cognitive behavioral therapy (CBT), etc.), art therapy, medications, and other types of therapy/treatments.""")
+        depressionmessage = discord.Embed(title="What is depression?", description="""**Depression** is often an umbrella term for a variety of **mood disorders**, including major depressive mood disorder, post-partum depression, seasonal affective disorder, etc.
+\nThe common features of all these disorders can be mild to severe and include: loss of interest or pleasure in activities one usually enjoy(ed), negative thoughts about oneself, suicidal or self-harming tendencies or thoughts, difficulty concentrating, trouble maintaining a healthy sleep schedule, and more.
+Fortunately, depression is farily easily treatable compared to other disorders. Usually, people with a mood disorder can find relief in talking therapy (such as dialectical-behavioral therapy (DBT), cognitive behavioral therapy (CBT), etc.), art therapy, medications, and other types of therapy/treatments.""")
         await ctx.send(embed=depressionmessage)
 
     @whatis.command(name="anxiety")
     async def whatis_anxiety(self, ctx):
-        anxietymessage = discord.Embed(title="What is anxiety?", description="""Anxiety is often an umbrella term for disorders such as generalized anxiety disorder, panic disorder, or social anxiety disorder, or can be seen as a symptom that accompanies other disorders. Keep in mind everyone experiences anxiety from time to time, so it only becomes worrisome when it's so strong or frequent that it prevents you from living your life to the fullest or causes significant distress.
+        anxietymessage = discord.Embed(title="What is anxiety?", description="""**Anxiety** is often an umbrella term for disorders such as generalized anxiety disorder, panic disorder, or social anxiety disorder, or can be seen as a symptom that accompanies other disorders. Keep in mind everyone experiences anxiety from time to time, so it only becomes worrisome when it's so strong or frequent that it prevents you from living your life to the fullest or causes significant distress.
+\nCommon symptoms of anxiety include: an accelerated heartbeat, excessive sweating, panic, uneasiness, stomach problems, trouble sleeping, hyperventilation, numbness, and more.
 \nAnxiety disorders are treatable and generally psychotherapy and/or medication is what works best. Cognitive-behavioral therapy (CBT) is an example of a specific kind of therapy that can help with anxiety disorders.""")
         await ctx.send(embed=anxietymessage)
 
     @whatis.command(name="bipolar")
     async def whatis_bipolar(self, ctx):
-        bipolarmessage = discord.Embed(title="What is bipolar disorder?", description="""**Bipolar disorder** is a brain disorder that causes unusual and extreme shifts in mood, energy, activity levels, and productivity.
+        bipolarmessage = discord.Embed(title="What is bipolar disorder?", description="""**Bipolar disorder** is a mental health disorder that causes unusual and extreme shifts in mood, energy, activity levels, and productivity.
 \nIndividuals with bipolar disorder may experience:
 - **manic episodes**, which means they might feel very jumpy, restless and irritable, they may want to do dangerous things, feel like being super productive at the expense of their own health, and more
 - **hypomanic episodes**, during which they may feel very good, be highly productive, and function well. The person may not feel that anything is wrong, but loved ones may recognize the mood swings and changes.
 - **depressive episodes**, which make the person feel depressed, empty, hopeless, have trouble sleeping, think about self-harm, and other depressive symptoms.
 \nThere are four types of bipolar disorder: Bipolar I, defined by manic, depressive, and mixed episodes; Bipolar II, defined by hypomanic and depressive episodes; cyclothymia, defined by hypomanic and depressive episodes which however do not meet the requirements for Bipolar II; and Other Specified and Unspecified Bipolar and Related Disorders, defined by bipolar disorder symptoms that do not match the three categories listed above.
-\nAn effective treatment plan for bipolar disorder usually includes both medication and psychotherapy, such as CBT or interpersonal therapy.""")
+\nAn effective treatment plan for bipolar disorder usually includes both medication and psychotherapy, such as cognitive-behavioral therapy (CBT) or interpersonal therapy.""")
         await ctx.send(embed=bipolarmessage)
+        
+    @whatis.command(name="ptsd")
+    async def whatis_ptsd(self, ctx):
+        ptsdmessage = discord.Embed(title="What is PTSD?", description="""**Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing a traumatic event.
+\nSymptoms include: flashbacks, nightmares about the trauma, avoidance of reminders of the traumatic event, negative changes in beliefs about oneself/others/the world, and more. PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
+\nPTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
+        await ctx.send(embed=ptsdmessage)
+        
+    @whatis.command(name="cptsd")
+    async def whatis_cptsd(self, ctx):
+        ptsdmessage = discord.Embed(title="What is C-PTSD?", description="""**Complex Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing an ongoing traumatic event that is perceived as extremely threatening or horrific, and from which escape is impossible (or very difficult).
+The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years. 
+\nSymptoms include the same as PTSD, with the addition of difficulties with emotional regulation, negative self-concept, interpersonal disturbances such as being unable to feel close to others, and more. C-PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
+\nC-PTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
+        await ctx.send(embed=ptsdmessage)
 
     @whatis.command(name="therapist")
     async def whatis_therapist(self, ctx):
@@ -353,30 +369,35 @@ Fortunately, depression is farily easily treatable compared to other disorders. 
     @commands.command(aliases=['positive'])
     async def positivity(self, ctx):
         pos = random.choice([
-            "Hey there, here's your daily nice gif.\n        https://giphy.com/gifs/studiosoriginals-domitille-collardey-l41Yh1olOKd1Tgbw4",
-            "Hey there, here's your daily nice gif. (source: teenypinkbunny)\n        https://78.media.tumblr.com/8b468c1f9c20ca5f9483da6753460ec2/tumblr_onfpirBibx1tyggbco1_1280.gif",
-            "Hey there, here's your daily nice gif.\n        https://giphy.com/gifs/chuber-turtle-hang-in-there-l1J3zw3sgJ6Ye6I4E",
-            "Hey there, here's your daily nice gif.\n        https://78.media.tumblr.com/c0a1ffdef8c5b710769595cdf1119356/tumblr_on4s1k5Gru1w7ymkuo1_500.gif",
-            "Hey there, here's your daily nice gif. (source: fuwaprince)\n        https://78.media.tumblr.com/8317376ec2f138b962d7dec63d479c46/tumblr_os6c25dzp21w4zse0o1_r1_500.gif",
-            "Hey there, here's your daily nice gif. (source: gogh-save-the-bees)\n        https://78.media.tumblr.com/a92282dfc57d01e2e29184e3ed12fa5d/tumblr_otngozhihv1ut0lfho1_400.gif",
-            "Hey there, here's your daily nice gif.\n        https://78.media.tumblr.com/7ba86c4cbc0b0f8fc981ca780fe8bb61/tumblr_osdkc2EJZL1w4zse0o1_1280.gif",
-            "Hey there, here's your daily nice gif. (source: positiveupwardspiral)\n        https://78.media.tumblr.com/3914e99610371d427989d5146c42b85e/tumblr_p0981oKsrJ1vimk88o1_400.gif",
-            "Hey there, here's your daily nice gif. (source: fuwaprince)\n        https://78.media.tumblr.com/2bbe256eba6d07ea6df9698dd20dfa65/tumblr_ot4afrYG181w4zse0o1_500.gif",
-            "Hey there, here's your daily nice gif. (source: fuwaprince)\n        https://78.media.tumblr.com/6acf4ed92328f675ae8890df51b23794/tumblr_os27xwOzXz1w4zse0o1_500.gif",
-            "Hey there, here's your daily nice gif. (source: vanish)\n        https://78.media.tumblr.com/ca9372839569a8406c0709bcc50a15ec/tumblr_p2iebnGUZr1sga7ujo1_500.gif",
-            "Hey there, here's your daily nice gif.\n        https://78.media.tumblr.com/e0e093271b5657b75000f693bb48d877/tumblr_opy7xzfkJS1tssyz8o1_500.gif",
-            "Hey there, here's your daily nice gif. (source: positiveupwardspiral)\n        https://78.media.tumblr.com/91fbd29211a1c7b06e7a16adf2deae50/tumblr_ozl7ooyZxQ1vimk88o1_400.gif",
-            "Hey there, here's your daily nice gif. (source: positiveupwardspiral)\n        https://78.media.tumblr.com/dd5e45b3690ac2e979bc694ea473cf0b/tumblr_oyo1zfEii61vimk88o1_400.gif",
-            "Hey there, here's your daily nice gif. (source: gogh-save-the-bees)\n        https://78.media.tumblr.com/4b8c9b079cd3da2d74275d3063d83b72/tumblr_oxidf7tQjz1ut0lfho1_500.gif",
-            "Hey there, here's your daily nice gif. (source: magical-latte)\n        https://78.media.tumblr.com/d2fa0d7d4ca67af23750bb79a674d5c2/tumblr_p67f6ugJp91x69labo1_500.gif",
-            "Hey there, here's your daily nice gif.\n        https://78.media.tumblr.com/85efdd7380284bd7279a0839e9674f96/tumblr_oqish5aNqX1ufccs2o1_500.gif",
-            "Hey there, here's your daily nice gif. (source: faiemagick)\n        https://78.media.tumblr.com/bf7cad140e3e113cd4062b0377842ca3/tumblr_otogrpArAo1wo3hpco1_1280.gif",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/studiosoriginals-domitille-collardey-l41Yh1olOKd1Tgbw4",
+            "Hey there, here's your daily nice gif. (source: teenypinkbunny)\nhttps://78.media.tumblr.com/8b468c1f9c20ca5f9483da6753460ec2/tumblr_onfpirBibx1tyggbco1_1280.gif",
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/chuber-turtle-hang-in-there-l1J3zw3sgJ6Ye6I4E",
+            "Hey there, here's your daily nice gif.\nhttps://78.media.tumblr.com/c0a1ffdef8c5b710769595cdf1119356/tumblr_on4s1k5Gru1w7ymkuo1_500.gif",
+            "Hey there, here's your daily nice gif. (source: fuwaprince)\nhttps://78.media.tumblr.com/8317376ec2f138b962d7dec63d479c46/tumblr_os6c25dzp21w4zse0o1_r1_500.gif",
+            "Hey there, here's your daily nice gif. (source: gogh-save-the-bees)\nhttps://78.media.tumblr.com/a92282dfc57d01e2e29184e3ed12fa5d/tumblr_otngozhihv1ut0lfho1_400.gif",
+            "Hey there, here's your daily nice gif.\nhttps://78.media.tumblr.com/7ba86c4cbc0b0f8fc981ca780fe8bb61/tumblr_osdkc2EJZL1w4zse0o1_1280.gif",
+            "Hey there, here's your daily nice gif. (source: positiveupwardspiral)\nhttps://78.media.tumblr.com/3914e99610371d427989d5146c42b85e/tumblr_p0981oKsrJ1vimk88o1_400.gif",
+            "Hey there, here's your daily nice gif. (source: fuwaprince)\nhttps://78.media.tumblr.com/2bbe256eba6d07ea6df9698dd20dfa65/tumblr_ot4afrYG181w4zse0o1_500.gif",
+            "Hey there, here's your daily nice gif. (source: fuwaprince)\nhttps://78.media.tumblr.com/6acf4ed92328f675ae8890df51b23794/tumblr_os27xwOzXz1w4zse0o1_500.gif",
+            "Hey there, here's your daily nice gif. (source: vanish)\nhttps://78.media.tumblr.com/ca9372839569a8406c0709bcc50a15ec/tumblr_p2iebnGUZr1sga7ujo1_500.gif",
+            "Hey there, here's your daily nice gif.\nhttps://78.media.tumblr.com/e0e093271b5657b75000f693bb48d877/tumblr_opy7xzfkJS1tssyz8o1_500.gif",
+            "Hey there, here's your daily nice gif. (source: positiveupwardspiral)\nhttps://78.media.tumblr.com/91fbd29211a1c7b06e7a16adf2deae50/tumblr_ozl7ooyZxQ1vimk88o1_400.gif",
+            "Hey there, here's your daily nice gif. (source: positiveupwardspiral)\nhttps://78.media.tumblr.com/dd5e45b3690ac2e979bc694ea473cf0b/tumblr_oyo1zfEii61vimk88o1_400.gif",
+            "Hey there, here's your daily nice gif. (source: gogh-save-the-bees)\nhttps://78.media.tumblr.com/4b8c9b079cd3da2d74275d3063d83b72/tumblr_oxidf7tQjz1ut0lfho1_500.gif",
+            "Hey there, here's your daily nice gif. (source: magical-latte)\nhttps://78.media.tumblr.com/d2fa0d7d4ca67af23750bb79a674d5c2/tumblr_p67f6ugJp91x69labo1_500.gif",
+            "Hey there, here's your daily nice gif.\nhttps://78.media.tumblr.com/85efdd7380284bd7279a0839e9674f96/tumblr_oqish5aNqX1ufccs2o1_500.gif",
+            "Hey there, here's your daily nice gif. (source: faiemagick)\nhttps://78.media.tumblr.com/bf7cad140e3e113cd4062b0377842ca3/tumblr_otogrpArAo1wo3hpco1_1280.gif",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/studiosoriginals-domitille-collardey-l41Yh1olOKd1Tgbw4",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/help-motivation-positivity-l4pT49ce47qFBdVT2",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/art-animation-illustration-l3q2A6Jn9uo2262pW",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/positive-tEXeL9FRm6PAI",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/destressmonday-destress-red-balloon-3og0IPjBrpAto5yJEs",
-            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/quotes-calm-keep-RLgIrDgrPMWdy"
+            "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/quotes-calm-keep-RLgIrDgrPMWdy",
+            "Hey there, here's your daily nice pic.\nhttps://78.media.tumblr.com/fe6d11172e5e213d1147424768fbaab6/tumblr_pdxyn6zlhz1w73ry4o1_500.jpg",
+            "Hey there, here's your daily nice pic.\nhttps://78.media.tumblr.com/ed8e14743dac29bbc606fc099ab77ec3/tumblr_nphyqvqGvi1qzz08do1_500.jpg",
+            "Hey there, here's your daily nice pic. (source unknown)\nhttps://78.media.tumblr.com/ef9c6dcfdf0aa540d7a0a84924a626e8/tumblr_mn6lzcds6O1renyrao1_500.png",
+            "Hey there, here's your daily nice pic. (source: harmony-is-happiness)\nhttps://78.media.tumblr.com/161afec870afde45359b602edfad5c3e/tumblr_ooxwrrNwhZ1w36xb2o8_r3_250.jpg",
+            "Hey there, here's your daily nice pic. (source: harmony-is-happiness)\nhttps://78.media.tumblr.com/6602114029258f4097fffc33a2ae5887/tumblr_otfj86Xgq91wssyrbo1_r4_250.jpg"
         ])
         await ctx.send(pos)
 
@@ -462,6 +483,7 @@ Fortunately, depression is farily easily treatable compared to other disorders. 
 
 
 class Fun():
+    
     @commands.command(aliases=['coin', 'flip', 'flipcoin'])
     async def coinflip(self, ctx):
         choices = random.choice(['Heads!', 'Tails!'])
@@ -501,16 +523,15 @@ class Fun():
         elif 'me' in ctx.message.content:
             await ctx.send(embed=me)
 
-    @commands.command(aliases=['reassuring', 'randomcompliment', 'comfort', 'comforting'])
+    @commands.command(aliases=['randomcompliment'])
     async def compliment(self, ctx):
         randomcomp = random.choice([
             "You're so resourceful.", "You're such a strong person.", 'Your light shines so brightly.',
-            'You matter, and a lot.', 'You are so brave.', "You have an incredible talent even if you don't see it.",
+            'You matter, and a lot.', "You have an incredible talent even if you don't see it.",
             'You are deserving of a hug right now.', "You're more helpful than you realize.", 'You can inspire people.',
             'I bet you do the crossword puzzle in ink.',
             "You're someone's reason to smile, even if you don't realize it.",
-            "It's so great to see you're doing your best.", "Your smile can make someone's day.",
-            "You've always ben able to always figure out how to pick yourself up.", 'Your ideas matter.',
+            "It's so great to see you're doing your best.", "Your smile can make someone's day.", 'Your ideas matter.',
             'Your feelings matter.', 'Your emotions matter.', 'Your opinions matter.', 'Your needs matter.',
             'Your own vision of the world is unique and interesting.',
             "Even if you were cloned, you'd still be one of a kind. (And the better one between the two.)",
@@ -520,12 +541,42 @@ class Fun():
             'You deserve to get help if you need it.', 'You - yes you - are valid.', 'You are more than enough.',
             'Your presence is appreciated.', 'You can become whoever you want to be.', 'You deserve to be listened to.',
             'You deserve to be heard.', 'You deserve to be respected.', "You're an absolute bean.",
-            'You’re trying your best and everyone sees that.',
-            "Even if you feel like you're getting nowhere you're still one step ahead of yesterday - and that's still progress.",
-            "You're growing so much, and if you can't see it now, you certainly will in a few months.",
-            "You're strong for going on even when it's so hard."
         ])
         await ctx.send(randomcomp)
+        
+    @commands.command(aliases=['comfort', 'comforting'])
+    async def comfortme(self, ctx):
+        randomcomf = random.choice(["You've always been able to always figure out how to pick yourself up. You can do it again.",
+                                    "It's so great to see you're doing your best.", 
+                                    'You can get through this.',
+                                    "If you're going through something, remember: this too shall pass.",
+                                    "If today was bad, remember that you won't have to repeat this day ever again.",
+                                    "Even if you feel like you're getting nowhere you're still one step ahead of yesterday - and that's still progress.",
+                                    "You're growing so much, and if you can't see it now, you certainly will in a few months.",
+                                    "You're strong for going on even when it's so hard.",
+                                    "If you are having really awful thoughts right now or feeling very insecure, remember that what you think does not always reflect the reality of things.",
+                                    "I know they can be hard to deal with, but even a bot like me knows your emotions are valid and important!",
+                                    "(source: softangelita)\nhttps://78.media.tumblr.com/757d6f9eceacd22e585f5763aed3b6b7/tumblr_pbs2drA9yX1wzarogo1_1280.gif",
+                                    "You are going to be okay. Things are going to be okay. You will see.",
+                                    "(source: princess-of-positivity)\nhttps://78.media.tumblr.com/209ac4a784925d71d3d3c7293b7d75f4/tumblr_o883p7C7e21vwxwino1_1280.jpg",
+                                    "Sit down, take a breath. There’s still time. Your past isn’t going anywhere, the present is right here and the future will wait.", 
+                                    "It is never too late to make a positive change in your life.", "https://78.media.tumblr.com/14a19b1f5c785c0af5966175c0c87c8f/tumblr_owob0dUAzy1ww31y6o1_500.jpg",
+                                    "Don't be upset if you aren't always doing your absolute best every waking moment. Flowers cannot always bloom.",
+                                    "(source: jessabella-hime)\nhttps://78.media.tumblr.com/b1e54721f7520a6f425c112a67170e63/tumblr_ozi5gdM4de1trvty1o1_500.png",
+                                    "There are good people in this world who do or will help you, care about you, and love you.",
+                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/37778dd51384fbdba835349e6f0081d5/tumblr_oz8v11c9CC1wssyrbo1_500.jpg",
+                                    "https://78.media.tumblr.com/ed8e14743dac29bbc606fc099ab77ec3/tumblr_nphyqvqGvi1qzz08do1_500.jpg",
+                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/980109437f848b501d9ac96ed5a9ead0/tumblr_p285yaPKk31wssyrbo2_r2_250.jpg",
+                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/63a7933dfe6ed98dd00682533d249efe/tumblr_pc558poobr1wssyrbo1_250.jpg",
+                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/5827e477fff5b22c693c00d94eb19b2a/tumblr_p40de4xrrC1wssyrbo1_250.jpg",
+                                    "It is perfectly okay to rest and take a break from things If you are taking yourself to exhaustion, at that point it isn't your best anymore.",
+                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/50f06d2360aae36c815b1757326d878d/tumblr_p40de4xrrC1wssyrbo5_r1_250.jpg",
+                                    "Sometimes it's okay if the only thing you did today was breathe.",
+                                    "(source: recovering-and-healing)\nhttps://78.media.tumblr.com/e7b47e53ba372425728f384685748435/tumblr_oc93tmtPBj1ue8qxbo3_r1_250.jpg",
+                                    "(source: positivedoodles)\nhttps://78.media.tumblr.com/c04f396bfd2501b4876c239a329c035b/tumblr_pcutj6i57Z1rpu8e5o1_1280.png"
+                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/6602114029258f4097fffc33a2ae5887/tumblr_otfj86Xgq91wssyrbo1_r4_250.jpg"])
+        await ctx.send(randomcomf)
+                                    
 
     @commands.command(aliases=['throwdice', 'dicethrow', 'throw'])
     async def dice(self, ctx):
