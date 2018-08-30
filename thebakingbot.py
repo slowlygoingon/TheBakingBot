@@ -267,55 +267,35 @@ class MentalHealth():
 
     @whatis.command(name="did")
     async def whatis_did1(self, ctx):
-        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
-DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
-\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
+        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n\nOne of the most evident symptoms is the presence of multiple dissociated parts of the self that can take executive control of the body/mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
+\nSince these disorders are often misunderstood or not believed, it is not always easy to find professionals for the treatment of DID/OSDD. Ideally, one should look for a specialist, but in any case, treatment for PTSD or comorbid disorders can also be of great help.
 \nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
         await ctx.send(embed=didosddmessage)
 
-    @whatis.command(name="DID")
-    async def whatis_did2(self, ctx):
-        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
-DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
-\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
-\nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
-        await ctx.send(embed=didosddmessage)
 
     @whatis.command(name="osdd")
     async def whatis_osdd1(self, ctx):
-        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
-DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
-\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
-\nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
-        await ctx.send(embed=didosddmessage)
-
-    @whatis.command(name="OSDD")
-    async def whatis_osdd2(self, ctx):
-        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are dissociative disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n
-DID and OSDD-1 are characterized by a variety of symptoms. One of the most evident is the presence of multiple dissociated parts of the self that can take executive control of the body and/or mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
-\nOften misunderstood disorders, individuals with DID/OSDD-1 can nowadays find specialists to seek specific trauma-based treatment (as DID/OSDD-1 are traumagenic disorders), although it is not always easy to find such professional. In any case, treatment for PTSD or comorbid disorders can also be of great help.
+        didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n\nOne of the most evident symptoms is the presence of multiple dissociated parts of the self that can take executive control of the body/mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
+\nSince these disorders are often misunderstood or not believed, it is not always easy to find professionals for the treatment of DID/OSDD. Ideally, one should look for a specialist, but in any case, treatment for PTSD or comorbid disorders can also be of great help.
 \nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
         await ctx.send(embed=didosddmessage)
 
     @whatis.command(name="dsm")
     async def whatis_dsm(self, ctx):
-        dsmmessage = discord.Embed(title="What is the DSM?", description="""The Diagnostic and Statistical Manual of Mental Disorders (DSM) is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
+        dsmmessage = discord.Embed(title="What is the DSM?", description="""The **Diagnostic and Statistical Manual of Mental Disorders (DSM)** is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
         await ctx.send(embed=dsmmessage)
 
-    @whatis.command(name="DSM")
-    async def whatis_dsm(self, ctx):
-        dsmmessage = discord.Embed(title="What is the DSM?", description="""The Diagnostic and Statistical Manual of Mental Disorders (DSM) is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
-        await ctx.send(embed=dsmmessage)
 
     @whatis.command(name="icd")
     async def whatis_icd(self, ctx):
-        icdmessage = discord.Embed(title="What is the ICD?", description="""The International Statistical Classification of Diseases and Related Health Problems (ICD) is a manual that server for the identification of health trends and statistics globally, and the international standard for reporting diseases and health conditions. It is the diagnostic classification standard for all clinical and research purposes. The latest version (ICD-11) was released in 2018 and is currently used worldwide.""")
+        icdmessage = discord.Embed(title="What is the ICD?", description="""The **International Statistical Classification of Diseases and Related Health Problems (ICD)** is a manual for the identification of health trends and statistics globally, and the international standard for reporting diseases and health conditions (including mental health disorders). It is the diagnostic classification standard for all clinical and research purposes. The latest version (ICD-11) was released in 2018 and is currently used worldwide.""")
         await ctx.send(embed=icdmessage)
+     
 
     @whatis.command(name="schizophrenia")
     async def whatis_schizophrenia(self, ctx):
         schizophreniamessage = discord.Embed(title="What is schizophrenia?", description="""Schizophrenia is a chronic and severe mental disorder that affects how a person thinks, feels, and behaves. People with schizophrenia may seem like they have lost touch with reality. Symptoms include: delusions, hallucinations, trouble with thinking and concentration, difficulty feeling or expressing emotions, lack of motivation, and more.\n
-While there is no cure for schizophrenia, research is leading to more advanced treatments. Researches also are unraveling its causes studying genetics and the brain’s structure and functions. These promising approaches make us hope for more effective therapies soon.""")
+While there is no cure for schizophrenia, research is leading to more advanced treatments. Researches also are unraveling its causes studying genetics and the brain’s structure and functions. These promising approaches make us hope for more effective therapies soon. Medication and talking therapy, such as cognitive-behavioral therapy (CBT), cognitive enhancement therapy (CET) and others are usually recommended.""")
         await ctx.send(embed=schizophreniamessage)
 
     @whatis.command(name="depression")
