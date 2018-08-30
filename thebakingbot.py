@@ -225,8 +225,8 @@ Server**""", colour=0x082E6F)
 
     @help.command(name="info")
     async def infomenu(self, ctx):
-        em = discord.Embed(title="Info commands",
-            description="**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]", colour=0x082E6F)
+        em = discord.Embed(title="Info & bot commands",
+            description="**invite**   -   Invite me!\n**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows help message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="mentalhealth")
