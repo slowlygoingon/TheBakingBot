@@ -85,12 +85,11 @@ async def suggestion(ctx, *, message):
     await channel.send(messagetosend)
     await ctx.message.delete()
 
-@suggestion.error
-async def suggestion_error(ctx, error):
-    if isinstance(error, commands.BadArgument):
-        print("Error")
-    if isinstance(error, commands.UserInputError):
-        print("Error")
+@bot.command()
+async def bugreport(ctx, *, message):
+    messagetosend = ("""**BUG REPORT**\n\nUser {0}.author reported the following bug: """.format(ctx.message) + message)
+    await ctx.send("Bug report sent. Thank you!")
+    await (await bot.get_user_info(345307151989997568)).send(messagetosend)
 
 @bot.listen()
 async def on_command_error(ctx, error):
@@ -142,6 +141,8 @@ class Moderating():
 
 
 class Info():
+
+
     @commands.command()
     async def ping(self, ctx):
         await ctx.send("Pong! I'm alive.")
@@ -161,7 +162,7 @@ class Info():
         uptimemessage = ("I've been online since " + str(uptimedict['timeuptime'])) + ' UTC.'
         em = discord.Embed(
             title='About this bot', description='All about The Baking Bot.', colour=0x082E6F)
-        em.add_field(name='Developers', value='Slowly#1846, Chanku#4372', inline=False)
+        em.add_field(name='Creator', value='Slowly#1846', inline=False)
         em.add_field(
             name='Thank-yous',
             value="Special thanks to: \n- Sebi's Bot Tutorial\n- Espy (Esp#1204)\n- Chanku (Chanku#4372)\n\nThis bot wouldn't have been possible without your help.",
@@ -210,36 +211,44 @@ class Info():
             'Send a completely anonymous report or feedback regarding the server, other members, or Staff.\nhttps://goo.gl/forms/2pO3gDoxKz45mNh92'
         )
 
-    @commands.command(aliases=['help', 'cmds', 'commandlist', 'commandslist'])
-    async def commands(self, ctx):
+    @commands.group(aliases=['cmds', 'commandlist', 'commandslist'])
+    async def help(self, ctx):
         em = discord.Embed(
             description=
-            'These are all the commands of The Baking Bot, the official bot for The Baking Spot.\nThe words in [] are aliases.\nIf you need help with mental health, please check the Mental Health section on the server and in this message.\n\n•  •  •  •  •  •  •  •', colour=0x082E6F)
-        em.add_field(
-            name='INFO',
-            value=
-            "**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]",
-            inline=False)
-        em.add_field(
-            name='MENTAL HEALTH',
-            value=
-            "**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
-            inline=False)
-        em.add_field(
-            name='FUN AND MISC.',
-            value=
-            '**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]',
-            inline=False)
-        em.add_field(
-            name='MODERATING (Staff only)',
-            value=
-            '**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.',
-            inline=False)
-        em.add_field(
-            name='SERVER-RELATED',
-            value=
-            '**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]'
-        )
+            """These are all the commands groups of The Baking Bot,\nthe official bot for The Baking Spot.\nType `tbs!help commandsgroup` to see more info on a specific group.\n•  •  •  •  •  •  •  •
+**Info
+Mentalhealth
+Moderating
+Fun
+Server**""", colour=0x082E6F)
+        await ctx.send(embed=em)
+
+    @help.command(name="info")
+    async def infomenu(self, ctx):
+        em = discord.Embed(
+            description="**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows this message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]")
+        await ctx.send(embed=em)
+
+    @help.command(name="mentalhealth")
+    async def mentalhealthmenu(self, ctx):
+        em = discord.Embed(
+            description="**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]")
+        await ctx.send(embed=em)
+
+    @help.command(name="fun")
+    async def funmenu(self,ctx):
+        em = discord.Embed(description="**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]")
+        await ctx.send(embed=em)
+
+    @help.command(name="moderating")
+    async def moderatingmenu(self,ctx):
+        em = discord.Embed(description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.")
+        await ctx.send(embed=em)
+
+    @help.command(name="server")
+    async def servermenu(self, ctx):
+        em = discord.Embed(
+            description="**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]")
         await ctx.send(embed=em)
 
 
@@ -673,4 +682,3 @@ bot.add_cog(Info())
 bot.add_cog(Fun())
 bot.add_cog(MentalHealth())
 bot.add_cog(Moderating())
-bot.run(os.getenv('discord_client_key'))
