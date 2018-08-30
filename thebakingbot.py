@@ -215,18 +215,18 @@ class Info():
     async def help(self, ctx):
         em = discord.Embed(
             description=
-            """These are all the commands groups of The Baking Bot,\nthe official bot for The Baking Spot.\nType `tbs!help commandsgroup` to see more info on a specific group.\n•  •  •  •  •  •  •  •
-**Info
+            """These are all the commands groups of The Baking Bot,\nthe official bot for The Baking Spot.\n\nType `tbs!help commandsgroup` to see more on a specific group.\n•  •  •  •  •  •  •  •
+**About
 Mentalhealth
 Moderating
 Fun
 Server**""", colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="info")
+    @help.command(name="about")
     async def infomenu(self, ctx):
-        em = discord.Embed(title="Info & bot commands",
-            description="**invite**   -   Invite me!\n**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows help message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]", colour=0x082E6F)
+        em = discord.Embed(title="Info & about commands",
+            description="**invite**   -   Invite me!\n**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows help message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="mentalhealth")
@@ -237,7 +237,7 @@ Server**""", colour=0x082E6F)
 
     @help.command(name="fun")
     async def funmenu(self,ctx):
-        em = discord.Embed(title="Fun commands", description="**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]", colour=0x082E6F)
+        em = discord.Embed(title="Fun commands", description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment, reassuring]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]", colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="moderating")
