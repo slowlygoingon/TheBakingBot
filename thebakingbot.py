@@ -262,7 +262,7 @@ class MentalHealth():
 
     @whatis.command(name="list")
     async def whatis_list(self,ctx):
-        list = discord.Embed(title="List of available definitions", description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist, therapy")
+        list = discord.Embed(title="List of available definitions", description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist, therapy, trauma")
         await ctx.send(embed=list)
         
     @whatis.command(name="trauma")
