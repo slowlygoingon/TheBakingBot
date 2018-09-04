@@ -262,8 +262,55 @@ class MentalHealth():
 
     @whatis.command(name="list")
     async def whatis_list(self,ctx):
-        list = discord.Embed(title="List of available definitions", description="anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist")
+        list = discord.Embed(title="List of available definitions", description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist, therapy")
         await ctx.send(embed=list)
+        
+    @whatis.command(name="trauma")
+    async def whatis_trauma(self,ctx):
+        traumamessage = discord.Embed(title="What is trauma?", description="**Trauma** can be defined as a psychological damage and subsequent response to witnessing or being part of an extremely distressing event, such as being a victim of abuse or a natural disaster. Trauma can lead to the development of Post-Traumatic Stress Disorder (PTSD), or Complex Post-Traumatic Stress Disorder (C-PTSD) in the case of repeated/continuous trauma.")
+        await ctx.send(embed=traumamessage)
+        
+    @whatis.command(name="abuse")
+    async def whatis_abuse(self,ctx):
+        abusemessage = discord.Embed(title="What is abuse?", description="""**Abuse** is a form of maltreatment (usually a pattern of behavior rather than one single incident) that causes harm to another person. Though opinions on whether it needs to be intentional in order to be called abuse, it is certain that abusive or toxic behavior can also be unintentional, meaning an abuser can genuinely think they are doing what is best while actively harming someone else. However, many abusers are perfectly aware of the damage and impact of their actions.
+\nBeing subject to abuse can last months to years on end, and may cause mental health issues, such as PTSD, C-PTSD, mood disorders, anxiety disorders, and more.
+Abuse can take onto many forms, all of which are just as valid as they can all be extremely distressing. Here are some examples of types of abuse.
+\n⚫ **Emotional abuse**: creates psychological pain, usually through a pattern of threats, guilt tripping, manipulation, gaslighting, humiliating, intimidating, having an unpredictable anger, etc.
+⚫ **Emotional or physical neglect**: involves not catering to the psychological, social, or physical needs of another individual (especially of a child, elder, or person with disability) - such as isolating an individual from the outside world, or not providing food or medical treatment.
+⚫ **Physical abuse**: involves hitting an individual in various ways. Examples include kicking, slapping, bruising, pushing, choking.
+⚫ **Sexual abuse**: meaning forcing someone to engage in any type of sexual behavior, sometimes with another individual.
+⚫ **Medical abuse**: undergoing unnecessary and harmful, potentially harmful, or extremely invasive medical treatments/procedures, often at the instigation of a caretaker. 
+⚫ **Religious abuse**: using religion as a justification or excuse for any type of abuse.
+⚫ **Ritual abuse**: abuse that happens in ritual setting, such as sects; may involve mind control, brainwashing, and torture, among others.
+⚫ **Financial abuse**: involves controlling someone's ability to acquire, use, and maintain financial resources.
+⚫ **Domestic abuse**: abuse (usually physical, sexual, financial, and/or emotional) that happens because of a partner, family member, or caretaker.
+⚫ **Online abuse**: any sort of abuse that happens online or digitally.""")
+        await ctx.send(embed=abusemessage)
+        
+        
+    @whatis.command(name="therapy")
+    async def whatis_therapy(self, ctx):
+        therapymessage = discord.Embed(title="What is therapy?", description="""**Therapy** is the process of working with a mental health professional to manage stress or similar problems, develop coping or self-care skills, tackle mental health issues, and more. Therapy allows you to enter a safe, non-judgemental space where you can get to know yourself. How therapy progresses or is handled depends greatly on the client's needs and preferences, as well as the knowledge and method of the therapist.\nThere are a great number of therapies available, and therapy sessions can be **individual** or **group-focused**. Many kinds of therapeutic approaches can be either, or a combination of both.\n\nThere are a variety of types of **talking therapy**, which is the most common. Some examples are:
+⚫ **Family-focused therapy** or **Marriage and Family Therapy (MFT)**, which serves to family members or couples to understand how family dynamics and individual behavior can affect mental health.
+⚫ **Psychodynamic Therapy**'s goals are to increase the client’s self-awareness, and their understanding of the influence of the past on present behavior. Nowadays, most therapists and therapies implement some concepts and techniques of psychodinamic therapy, rather than practicing it in its pure form.
+⚫ **Cognitive Behavioral Therapy (CBT)** helps you challenge negative thought/behavior patterns, enhance your problem-solving skills, practice mindfulness, and more. It is most used for mood disorders, PTSD, or anger problems.
+⚫ **Dialectical Behavioral Therapy (DBT)** helps many with emotional regulation, mindfulness, distress tolerance and other skills. It is most used for some personality disorders or mood disorders.
+⚫ **Cognitive enhancement therapy (CET)** helps clients be aware of social contexts, increase vocational capabilities, better problem-solving skills as well as memory, and more. It's designed for people with psychotic and cognitive disorders.
+⚫ **Acceptance and commitment therapy (ACT)** helps people learn how to to stop avoiding or suppressing emotions, to finally come to an acceptance of one's feelings or emotional needs. It has proven to be effective with mood disorders and anxiety disorders especially.
+⚫ **Hypnotherapy** is achieved through hypnosis - a trance-like state of the mind achieved with the help of a clinical hypnotherapist - which helps clients focus on their inner world. It's effective on a variety of issues, ranging from substance abuse to PTSD to mood or anxiety disorders, etc.
+⚫ **Eye movement desensitization and reprocessing (EMDR)** is especially designed to treat symptoms of PTSD, anxiety, or depression. Practitioners use some sort of bilateral stimulation on the brain - such as eye movements from left to right - to help the client process memories from adverse experiences.
+⚫ **Schema therapy** can help individuals identify the thought or behavior patterns underlying mental health issues such as substance abuse, depression, eating disorders, anxiety disorders, PTSD and more. The treatment integrates elements from CBT, attachment theory, and a number of other approaches to explore emotions, maladaptive coping mechanisms, and more.
+⚫ **Mindfulness-based therapies** combine cognitive-behavioral (= CBT) techniques with elements from other kinds of therapy. People can learn how to use cognitive techniques and mindfulness to put a halt to the processes that trigger mood disorders, anxiety, and other issues. **Mindfulness** helps bring one's attention to experiences occurring in the present moment, through the practice of meditation and other training. It has been proven to be effective for a variety of issues including dissociation and PTSD.
+⚫ **Interpersonal therapy (IPT)** is a short-term treatment for depression and interpersonal problems, aimed mainly at teenagers and young adults. It focuses on relationships, life transitions, social and communication skills, and more.
+⚫ **Ego state therapy is based on the idea that a person's psyche is the amalgamation of several distinct egos, such as the "inner wounded child". They don't literally mean that a person has multiple personalities, rather that everyone navigates several identities or roles throughout their life. This approach is used for example in the treatment of PTSD.
+\nOther forms of therapy that do not focus on the "talking" but rather on some other action, are also available in many places and just as effective - epending on the individual's needs or preferences:
+⚫ **Play therapy** is mainly for children, to provide younger clients with a caring and confidential environment to play or express themselves. It can help them deal with emotional problems, develop social skills, cope with symptoms of stress or trauma, and more. Therapeutic play can include other forms of therapy, such as art therapy. 
+⚫ **Art therapy** uses the creative process or art created by others mainly to increase self-awareness, express emotions, deal with self-esteem issues, process difficult memories, interpersonal/relationship problems, and more. No artistic skills are required. Used for the treatment of mood and anxiety disorders, PTSD, psychotic disorders, and eating disorders, among others. 
+⚫ **Pet therapy** or **animal-assisted therapy** is a type of experiential mental health treatment that involves the client interacting with animals such as horses or dogs, and taking care of them. Its effects have been observed with people who suffer from mood or anxiety disorders, PTSD, developmental disorders, and anger issues.
+⚫ **Drama therapy** is a treatment approach that provides a theatrical platform for people with the goals, among many, of expressing their feelings, increasing social skills and self-awareness, or promote positive changes in one's life. Despite being relatively new and pretty unknown, drama therapy continues to gain ground as a treatment modality to help with grief, behavioral or relationship issues, mood disorders, and anxiety disorders.
+⚫ **Ecotherapy**, also known as **nature therapy** or **green therapy**, stems from the belief that our psyches are not isolated or separate from our environment, providing clients with an opportunity to explore their relationship with nature. Clients may perform physical activities in nature, complete horticultural activities, or interact with animals during Ecotherapy. It's usually effective for anxiety or mood disorders, although it is in a pretty "experimental" phase.
+\nTo see a more complete list, visit <https://www.psychologytoday.com/us/types-of-therapy> or <https://www.goodtherapy.org/learn-about-therapy/types>.""")
+        await ctx.send(embed=therapymessage)
 
     @whatis.command(name="did")
     async def whatis_did1(self, ctx):
