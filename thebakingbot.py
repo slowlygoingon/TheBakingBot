@@ -17,7 +17,6 @@ bot = commands.Bot(
 timenow = datetime.datetime.utcnow()
 bot.remove_command('help')
 
-
 status2str = {
     discord.Status.dnd: 'Do Not Disturb',
     discord.Status.idle: 'Idle',
@@ -31,6 +30,7 @@ activity2str = {
     discord.ActivityType.watching: 'Watching ',
     discord.ActivityType.unknown: 'Unknown - '
 }
+
 
 @bot.listen()
 async def on_ready():
@@ -66,7 +66,6 @@ uptimedict = {
 }
 
 
-
 @bot.command(aliases=['urgentreport', 'reporturgent'])
 async def urgent(ctx, *, message):
     messagetosend = ("User **{0.author}** sent the following report:\n\n'".format(ctx.message) + message) + "'"
@@ -85,36 +84,46 @@ async def suggestion(ctx, *, message):
     await channel.send(messagetosend)
     await ctx.message.delete()
 
+
 @bot.command()
 async def bugreport(ctx, *, message):
     messagetosend = ("""**BUG REPORT**\n\nUser {0}.author reported the following bug: """.format(ctx.message) + message)
     await ctx.send("Bug report sent. Thank you!")
     await (await bot.get_user_info(345307151989997568)).send(messagetosend)
 
+
 @bot.listen()
 async def on_command_error(ctx, error):
     if isinstance(error, commands.BotMissingPermissions):
-        message1 = discord.Embed(title="Error!", description='I do not know this recipe! (Bot is missing permissions)', color=0xd90000)
+        message1 = discord.Embed(title="Error!", description='I do not know this recipe! (Bot is missing permissions)',
+                                 color=0xd90000)
         await ctx.send(embed=message1)
         return
 
     if isinstance(error, commands.BadArgument):
-        message2 = discord.Embed(title="Error!", description='I do not quite understand what you want me to do... (User input failed to be converted: what you typed after the command is not correct)', color=0xd90000)
+        message2 = discord.Embed(title="Error!",
+                                 description='I do not quite understand what you want me to do... (User input failed to be converted: what you typed after the command is not correct)',
+                                 color=0xd90000)
         await ctx.send(embed=message2)
         return
 
     if isinstance(error, commands.MissingRequiredArgument):
-        message3 = discord.Embed(title="Error!", description='You sure this is the whole recipe? (Missing required argument: you should type something after the command)', color=0xd90000)
+        message3 = discord.Embed(title="Error!",
+                                 description='You sure this is the whole recipe? (Missing required argument: you should type something after the command)',
+                                 color=0xd90000)
         await ctx.send(embed=message3)
         return
 
     if isinstance(error, commands.MissingPermissions):
-        message4 = discord.Embed(title="Error!", description='You are not my Chef! (You are missing permissions)', color=0xd90000)
+        message4 = discord.Embed(title="Error!", description='You are not my Chef! (You are missing permissions)',
+                                 color=0xd90000)
         await ctx.send(embed=message4)
         return
 
     if isinstance(error, commands.UserInputError):
-        message5 = discord.Embed(title="Error!", description="I do not quite understand what you mean... (Invalid user input)", color=0xd90000)
+        message5 = discord.Embed(title="Error!",
+                                 description="I do not quite understand what you mean... (Invalid user input)",
+                                 color=0xd90000)
         await ctx.send(embed=message5)
         return
 
@@ -124,14 +133,14 @@ class Moderating():
     @commands.command(aliases=['prune', 'purge', 'delete'])
     @commands.has_role('Staff')
     async def clear(self, ctx, amount):
-        errormessage = discord.Embed(title="Error!", description="You can delete min 1 / max 100 messages at once.", color=0xd90000)
+        errormessage = discord.Embed(title="Error!", description="You can delete min 1 / max 100 messages at once.",
+                                     color=0xd90000)
         channel = ctx.channel
         for amount in range(int(amount), 0, (-100)):
             if 101 > amount > 0:
                 await channel.purge(limit=int(amount))
             else:
                 await ctx.send(embed=errormessage)
-
 
     @commands.command()
     @commands.has_role('Staff')
@@ -142,14 +151,15 @@ class Moderating():
 
 class Info():
 
-
     @commands.command()
     async def ping(self, ctx):
         await ctx.send("Pong! I'm alive.")
 
     @commands.command()
     async def invite(self, ctx):
-        invitelink = discord.Embed(title="Invite me!", description="https://discordapp.com/oauth2/authorize?client_id=428260876722634765&scope=bot", colour=0x082E6F)
+        invitelink = discord.Embed(title="Invite me!",
+                                   description="https://discordapp.com/oauth2/authorize?client_id=428260876722634765&scope=bot",
+                                   colour=0x082E6F)
         await ctx.send(embed=invitelink)
 
     @commands.command(aliases=['git', 'github', 'src'])
@@ -182,7 +192,8 @@ class Info():
         statusconvert = status2str.get(member.status)
 
         analyzation = discord.Embed(title="Analyzed!", colour=0x082E6F)
-        analyzation.add_field(name="Name", value=user.name + "#" + user.discriminator + " (" + user.display_name + ")", inline=False)
+        analyzation.add_field(name="Name", value=user.name + "#" + user.discriminator + " (" + user.display_name + ")",
+                              inline=False)
         analyzation.add_field(name="ID", value=user.id, inline=False)
         analyzation.add_field(name="Joined at", value=f"{user.joined_at:%A %d, %B %Y at %H:%M}", inline=False)
         analyzation.add_field(name="Status", value=statusconvert, inline=False)
@@ -200,7 +211,6 @@ class Info():
             await ctx.send(m, delete_after=3)
             await asyncio.sleep(3)
             await ctx.send(embed=analyzation)
-
 
     @commands.command()
     async def faq(self, ctx):
@@ -227,29 +237,36 @@ Server**""", colour=0x082E6F)
     @help.command(name="about")
     async def infomenu(self, ctx):
         em = discord.Embed(title="Info & about commands",
-            description="**invite**   -   Invite me!\n**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows help message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n", colour=0x082E6F)
+                           description="**invite**   -   Invite me!\n**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows help message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n",
+                           colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="mentalhealth")
     async def mentalhealthmenu(self, ctx):
-        em = discord.Embed(title="Mental health commands", 
-            description="**comfort**   -   Tells you something comforting. [comforting, comfortme]\n**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]", colour=0x082E6F)
+        em = discord.Embed(title="Mental health commands",
+                           description="**comfort**   -   Tells you something comforting. [comforting, comfortme]\n**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
+                           colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="fun")
-    async def funmenu(self,ctx):
-        em = discord.Embed(title="Fun commands", description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]", colour=0x082E6F)
+    async def funmenu(self, ctx):
+        em = discord.Embed(title="Fun commands",
+                           description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]",
+                           colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="moderating")
-    async def moderatingmenu(self,ctx):
-        em = discord.Embed(title="Moderating commands", description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.", colour=0x082E6F)
+    async def moderatingmenu(self, ctx):
+        em = discord.Embed(title="Moderating commands",
+                           description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.",
+                           colour=0x082E6F)
         await ctx.send(embed=em)
 
     @help.command(name="server")
     async def servermenu(self, ctx):
-        em = discord.Embed(title="Server commands", 
-            description="**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]", colour=0x082E6F)
+        em = discord.Embed(title="Server commands",
+                           description="**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]",
+                           colour=0x082E6F)
         await ctx.send(embed=em)
 
 
@@ -257,58 +274,50 @@ class MentalHealth():
 
     @commands.group(invoke_without_command=True, aliases=["define", "definition"])
     async def whatis(self, ctx):
-        errormessage = discord.Embed(title="Error!", description="You must specify what you want to know about. The correct format is: `tbs!whatis whateveryouwant`, the command is case sensitive.\n\nTo know the available definitions, type `tbs!whatis list`.", colour=discord.Colour.red())
+        errormessage = discord.Embed(title="Error!",
+                                     description="You must specify what you want to know about. The correct format is: `tbs!whatis whateveryouwant`, the command is case sensitive.\n\nTo know the available definitions, type `tbs!whatis list`.",
+                                     colour=discord.Colour.red())
         await ctx.send(embed=errormessage)
 
     @whatis.command(name="list")
-    async def whatis_list(self,ctx):
-        list = discord.Embed(title="List of available definitions", description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist, therapy, trauma")
+    async def whatis_list(self, ctx):
+        list = discord.Embed(title="List of available definitions",
+                             description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist, therapy, trauma")
         await ctx.send(embed=list)
-        
+
     @whatis.command(name="trauma")
-    async def whatis_trauma(self,ctx):
-        traumamessage = discord.Embed(title="What is trauma?", description="**Trauma** can be defined as a psychological damage and subsequent response to witnessing or being part of an extremely distressing event, such as being a victim of abuse or a natural disaster. Trauma can lead to the development of Post-Traumatic Stress Disorder (PTSD), or Complex Post-Traumatic Stress Disorder (C-PTSD) in the case of repeated/continuous trauma.")
+    async def whatis_trauma(self, ctx):
+        traumamessage = discord.Embed(title="What is trauma?",
+                                      description="""**Trauma** can be defined as a psychological damage and subsequent response to witnessing or being part of an extremely distressing event, such as being a victim of abuse or a natural disaster. Trauma can lead to the development of Post-Traumatic Stress Disorder (PTSD), or Complex Post-Traumatic Stress Disorder (C-PTSD) in the case of repeated/continuous trauma.""")
         await ctx.send(embed=traumamessage)
-        
+
     @whatis.command(name="abuse")
-    async def whatis_abuse(self,ctx):
-        abusemessage = discord.Embed(title="What is abuse?", description="""**Abuse** is a form of maltreatment (usually a pattern of behavior rather than one single incident) that causes harm to another person. Though opinions on whether it needs to be intentional in order to be called abuse, it is certain that abusive or toxic behavior can also be unintentional, meaning an abuser can genuinely think they are doing what is best while actively harming someone else. However, many abusers are perfectly aware of the damage and impact of their actions.
-\nBeing subject to abuse can last months to years on end, and may cause mental health issues, such as PTSD, C-PTSD, mood disorders, anxiety disorders, and more.
-Abuse can take onto many forms, all of which are just as valid as they can all be extremely distressing. Here are some examples of types of abuse.
-\n⚫ **Emotional abuse**: creates psychological pain, usually through a pattern of threats, guilt tripping, manipulation, gaslighting, humiliating, intimidating, having an unpredictable anger, etc.
-⚫ **Emotional or physical neglect**: involves not catering to the psychological, social, or physical needs of another individual (especially of a child, elder, or person with disability) - such as isolating an individual from the outside world, or not providing food or medical treatment.
-⚫ **Physical abuse**: involves hitting an individual in various ways. Examples include kicking, slapping, bruising, pushing, choking.
-⚫ **Sexual abuse**: meaning forcing someone to engage in any type of sexual behavior, sometimes with another individual.
-⚫ **Medical abuse**: undergoing unnecessary and harmful, potentially harmful, or extremely invasive medical treatments/procedures, often at the instigation of a caretaker. 
-⚫ **Religious abuse**: using religion as a justification or excuse for any type of abuse.
-⚫ **Ritual abuse**: abuse that happens in ritual setting, such as sects; may involve mind control, brainwashing, and torture, among others.
-⚫ **Financial abuse**: involves controlling someone's ability to acquire, use, and maintain financial resources.
-⚫ **Domestic abuse**: abuse (usually physical, sexual, financial, and/or emotional) that happens because of a partner, family member, or caretaker.
-⚫ **Online abuse**: any sort of abuse that happens online or digitally.""")
+    async def whatis_abuse(self, ctx):
+        abusemessage = discord.Embed(title="What is abuse?", description="""**Abuse** is a form of maltreatment (usually a pattern of behavior rather than one single incident) that causes harm to another person. Though opinions on whether it needs to be intentional in order to be called abuse vary, it is certain that abusive or toxic behavior can also be unintentional, meaning an abuser can genuinely think they are doing what is best while actively harming someone else. However, many abusers are perfectly aware of the damage and impact of their actions.
+    \nBeing subject to abuse can last months to years on end, and may cause mental health issues, such as PTSD, C-PTSD, mood disorders, anxiety disorders, and more.
+    Abuse can take onto many forms, all of which are just as valid as they can all be extremely distressing. Here are some examples of types of abuse.
+    \n• **Emotional abuse**: creates psychological pain, usually through a pattern of threats, guilt tripping, manipulation, gaslighting, humiliating, intimidating, having an unpredictable anger, etc.
+    • **Emotional or physical neglect**: involves not catering to the psychological, social, or physical needs of another individual (especially of a child, elder, or person with disability) - such as isolating an individual from the outside world, or not providing food or medical treatment.
+    • **Physical abuse**: involves hitting an individual in various ways. Examples include kicking, slapping, bruising, pushing, choking.
+    • **Sexual abuse**: meaning forcing someone to engage in any type of sexual behavior, sometimes with another individual.
+    • **Medical abuse**: undergoing unnecessary and harmful, potentially harmful, or extremely invasive medical treatments/procedures, often at the instigation of a caretaker.
+    • **Religious abuse**: using religion as a justification or excuse for any type of abuse.""")
         await ctx.send(embed=abusemessage)
-        
-        
+
     @whatis.command(name="therapy")
     async def whatis_therapy(self, ctx):
         therapymessage = discord.Embed(title="What is therapy?", description="""**Therapy** is the process of working with a mental health professional to manage stress or similar problems, develop coping or self-care skills, tackle mental health issues, and more. Therapy allows you to enter a safe, non-judgemental space where you can get to know yourself. How therapy progresses or is handled depends greatly on the client's needs and preferences, as well as the knowledge and method of the therapist.\nThere are a great number of therapies available, and therapy sessions can be **individual** or **group-focused**. Many kinds of therapeutic approaches can be either, or a combination of both.\n\nThere are a variety of types of **talking therapy**, which is the most common. Some examples are:
-⚫ **Family-focused therapy** or **Marriage and Family Therapy (MFT)**, which serves to family members or couples to understand how family dynamics and individual behavior can affect mental health.
-⚫ **Psychodynamic Therapy**'s goals are to increase the client’s self-awareness, and their understanding of the influence of the past on present behavior. Nowadays, most therapists and therapies implement some concepts and techniques of psychodinamic therapy, rather than practicing it in its pure form.
-⚫ **Cognitive Behavioral Therapy (CBT)** helps you challenge negative thought/behavior patterns, enhance your problem-solving skills, practice mindfulness, and more. It is most used for mood disorders, PTSD, or anger problems.
-⚫ **Dialectical Behavioral Therapy (DBT)** helps many with emotional regulation, mindfulness, distress tolerance and other skills. It is most used for some personality disorders or mood disorders.
-⚫ **Cognitive enhancement therapy (CET)** helps clients be aware of social contexts, increase vocational capabilities, better problem-solving skills as well as memory, and more. It's designed for people with psychotic and cognitive disorders.
-⚫ **Acceptance and commitment therapy (ACT)** helps people learn how to to stop avoiding or suppressing emotions, to finally come to an acceptance of one's feelings or emotional needs. It has proven to be effective with mood disorders and anxiety disorders especially.
-⚫ **Hypnotherapy** is achieved through hypnosis - a trance-like state of the mind achieved with the help of a clinical hypnotherapist - which helps clients focus on their inner world. It's effective on a variety of issues, ranging from substance abuse to PTSD to mood or anxiety disorders, etc.
-⚫ **Eye movement desensitization and reprocessing (EMDR)** is especially designed to treat symptoms of PTSD, anxiety, or depression. Practitioners use some sort of bilateral stimulation on the brain - such as eye movements from left to right - to help the client process memories from adverse experiences.
-⚫ **Schema therapy** can help individuals identify the thought or behavior patterns underlying mental health issues such as substance abuse, depression, eating disorders, anxiety disorders, PTSD and more. The treatment integrates elements from CBT, attachment theory, and a number of other approaches to explore emotions, maladaptive coping mechanisms, and more.
-⚫ **Mindfulness-based therapies** combine cognitive-behavioral (= CBT) techniques with elements from other kinds of therapy. People can learn how to use cognitive techniques and mindfulness to put a halt to the processes that trigger mood disorders, anxiety, and other issues. **Mindfulness** helps bring one's attention to experiences occurring in the present moment, through the practice of meditation and other training. It has been proven to be effective for a variety of issues including dissociation and PTSD.
-⚫ **Interpersonal therapy (IPT)** is a short-term treatment for depression and interpersonal problems, aimed mainly at teenagers and young adults. It focuses on relationships, life transitions, social and communication skills, and more.
-⚫ **Ego state therapy is based on the idea that a person's psyche is the amalgamation of several distinct egos, such as the "inner wounded child". They don't literally mean that a person has multiple personalities, rather that everyone navigates several identities or roles throughout their life. This approach is used for example in the treatment of PTSD.
-\nOther forms of therapy that do not focus on the "talking" but rather on some other action, are also available in many places and just as effective - epending on the individual's needs or preferences:
-⚫ **Play therapy** is mainly for children, to provide younger clients with a caring and confidential environment to play or express themselves. It can help them deal with emotional problems, develop social skills, cope with symptoms of stress or trauma, and more. Therapeutic play can include other forms of therapy, such as art therapy. 
-⚫ **Art therapy** uses the creative process or art created by others mainly to increase self-awareness, express emotions, deal with self-esteem issues, process difficult memories, interpersonal/relationship problems, and more. No artistic skills are required. Used for the treatment of mood and anxiety disorders, PTSD, psychotic disorders, and eating disorders, among others. 
-⚫ **Pet therapy** or **animal-assisted therapy** is a type of experiential mental health treatment that involves the client interacting with animals such as horses or dogs, and taking care of them. Its effects have been observed with people who suffer from mood or anxiety disorders, PTSD, developmental disorders, and anger issues.
-⚫ **Drama therapy** is a treatment approach that provides a theatrical platform for people with the goals, among many, of expressing their feelings, increasing social skills and self-awareness, or promote positive changes in one's life. Despite being relatively new and pretty unknown, drama therapy continues to gain ground as a treatment modality to help with grief, behavioral or relationship issues, mood disorders, and anxiety disorders.
-⚫ **Ecotherapy**, also known as **nature therapy** or **green therapy**, stems from the belief that our psyches are not isolated or separate from our environment, providing clients with an opportunity to explore their relationship with nature. Clients may perform physical activities in nature, complete horticultural activities, or interact with animals during Ecotherapy. It's usually effective for anxiety or mood disorders, although it is in a pretty "experimental" phase.
+• **Family-focused therapy** or **Marriage and Family Therapy (MFT)**, which serves to family members or couples to understand how family dynamics and individual behavior can affect mental health.
+• **Cognitive Behavioral Therapy (CBT)** helps you challenge negative thought/behavior patterns, enhance your problem-solving skills, practice mindfulness, and more. It is most used for mood disorders, PTSD, or anger problems.
+• **Dialectical Behavioral Therapy (DBT)** helps many with emotional regulation, mindfulness, distress tolerance and other skills. It is most used for some personality disorders or mood disorders.
+• **Cognitive enhancement therapy (CET)** helps clients be aware of social contexts, increase vocational capabilities, better problem-solving skills as well as memory, and more. It's designed for people with psychotic and cognitive disorders.
+• **Acceptance and commitment therapy (ACT)** helps people learn how to to stop avoiding or suppressing emotions, to finally come to an acceptance of one's feelings or emotional needs. It has proven to be effective with mood disorders and anxiety disorders especially.
+• **Eye movement desensitization and reprocessing (EMDR)** is especially designed to treat symptoms of PTSD, anxiety, or depression. Practitioners use some sort of bilateral stimulation on the brain - such as eye movements from left to right - to help the client process memories from adverse experiences.
+\nOther forms of therapy that do not focus on the "talking" but rather on some other action, are also available in many places and just as effective - depending on individual needs:
+• **Play therapy** is mainly for children, to provide younger clients with a caring and confidential environment to play or express themselves. It can help them deal with emotional problems, develop social skills, cope with symptoms of stress or trauma, and more. Therapeutic play can include other forms of therapy, such as art therapy.
+• **Art therapy** uses the creative process to increase self-awareness, express emotions, deal with self-esteem issues, process difficult memories, and more. No artistic skills are required. Used for the treatment of mood and anxiety disorders, and PTSD, among others.
+• **Pet therapy** or **animal-assisted therapy** is a type of experiential mental health treatment that involves the client interacting with animals such as horses or dogs, and taking care of them. Its effects have been observed with people who suffer from mood or anxiety disorders, PTSD, developmental disorders, and anger issues.
+• **Ecotherapy**, also known as **nature therapy** or **green therapy**, stems from the belief that our psyches are not isolated or separate from our environment, providing clients with an opportunity to explore their relationship with nature. Clients may perform physical activities in nature, complete horticultural activities, or interact with animals during Ecotherapy. It's usually effective for anxiety or mood disorders, although it is in a pretty "experimental" phase.
 \nTo see a more complete list, visit <https://www.psychologytoday.com/us/types-of-therapy> or <https://www.goodtherapy.org/learn-about-therapy/types>.""")
         await ctx.send(embed=therapymessage)
 
@@ -319,7 +328,6 @@ Abuse can take onto many forms, all of which are just as valid as they can all b
 \nIf you wish to learn more, visit: <https://docs.google.com/document/d/1DsVbowMk1ROeEOvZ7UoAaoEk7Y2x0WS2CX33b1tjJog/edit?usp=sharing>""")
         await ctx.send(embed=didosddmessage)
 
-
     @whatis.command(name="osdd")
     async def whatis_osdd1(self, ctx):
         didosddmessage = discord.Embed(title="What is DID/OSDD-1?", description="""DID or Dissociative Identity Disorder and OSDD-1, or Other Specified Dissociative Disorder are disorders classified in the DSM-5.\n**DID and OSDD-1** were once referred to as “Multiple Personality Disorder” but have since been renamed as a result of research into the nature of the disorder. Individuals with either DID or OSDD often refer to themselves as **systems**.\n\nOne of the most evident symptoms is the presence of multiple dissociated parts of the self that can take executive control of the body/mind of the individual with this disorder.\nThese dissociated parts are commonly referred to as **alters**. Each alter has or can have a different personality, gender, sexuality, and often different skills, opinions, preferences, goals, and wishes.
@@ -329,15 +337,15 @@ Abuse can take onto many forms, all of which are just as valid as they can all b
 
     @whatis.command(name="dsm")
     async def whatis_dsm(self, ctx):
-        dsmmessage = discord.Embed(title="What is the DSM?", description="""The **Diagnostic and Statistical Manual of Mental Disorders (DSM)** is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
+        dsmmessage = discord.Embed(title="What is the DSM?",
+                                   description="""The **Diagnostic and Statistical Manual of Mental Disorders (DSM)** is used by clinicians and psychiatrists to diagnose psychiatric illnesses. Its latest version (DSM-5) was released in 2013 and is used worldwide.""")
         await ctx.send(embed=dsmmessage)
-
 
     @whatis.command(name="icd")
     async def whatis_icd(self, ctx):
-        icdmessage = discord.Embed(title="What is the ICD?", description="""The **International Statistical Classification of Diseases and Related Health Problems (ICD)** is a manual for the identification of health trends and statistics globally, and the international standard for reporting diseases and health conditions (including mental health disorders). It is the diagnostic classification standard for all clinical and research purposes. The latest version (ICD-11) was released in 2018 and is currently used worldwide.""")
+        icdmessage = discord.Embed(title="What is the ICD?",
+                                   description="""The **International Statistical Classification of Diseases and Related Health Problems (ICD)** is a manual for the identification of health trends and statistics globally, and the international standard for reporting diseases and health conditions (including mental health disorders). It is the diagnostic classification standard for all clinical and research purposes. The latest version (ICD-11) was released in 2018 and is currently used worldwide.""")
         await ctx.send(embed=icdmessage)
-     
 
     @whatis.command(name="schizophrenia")
     async def whatis_schizophrenia(self, ctx):
@@ -369,30 +377,32 @@ Fortunately, depression is farily easily treatable compared to other disorders. 
 \nThere are four types of bipolar disorder: Bipolar I, defined by manic, depressive, and mixed episodes; Bipolar II, defined by hypomanic and depressive episodes; cyclothymia, defined by hypomanic and depressive episodes which however do not meet the requirements for Bipolar II; and Other Specified and Unspecified Bipolar and Related Disorders, defined by bipolar disorder symptoms that do not match the three categories listed above.
 \nAn effective treatment plan for bipolar disorder usually includes both medication and psychotherapy, such as cognitive-behavioral therapy (CBT) or interpersonal therapy.""")
         await ctx.send(embed=bipolarmessage)
-        
+
     @whatis.command(name="ptsd")
     async def whatis_ptsd(self, ctx):
         ptsdmessage = discord.Embed(title="What is PTSD?", description="""**Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing a traumatic event.
 \nSymptoms include: flashbacks, nightmares about the trauma, avoidance of reminders of the traumatic event, negative changes in beliefs about oneself/others/the world, and more. PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
 \nPTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
         await ctx.send(embed=ptsdmessage)
-        
+
     @whatis.command(name="cptsd")
     async def whatis_cptsd(self, ctx):
         ptsdmessage = discord.Embed(title="What is C-PTSD?", description="""**Complex Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing an ongoing traumatic event that is perceived as extremely threatening or horrific, and from which escape is impossible (or very difficult).
-The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years. 
+The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years.
 \nSymptoms include the same as PTSD, with the addition of difficulties with emotional regulation, negative self-concept, interpersonal disturbances such as being unable to feel close to others, and more. C-PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
 \nC-PTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
         await ctx.send(embed=ptsdmessage)
 
     @whatis.command(name="therapist")
     async def whatis_therapist(self, ctx):
-        therapistmessage = discord.Embed(title="Who is a therapist?", description="""The word **therapist** is an umbrella term for professionals who are trained (and/or licensed) to provide a variety of treatments, rehabilitation and support to people.\nExamples include psychologists, LMFT's, social workers, etc.""")
+        therapistmessage = discord.Embed(title="Who is a therapist?",
+                                         description="""The word **therapist** is an umbrella term for professionals who are trained (and/or licensed) to provide a variety of treatments, rehabilitation and support to people.\nExamples include psychologists, LMFT's, social workers, etc.""")
         await ctx.send(embed=therapistmessage)
 
     @whatis.command(name="psychologist")
     async def whatis_psychologist(self, ctx):
-        psychologistmessage = discord.Embed(title="Who is a psychologist?", description="""A **psychologist** is a doctor who can diagnose mental disorders, do testings and assessments, and provide treatment plans to patients.""")
+        psychologistmessage = discord.Embed(title="Who is a psychologist?",
+                                            description="""A **psychologist** is a doctor who can diagnose mental disorders, do testings and assessments, and provide treatment plans to patients.""")
         await ctx.send(embed=psychologistmessage)
 
     @whatis.command(name="counsellor")
@@ -404,13 +414,15 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
 
     @whatis.command(name="psychiatrist")
     async def whatis_psychiatrist(self, ctx):
-        psychiatristmessage = discord.Embed(title="Who is a psychiatrist?", description="""A **psychiatrist** is a medical doctor who can offer assessments, testings, talking therapy and other types of treatment. Usually, they work along with other mental health professionals to decide what kind of meds to prescribe to a client. They may also be researchers.""")
+        psychiatristmessage = discord.Embed(title="Who is a psychiatrist?",
+                                            description="""A **psychiatrist** is a medical doctor who can offer assessments, testings, talking therapy and other types of treatment. Usually, they work along with other mental health professionals to decide what kind of meds to prescribe to a client. They may also be researchers.""")
         await ctx.send(embed=psychiatristmessage)
-
 
     @commands.command()
     async def emergency(self, ctx):
-        messagetosend = discord.Embed(title="Emergency", description="If anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!livesupport` and `tbs!therapy` commands.", colour=0x082E6F)
+        messagetosend = discord.Embed(title="Emergency",
+                                      description="If anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!livesupport` and `tbs!therapy` commands.",
+                                      colour=0x082E6F)
         await ctx.send(embed=messagetosend)
 
     @commands.command(aliases=['positive'])
@@ -481,26 +493,33 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
 
     @commands.command(aliases=['getlivehelp', 'getlivesupport'])
     async def livesupport(self, ctx):
-        websites = discord.Embed(title="Live Support Online", description="If you need advice/help or to vent, here are some links for you. These include mainly live chats with volounteers and other websites that offer peer-support.\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.7cups.com>\n<https://mellowtalk.com/>\n<http://blahtherapy.com/chat-hub/>\n<https://www.vetsprevail.org/> (For veterans)\n<https://ginger.io/>\n<https://kooth.com/>\n<https://www.iprevail.com/>\n<https://www.imalive.org/>\n<https://www.reddit.com/r/KindVoice/>", colour=0x082E6F)
+        websites = discord.Embed(title="Live Support Online",
+                                 description="If you need advice/help or to vent, here are some links for you. These include mainly live chats with volounteers and other websites that offer peer-support.\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.7cups.com>\n<https://mellowtalk.com/>\n<http://blahtherapy.com/chat-hub/>\n<https://www.vetsprevail.org/> (For veterans)\n<https://ginger.io/>\n<https://kooth.com/>\n<https://www.iprevail.com/>\n<https://www.imalive.org/>\n<https://www.reddit.com/r/KindVoice/>",
+                                 colour=0x082E6F)
         await ctx.send(embed=websites)
 
     @commands.command(aliases=['cheaptherapy', 'lowcosttherapy', 'onlinetherapy'])
     async def freetherapy(self, ctx):
-        websites = discord.Embed(title="Low-Cost Therapy", description="It's possible to get low-cost or free therapy in various ways! Visit this link for more info and tips: <https://sunrayresources.tumblr.com/therapy>.\n\nHere are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>", colour=0x082E6F)
+        websites = discord.Embed(title="Low-Cost Therapy",
+                                 description="It's possible to get low-cost or free therapy in various ways! Visit this link for more info and tips: <https://sunrayresources.tumblr.com/therapy>.\n\nHere are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>",
+                                 colour=0x082E6F)
         await ctx.send(embed=websites)
 
     @commands.command(
         aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
         messagetosend = discord.Embed(title='Commands', description="""Hello! So you need some kind of support? Great, you are in the right place.\nWhat are you looking for?\n
-:one: If you are looking for low-cost or free therapy do `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases, do `tbs!database`.\n\n :three: If you're looking for live support, do `tbs!livesupport`.""", colour = 0x082E6F)
-        messagetosend.set_thumbnail(url="https://cdn.discordapp.com/attachments/369960338436915210/479411887583395850/Embrace-nowledge.png")
+:one: If you are looking for low-cost or free therapy do `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases, do `tbs!database`.\n\n :three: If you're looking for live support, do `tbs!livesupport`.""",
+                                      colour=0x082E6F)
+        messagetosend.set_thumbnail(
+            url="https://cdn.discordapp.com/attachments/369960338436915210/479411887583395850/Embrace-nowledge.png")
         await ctx.send(embed=messagetosend)
 
     @commands.command(aliases=['therapydatabase', 'databasetherapy'])
     async def database(self, ctx):
         websites = discord.Embed(title="Type 'next' to go to next page.",
-                                 description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.", colour=0x082E6F)
+                                 description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.",
+                                 colour=0x082E6F)
         websites.add_field(name="International/Multiple countries",
                            value="<https://members.nielasher.com/>\n<https://www.therapistlocator.net//imis15/tl/Default.aspx>\n<https://www.therapytribe.com/>\n<https://www.therapytribe.com/>\n<http://www.istss.org/find-a-clinician.aspx>\n<https://www.onlinecounselling.com/therapist-finder/>\n<https://www.goodtherapy.org/international-search.html>",
                            inline=False)
@@ -511,7 +530,8 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
         embedone = await ctx.send(embed=websites)
 
         websites2 = discord.Embed(
-            description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.", colour=0x082E6F)
+            description="If you are experiencing mental health problems that cause distress in your life, you may need to consider seeking proper support from a professional or someone who’s trained to help you in the best way possible. Peer-support, while different, is also an essential part of your recovery, so you might wish to look into that, too.\n\nAlso try `tbs!livesupport` and `tbs!cheaptherapy`.",
+            colour=0x082E6F)
         websites2.add_field(name="UK",
                             value="<https://bpdworld.org/specialist/> (Various services)\<https://www.bps.org.uk/public/find-psychologist>\n<http://www.cmha.org.uk/>\n<https://www.psychologytoday.com/gb/counselling>\n<http://www.callhelpline.org.uk/Help.asp#search>\n<https://www.psychotherapy.org.uk/find-a-therapist/>\n<https://www.bacp.co.uk/search/Therapists>\n<https://www.nhs.uk/Service-Search/Psychological%20therapies%20(IAPT)/LocationSearch/10008>")
         websites2.add_field(name="Australia",
@@ -530,7 +550,7 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
 
 
 class Fun():
-    
+
     @commands.command(aliases=['coin', 'flip', 'flipcoin'])
     async def coinflip(self, ctx):
         choices = random.choice(['Heads!', 'Tails!'])
@@ -590,40 +610,41 @@ class Fun():
             'You deserve to be heard.', 'You deserve to be respected.', "You're an absolute bean.",
         ])
         await ctx.send(randomcomp)
-        
+
     @commands.command(aliases=['comfort', 'comforting'])
     async def comfortme(self, ctx):
-        randomcomf = random.choice(["You've always been able to always figure out how to pick yourself up. You can do it again.",
-                                    "It's so great to see you're doing your best.", 
-                                    'You can get through this.',
-                                    "If you're going through something, remember: this too shall pass.",
-                                    "If today was bad, remember that you won't have to repeat this day ever again.",
-                                    "Even if you feel like you're getting nowhere you're still one step ahead of yesterday - and that's still progress.",
-                                    "You're growing so much, and if you can't see it now, you certainly will in a few months.",
-                                    "You're strong for going on even when it's so hard.",
-                                    "If you are having really awful thoughts right now or feeling very insecure, remember that what you think does not always reflect the reality of things.",
-                                    "I know they can be hard to deal with, but even a bot like me knows your emotions are valid and important!",
-                                    "(source: softangelita)\nhttps://78.media.tumblr.com/757d6f9eceacd22e585f5763aed3b6b7/tumblr_pbs2drA9yX1wzarogo1_1280.gif",
-                                    "You are going to be okay. Things are going to be okay. You will see.",
-                                    "(source: princess-of-positivity)\nhttps://78.media.tumblr.com/209ac4a784925d71d3d3c7293b7d75f4/tumblr_o883p7C7e21vwxwino1_1280.jpg",
-                                    "Sit down, take a breath. There’s still time. Your past isn’t going anywhere, the present is right here and the future will wait.", 
-                                    "It is never too late to make a positive change in your life.", "https://78.media.tumblr.com/14a19b1f5c785c0af5966175c0c87c8f/tumblr_owob0dUAzy1ww31y6o1_500.jpg",
-                                    "Don't be upset if you aren't always doing your absolute best every waking moment. Flowers cannot always bloom.",
-                                    "(source: jessabella-hime)\nhttps://78.media.tumblr.com/b1e54721f7520a6f425c112a67170e63/tumblr_ozi5gdM4de1trvty1o1_500.png",
-                                    "There are good people in this world who do or will help you, care about you, and love you.",
-                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/37778dd51384fbdba835349e6f0081d5/tumblr_oz8v11c9CC1wssyrbo1_500.jpg",
-                                    "https://78.media.tumblr.com/ed8e14743dac29bbc606fc099ab77ec3/tumblr_nphyqvqGvi1qzz08do1_500.jpg",
-                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/980109437f848b501d9ac96ed5a9ead0/tumblr_p285yaPKk31wssyrbo2_r2_250.jpg",
-                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/63a7933dfe6ed98dd00682533d249efe/tumblr_pc558poobr1wssyrbo1_250.jpg",
-                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/5827e477fff5b22c693c00d94eb19b2a/tumblr_p40de4xrrC1wssyrbo1_250.jpg",
-                                    "It is perfectly okay to rest and take a break from things If you are taking yourself to exhaustion, at that point it isn't your best anymore.",
-                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/50f06d2360aae36c815b1757326d878d/tumblr_p40de4xrrC1wssyrbo5_r1_250.jpg",
-                                    "Sometimes it's okay if the only thing you did today was breathe.",
-                                    "(source: recovering-and-healing)\nhttps://78.media.tumblr.com/e7b47e53ba372425728f384685748435/tumblr_oc93tmtPBj1ue8qxbo3_r1_250.jpg",
-                                    "(source: positivedoodles)\nhttps://78.media.tumblr.com/c04f396bfd2501b4876c239a329c035b/tumblr_pcutj6i57Z1rpu8e5o1_1280.png",
-                                    "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/6602114029258f4097fffc33a2ae5887/tumblr_otfj86Xgq91wssyrbo1_r4_250.jpg"])
+        randomcomf = random.choice(
+            ["You've always been able to always figure out how to pick yourself up. You can do it again.",
+             "It's so great to see you're doing your best.",
+             'You can get through this.',
+             "If you're going through something, remember: this too shall pass.",
+             "If today was bad, remember that you won't have to repeat this day ever again.",
+             "Even if you feel like you're getting nowhere you're still one step ahead of yesterday - and that's still progress.",
+             "You're growing so much, and if you can't see it now, you certainly will in a few months.",
+             "You're strong for going on even when it's so hard.",
+             "If you are having really awful thoughts right now or feeling very insecure, remember that what you think does not always reflect the reality of things.",
+             "I know they can be hard to deal with, but even a bot like me knows your emotions are valid and important!",
+             "(source: softangelita)\nhttps://78.media.tumblr.com/757d6f9eceacd22e585f5763aed3b6b7/tumblr_pbs2drA9yX1wzarogo1_1280.gif",
+             "You are going to be okay. Things are going to be okay. You will see.",
+             "(source: princess-of-positivity)\nhttps://78.media.tumblr.com/209ac4a784925d71d3d3c7293b7d75f4/tumblr_o883p7C7e21vwxwino1_1280.jpg",
+             "Sit down, take a breath. There’s still time. Your past isn’t going anywhere, the present is right here and the future will wait.",
+             "It is never too late to make a positive change in your life.",
+             "https://78.media.tumblr.com/14a19b1f5c785c0af5966175c0c87c8f/tumblr_owob0dUAzy1ww31y6o1_500.jpg",
+             "Don't be upset if you aren't always doing your absolute best every waking moment. Flowers cannot always bloom.",
+             "(source: jessabella-hime)\nhttps://78.media.tumblr.com/b1e54721f7520a6f425c112a67170e63/tumblr_ozi5gdM4de1trvty1o1_500.png",
+             "There are good people in this world who do or will help you, care about you, and love you.",
+             "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/37778dd51384fbdba835349e6f0081d5/tumblr_oz8v11c9CC1wssyrbo1_500.jpg",
+             "https://78.media.tumblr.com/ed8e14743dac29bbc606fc099ab77ec3/tumblr_nphyqvqGvi1qzz08do1_500.jpg",
+             "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/980109437f848b501d9ac96ed5a9ead0/tumblr_p285yaPKk31wssyrbo2_r2_250.jpg",
+             "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/63a7933dfe6ed98dd00682533d249efe/tumblr_pc558poobr1wssyrbo1_250.jpg",
+             "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/5827e477fff5b22c693c00d94eb19b2a/tumblr_p40de4xrrC1wssyrbo1_250.jpg",
+             "It is perfectly okay to rest and take a break from things If you are taking yourself to exhaustion, at that point it isn't your best anymore.",
+             "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/50f06d2360aae36c815b1757326d878d/tumblr_p40de4xrrC1wssyrbo5_r1_250.jpg",
+             "Sometimes it's okay if the only thing you did today was breathe.",
+             "(source: recovering-and-healing)\nhttps://78.media.tumblr.com/e7b47e53ba372425728f384685748435/tumblr_oc93tmtPBj1ue8qxbo3_r1_250.jpg",
+             "(source: positivedoodles)\nhttps://78.media.tumblr.com/c04f396bfd2501b4876c239a329c035b/tumblr_pcutj6i57Z1rpu8e5o1_1280.png",
+             "(source: harmony-is-happiness)\nhttps://78.media.tumblr.com/6602114029258f4097fffc33a2ae5887/tumblr_otfj86Xgq91wssyrbo1_r4_250.jpg"])
         await ctx.send(randomcomf)
-                                    
 
     @commands.command(aliases=['throwdice', 'dicethrow', 'throw'])
     async def dice(self, ctx):
@@ -633,11 +654,14 @@ class Fun():
     @commands.command(aliases=['cookie'])
     async def givecookie(self, ctx):
         botmention = discord.Embed(description="Wow, thanks! I love cookies >///<", colour=0x082E6F)
-        botmention.set_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        botmention.set_thumbnail(
+            url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
         normalmention = discord.Embed(description="Aw, you just gave them a cookie. How sweet of you!", colour=0x082E6F)
-        normalmention.set_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        normalmention.set_thumbnail(
+            url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
         me = discord.Embed(description="There you go. Enjoy your cookie!", colour=0x082E6F)
-        me.set_thumbnail(url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
+        me.set_thumbnail(
+            url="https://cdn.discordapp.com/attachments/477948503830560779/479616197143429135/chocochipcookie.png")
 
         if ctx.me.mention in ctx.message.content:
             await ctx.send(embed=botmention)
@@ -714,8 +738,10 @@ class Fun():
     async def question(self, ctx):
         quest = random.choice([
             'Yes.', 'No.', 'Yes!', 'No!', 'What? No!', 'Probably not.', 'Maybe...', 'Always.', 'Never.', 'Sometimes...',
-            'Almost certainly.', 'I hope not!', "I hope so!", 'Yep!', 'Yes...?', 'No...?', 'Always!', 'Never!', 'Not sure...',
-            'Of course!', 'Of course not!', 'Of course.', 'DUH!', 'Why not?', 'Why though?', "Absolutely not!", "Absolutely not.", "Perhaps.", "Who knows..."
+            'Almost certainly.', 'I hope not!', "I hope so!", 'Yep!', 'Yes...?', 'No...?', 'Always!', 'Never!',
+            'Not sure...',
+            'Of course!', 'Of course not!', 'Of course.', 'DUH!', 'Why not?', 'Why though?', "Absolutely not!",
+            "Absolutely not.", "Perhaps.", "Who knows..."
         ])
         await ctx.send(quest)
 
