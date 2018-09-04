@@ -439,14 +439,14 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
 
     @commands.command(aliases=['cheaptherapy', 'lowcosttherapy', 'onlinetherapy'])
     async def freetherapy(self, ctx):
-        websites = discord.Embed(title="Low-Cost Therapy", description="It's possible to get low-cost or free therapy in various ways. Examples are: insurances, charity counselling, school/college counselling, local associations, or getting therapy in hospitals/clinics.\n\nHere are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>", colour=0x082E6F)
+        websites = discord.Embed(title="Low-Cost Therapy", description="It's possible to get low-cost or free therapy in various ways! Visit this link for more info and tips: <https://sunrayresources.tumblr.com/therapy>.\n\nHere are some places to get free or low-cost professional help, online or otherwise.\nWe also recommend you try the `tbs!database` command.\n\n<https://mindspot.org.au/>\n<https://inpathy.com/>\n<https://www.counsellingonline.org.au/>\n<https://cimhs.com/>\n<https://www.iprevail.com>\n<http://www.yourlifeyourvoice.org/Pages/ways-to-get-help.aspx>\n<https://www.talkspace.com/>\n<http://blahtherapy.com/>\n<https://onlinecounselling.io/>\n<https://www.betterhelp.com/>\n<https://www.iprevail.com/>", colour=0x082E6F)
         await ctx.send(embed=websites)
 
     @commands.command(
         aliases=['counsellor', 'therapist', 'therapymenu', 'counselling', 'support', 'gethelp', 'getsupport'])
     async def therapy(self, ctx):
-        messagetosend = discord.Embed(title='Commands', description="""Hello! What are you looking for?\n
-:one: If you are looking for low-cost or free therapy, please use the command `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases instead, please use the command `tbs!database`.\n\n :three: If you're looking for live support, please type `tbs!livesupport`.""", colour = 0x082E6F)
+        messagetosend = discord.Embed(title='Commands', description="""Hello! So you need some kind of support? Great, you are in the right place.\nWhat are you looking for?\n
+:one: If you are looking for low-cost or free therapy do `tbs!freetherapy`.\n\n :two: If you're looking for therapist databases, do `tbs!database`.\n\n :three: If you're looking for live support, do `tbs!livesupport`.""", colour = 0x082E6F)
         messagetosend.set_thumbnail(url="https://cdn.discordapp.com/attachments/369960338436915210/479411887583395850/Embrace-nowledge.png")
         await ctx.send(embed=messagetosend)
 
