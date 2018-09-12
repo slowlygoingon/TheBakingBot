@@ -226,43 +226,44 @@ class Info():
     async def help(self, ctx):
         em = discord.Embed(
             description=
-            """These are all the commands groups of The Baking Bot,\nthe official bot for The Baking Spot.\n\nType `tbs!help commandsgroup` to see more on a specific group.\n•  •  •  •  •  •  •  •
+            """These are all the commands groups of The Baking Bot,\nthe official bot for The Baking Spot.\n\nType `tbs!help commandsgroup` to see more on a specific group.\n\n
 **About
-Mentalhealth
+MentalHealth
 Moderating
 Fun
-Server**""", colour=0x082E6F)
+Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="about")
+    @help.command(name="About")
     async def infomenu(self, ctx):
         em = discord.Embed(title="Info & about commands",
                            description="**invite**   -   Invite me!\n**bugreport**   -   Report a bug.\n**info**   -   Shows basic info about the bot. [about]\n**commands**   -   Shows help message. [help, commandslist]\n**ping**   -   Are you alive, bot?\n**source**   -   Shows bot's source code. [src, git, github]\n",
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="mentalhealth")
+    @help.command(name="""MentalHealth""")
     async def mentalhealthmenu(self, ctx):
         em = discord.Embed(title="Mental health commands",
                            description="**comfort**   -   Tells you something comforting. [comforting, comfortme]\n**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="fun")
+
+    @help.command(name="Fun")
     async def funmenu(self, ctx):
         em = discord.Embed(title="Fun commands",
                            description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]",
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="moderating")
+    @help.command(name="Moderating")
     async def moderatingmenu(self, ctx):
         em = discord.Embed(title="Moderating commands",
                            description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.",
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="server")
+    @help.command(name="Server")
     async def servermenu(self, ctx):
         em = discord.Embed(title="Server commands",
                            description="**faq**   -   Displays link to our FAQ page on Tumblr.\n**tumblr**   -   Link to the official Tumblr.\n**report**   -   Send a (non-urgent) report or suggestion to Staff, regular members will NOT see your message. [suggestion]\n**urgentreport**   -   Send an __urgent__ report to Staff, regular members will NOT see your message. __Do not abuse this command.__ [urgent, reporturgent]\n**feedback**   -   Send feedback, suggestions, or reports through an anonymous form. Nobody, not even Staff, will know who sent it. [feedbackform]",
@@ -272,6 +273,13 @@ Server**""", colour=0x082E6F)
 
 class MentalHealth():
 
+    @commands.command()
+    async def reminder(self, ctx):
+        medsreminder = random.choice(["Oof, did you forget your meds? Go take em now then! <@&475280525461028876> Good job.", "Hi there, please take your meds. Done? GG! <@&475280525461028876>", "Hey, this is your frembly remembly to take your meds! :) <@&475280525461028876>"])
+        await ctx.send(medsreminder)
+
+
+
     @commands.group(invoke_without_command=True, aliases=["define", "definition"])
     async def whatis(self, ctx):
         errormessage = discord.Embed(title="Error!",
@@ -279,11 +287,18 @@ class MentalHealth():
                                      colour=discord.Colour.red())
         await ctx.send(embed=errormessage)
 
+
     @whatis.command(name="list")
     async def whatis_list(self, ctx):
         list = discord.Embed(title="List of available definitions",
-                             description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, depression, did, dsm, icd, osdd, psychiatrist, psychologist, schizophrenia, therapist, therapy, trauma")
+                             description="**Important:** Please inspect trigger warning-worthy definitions with caution.\n\nabuse, anxiety, bipolar, counsellor, c-ptsd, depression, did, dsm, grounding, icd, osdd, ptsd, psychiatrist, psychologist, schizophrenia, therapist, therapy, trauma")
         await ctx.send(embed=list)
+
+    @whatis.command(name="grounding")
+    async def whatis_grounding(self, ctx):
+        groundingmessage = discord.Embed(title="What is grounding?",
+                             description="**Grounding** is a coping mechanism designed to bring you back to/connect you with reality, or the 'here-and-now'. For example, it can involve the five senses to 'ground' you in the present, or mental strategies to keep the mind occupied. Grounding is used mainly to cope with flashbacks, anxiety, panic attacks, or dissociation, and you can use these techniques on your own or with the guidance of a loved one or a therapist.")
+        await ctx.send(embed=groundingmessage)
 
     @whatis.command(name="trauma")
     async def whatis_trauma(self, ctx):
@@ -293,7 +308,7 @@ class MentalHealth():
 
     @whatis.command(name="abuse")
     async def whatis_abuse(self, ctx):
-        abusemessage = discord.Embed(title="What is abuse?", description="""**Abuse** is a form of maltreatment (usually a pattern of behavior rather than one single incident) that causes harm to another person. Though opinions on whether it needs to be intentional in order to be called abuse vary, it is certain that abusive or toxic behavior can also be unintentional, meaning an abuser can genuinely think they are doing what is best while actively harming someone else. However, many abusers are perfectly aware of the damage and impact of their actions.
+        abusemessage = discord.Embed(title="What is abuse?", description="""**Abuse** is a form of maltreatment (usually a pattern of behavior rather than one single incident) that causes harm to another person. Though opinions on whether it needs to be intentional in order to be called abuse, it is certain that abusive or toxic behavior can also be unintentional, meaning an abuser can genuinely think they are doing what is best while actively harming someone else. However, many abusers are perfectly aware of the damage and impact of their actions.
     \nBeing subject to abuse can last months to years on end, and may cause mental health issues, such as PTSD, C-PTSD, mood disorders, anxiety disorders, and more.
     Abuse can take onto many forms, all of which are just as valid as they can all be extremely distressing. Here are some examples of types of abuse.
     \n• **Emotional abuse**: creates psychological pain, usually through a pattern of threats, guilt tripping, manipulation, gaslighting, humiliating, intimidating, having an unpredictable anger, etc.
@@ -306,19 +321,16 @@ class MentalHealth():
 
     @whatis.command(name="therapy")
     async def whatis_therapy(self, ctx):
-        therapymessage = discord.Embed(title="What is therapy?", description="""**Therapy** is the process of working with a mental health professional to manage stress or similar problems, develop coping or self-care skills, tackle mental health issues, and more. Therapy allows you to enter a safe, non-judgemental space where you can get to know yourself. How therapy progresses or is handled depends greatly on the client's needs and preferences, as well as the knowledge and method of the therapist.\nThere are a great number of therapies available, and therapy sessions can be **individual** or **group-focused**. Many kinds of therapeutic approaches can be either, or a combination of both.\n\nThere are a variety of types of **talking therapy**, which is the most common. Some examples are:
-• **Family-focused therapy** or **Marriage and Family Therapy (MFT)**, which serves to family members or couples to understand how family dynamics and individual behavior can affect mental health.
-• **Cognitive Behavioral Therapy (CBT)** helps you challenge negative thought/behavior patterns, enhance your problem-solving skills, practice mindfulness, and more. It is most used for mood disorders, PTSD, or anger problems.
-• **Dialectical Behavioral Therapy (DBT)** helps many with emotional regulation, mindfulness, distress tolerance and other skills. It is most used for some personality disorders or mood disorders.
-• **Cognitive enhancement therapy (CET)** helps clients be aware of social contexts, increase vocational capabilities, better problem-solving skills as well as memory, and more. It's designed for people with psychotic and cognitive disorders.
-• **Acceptance and commitment therapy (ACT)** helps people learn how to to stop avoiding or suppressing emotions, to finally come to an acceptance of one's feelings or emotional needs. It has proven to be effective with mood disorders and anxiety disorders especially.
-• **Eye movement desensitization and reprocessing (EMDR)** is especially designed to treat symptoms of PTSD, anxiety, or depression. Practitioners use some sort of bilateral stimulation on the brain - such as eye movements from left to right - to help the client process memories from adverse experiences.
-\nOther forms of therapy that do not focus on the "talking" but rather on some other action, are also available in many places and just as effective - depending on individual needs:
-• **Play therapy** is mainly for children, to provide younger clients with a caring and confidential environment to play or express themselves. It can help them deal with emotional problems, develop social skills, cope with symptoms of stress or trauma, and more. Therapeutic play can include other forms of therapy, such as art therapy.
-• **Art therapy** uses the creative process to increase self-awareness, express emotions, deal with self-esteem issues, process difficult memories, and more. No artistic skills are required. Used for the treatment of mood and anxiety disorders, and PTSD, among others.
-• **Pet therapy** or **animal-assisted therapy** is a type of experiential mental health treatment that involves the client interacting with animals such as horses or dogs, and taking care of them. Its effects have been observed with people who suffer from mood or anxiety disorders, PTSD, developmental disorders, and anger issues.
-• **Ecotherapy**, also known as **nature therapy** or **green therapy**, stems from the belief that our psyches are not isolated or separate from our environment, providing clients with an opportunity to explore their relationship with nature. Clients may perform physical activities in nature, complete horticultural activities, or interact with animals during Ecotherapy. It's usually effective for anxiety or mood disorders, although it is in a pretty "experimental" phase.
-\nTo see a more complete list, visit <https://www.psychologytoday.com/us/types-of-therapy> or <https://www.goodtherapy.org/learn-about-therapy/types>.""")
+        therapymessage = discord.Embed(title="What is therapy?", description="""**Therapy** consists in working with a mental health professional to manage mental health problems, develop coping or self-care skills, and more. Therapy is a safe, non-judgemental space where you can truly get to know yourself.\n\n
+• **Family-focused therapy**, is for family members to understand how family dynamics and individual behavior can affect mental health.
+• **Cognitive Behavioral Therapy (CBT)** challenges negative patterns, enhance your problem-solving skills, practice mindfulness, and more. It is most used for mood disorders, PTSD, or anger problems.
+• **Dialectical Behavioral Therapy (DBT)** helps with emotional regulation, mindfulness, distress tolerance and other skills. It is most used for personality and mood disorders.
+• **Cognitive enhancement therapy (CET)** helps with being aware of social contexts, increase vocational capabilities, better problem-solving skills, and more in people with psychotic or cognitive disorders.
+• **Eye movement desensitization reprocessing (EMDR)** is designed to treat symptoms of PTSD, anxiety, or depression. Practitioners use bilateral stimulation on the brain - such as eye movements from left to right - to help the client process trauma memories.
+• **Play therapy** (for children) provides younger clients with a caring, confidential environment. It can help with emotional problems, social skills, stress, trauma, etc.
+• **Art therapy** uses the creative process to increase self-awareness, express emotions, deal with self-esteem issues and more. No artistic skills required.
+• **Pet therapy** or **animal-assisted therapy** involves the client interacting with animals like horses or dogs. Its effects have been observed with people who suffer from depression, PTSD, developmental disorders or anger issues.
+\nAlso see: <https://www.psychologytoday.com/us/types-of-therapy>""")
         await ctx.send(embed=therapymessage)
 
     @whatis.command(name="did")
@@ -379,19 +391,50 @@ Fortunately, depression is farily easily treatable compared to other disorders. 
         await ctx.send(embed=bipolarmessage)
 
     @whatis.command(name="ptsd")
-    async def whatis_ptsd(self, ctx):
+    async def whatis_ptsd1(self, ctx):
+        ptsdmessage = discord.Embed(title="What is PTSD?", description="""**Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing a traumatic event.
+\nSymptoms include: flashbacks, nightmares about the trauma, avoidance of reminders of the traumatic event, negative changes in beliefs about oneself/others/the world, and more. PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
+\nPTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
+        await ctx.send(embed=ptsdmessage)
+
+    @whatis.command(name="PTSD")
+    async def whatis_ptsd2(self, ctx):
         ptsdmessage = discord.Embed(title="What is PTSD?", description="""**Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing a traumatic event.
 \nSymptoms include: flashbacks, nightmares about the trauma, avoidance of reminders of the traumatic event, negative changes in beliefs about oneself/others/the world, and more. PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
 \nPTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
         await ctx.send(embed=ptsdmessage)
 
     @whatis.command(name="cptsd")
-    async def whatis_cptsd(self, ctx):
+    async def whatis_cptsd1(self, ctx):
         ptsdmessage = discord.Embed(title="What is C-PTSD?", description="""**Complex Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing an ongoing traumatic event that is perceived as extremely threatening or horrific, and from which escape is impossible (or very difficult).
 The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years.
 \nSymptoms include the same as PTSD, with the addition of difficulties with emotional regulation, negative self-concept, interpersonal disturbances such as being unable to feel close to others, and more. C-PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
 \nC-PTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
         await ctx.send(embed=ptsdmessage)
+
+    @whatis.command(name="c-ptsd")
+    async def whatis_cptsd2(self, ctx):
+        cptsdmessage = discord.Embed(title="What is C-PTSD?", description="""**Complex Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing an ongoing traumatic event that is perceived as extremely threatening or horrific, and from which escape is impossible (or very difficult).
+    The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years.
+    \nSymptoms include the same as PTSD, with the addition of difficulties with emotional regulation, negative self-concept, interpersonal disturbances such as being unable to feel close to others, and more. C-PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
+    \nC-PTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
+        await ctx.send(embed=cptsdmessage)
+
+    @whatis.command(name="C-PTSD")
+    async def whatis_cptsd3(self, ctx):
+        cptsdmessage = discord.Embed(title="What is C-PTSD?", description="""**Complex Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing an ongoing traumatic event that is perceived as extremely threatening or horrific, and from which escape is impossible (or very difficult).
+    The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years.
+    \nSymptoms include the same as PTSD, with the addition of difficulties with emotional regulation, negative self-concept, interpersonal disturbances such as being unable to feel close to others, and more. C-PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
+    \nC-PTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
+        await ctx.send(embed=cptsdmessage)
+
+    @whatis.command(name="CPTSD")
+    async def whatis_cptsd4(self, ctx):
+        cptsdmessage = discord.Embed(title="What is C-PTSD?", description="""**Complex Post-traumatic stress disorder** is a mental health disorder that one may develop after experiencing or witnessing an ongoing traumatic event that is perceived as extremely threatening or horrific, and from which escape is impossible (or very difficult).
+    The difference from PTSD is that complex trauma is ongoing, often (but not necessarily) starting in childhood years.
+    \nSymptoms include the same as PTSD, with the addition of difficulties with emotional regulation, negative self-concept, interpersonal disturbances such as being unable to feel close to others, and more. C-PTSD is often associated with co-morbid conditions and problems, such as suicidal tendencies, anxiety disorders, eating disorders, substance abuse and more.
+    \nC-PTSD is treatable and the sooner one intervenes, the better. Trauma-focused therapies, such as Eye Movement Desensitization and Reprocessing (EMDR), Cognitive Processing Therapy (CPT), or exposure therapy, and more, as well as meds, can be used to heal.""")
+        await ctx.send(embed=cptsdmessage)
 
     @whatis.command(name="therapist")
     async def whatis_therapist(self, ctx):
