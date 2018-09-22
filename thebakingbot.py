@@ -464,7 +464,7 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
     @commands.command()
     async def emergency(self, ctx):
         messagetosend = discord.Embed(title="Emergency",
-                                      description="If anyone you know is in any kind of emergency, please visit the following page:\nhttps://thebakingspot.tumblr.com/ineedhelp\nI suggest you also try the `tbs!livesupport` and `tbs!therapy` commands.",
+                                      description="If anyone you know is in any kind of emergency, please visit the following page:\nhttps://sunrayresources.tumblr.com/urgenthelp\nI suggest you also try the `tbs!livesupport` and `tbs!therapy` commands.",
                                       colour=0x082E6F)
         await ctx.send(embed=messagetosend)
 
