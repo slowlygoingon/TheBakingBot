@@ -128,27 +128,6 @@ async def on_command_error(ctx, error):
         return
 
 
-class Moderating():
-
-    @commands.command(aliases=['prune', 'purge', 'delete'])
-    @commands.has_role('Staff')
-    async def clear(self, ctx, amount):
-        errormessage = discord.Embed(title="Error!", description="You can delete min 1 / max 100 messages at once.",
-                                     color=0xd90000)
-        channel = ctx.channel
-        for amount in range(int(amount), 0, (-100)):
-            if 101 > amount > 0:
-                await channel.purge(limit=int(amount))
-            else:
-                await ctx.send(embed=errormessage)
-
-    @commands.command()
-    @commands.has_role('Staff')
-    async def kick(self, ctx, user: discord.Member):
-        await ctx.guild.kick(user)
-        await ctx.send(f'{user.name} has been kicked.')
-
-
 class Info():
 
     @commands.command()
@@ -229,7 +208,6 @@ class Info():
             """These are all the commands groups of The Baking Bot,\nthe official bot for The Baking Spot.\n\nType `tbs!help commandsgroup` to see more on a specific group.\n\n
 **About
 MentalHealth
-Moderating
 Fun
 Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
         await ctx.send(embed=em)
@@ -256,13 +234,6 @@ Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
-    @help.command(name="Moderating")
-    async def moderatingmenu(self, ctx):
-        em = discord.Embed(title="Moderating commands",
-                           description="**clear**   -   Delete messages. [prune, purge, delete]\n**kick**   -   Kicks a user.",
-                           colour=0x082E6F)
-        await ctx.send(embed=em)
-
     @help.command(name="Server")
     async def servermenu(self, ctx):
         em = discord.Embed(title="Server commands",
@@ -277,8 +248,13 @@ class MentalHealth():
     async def reminder(self, ctx):
         medsreminder = random.choice(["Oof, did you forget your meds? Go take em now then! <@&475280525461028876> Good job.", "Hi there, please take your meds. Done? GG! <@&475280525461028876>", "Hey, this is your frembly remembly to take your meds! :) <@&475280525461028876>"])
         await ctx.send(medsreminder)
-
-
+        
+    @commands.command()
+    async def pluralkit(self, ctx):
+        pkmessage = """<@466378653216014359> is a that allow people with DID/OSDD (formerly known as *Multiple Personality Disorder*, but that is an outdated name!) to give their alters something that resembles a Discord profile, through the use of webhooks. Users choose a "prefix" for each alter, and when an alter is present, they can use such a prefix to type their message. Their name and profile picture will then appear :thumbsup:
+Therefore, there is an actual person behind these users that appear as "Bots"."""
+        await ctx.send(pkmessage)
+        
 
     @commands.group(invoke_without_command=True, aliases=["define", "definition"])
     async def whatis(self, ctx):
@@ -495,6 +471,9 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/positive-tEXeL9FRm6PAI",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/destressmonday-destress-red-balloon-3og0IPjBrpAto5yJEs",
             "Hey there, here's your daily nice gif.\nhttps://giphy.com/gifs/quotes-calm-keep-RLgIrDgrPMWdy",
+            "Hey there, here's your daily nice gif.\nhttps://cdn.discordapp.com/attachments/369922094223458304/515313193221095446/75e10739-245a-42c6-8798-7cdaa90201e2.png",
+            "Hey there, here's your daily nice gif.\nhttps://cdn.discordapp.com/attachments/369922094223458304/509975106827583488/image0.gif",
+            "Hey there, here's your daily nice gif.\nhttps://cdn.discordapp.com/attachments/369922094223458304/509813104079536214/16ca4131-7d19-4d6b-b4bc-18a214fac2e7.gif",
             "Hey there, here's your daily nice pic.\nhttps://78.media.tumblr.com/fe6d11172e5e213d1147424768fbaab6/tumblr_pdxyn6zlhz1w73ry4o1_500.jpg",
             "Hey there, here's your daily nice pic.\nhttps://78.media.tumblr.com/ed8e14743dac29bbc606fc099ab77ec3/tumblr_nphyqvqGvi1qzz08do1_500.jpg",
             "Hey there, here's your daily nice pic. (source unknown)\nhttps://78.media.tumblr.com/ef9c6dcfdf0aa540d7a0a84924a626e8/tumblr_mn6lzcds6O1renyrao1_500.png",
@@ -787,6 +766,74 @@ class Fun():
             "Absolutely not.", "Perhaps.", "Who knows..."
         ])
         await ctx.send(quest)
+        
+    @commands.command(aliases=['sfr'])
+    async def spooniefriendlyrecipe(self, ctx):
+        recipes = random.choice([
+            """**MACARONI AND CHEESE IN A MUG** by red-starr\n\n__Ingredients:__
+Cheese
+Butter
+Instant noodles
+Water
+Salt
+Milk\n\n1) Take a mug.
+2) Take about a handful and a half of some elbow noodles. 
+3) Fill mug with water to cover up the noodles and cook in the microwave to get the noodles soft! (5 minutes for my microwave) If you have alot of water, drain it but leave a tiny bit of water.
+4) Okay now the fun part! Add cheese (I used sharp cheddar cut into cubes), butter (I used a garlic infused butter, but any butter is fine), a splash of milk, and some salt (I used smoked salt).
+5) Cook until its all melted in the microwave! If it looks like soup you can drain a little and add more cheese, cook again make sure it's melted.
+6) Let sit for about 2 minutes.
+And that's it! You are done and it’s better than any Easy Mac!""",
+            """**EASY AND LOW-COST SPICY TOMATO SOUP** by red-starr\n\n__Ingredients:__
+1 bay leaf
+A small amount of butter
+Black pepper
+Salt
+Garlic powder
+Onion powder
+½ Can of coconut milk (or an entire can if it's too spicy for you)
+1 can of condensed tomato soup
+Havarti cheese (You can probably use Swiss cheese as a substitute)
+A little Sriracha sauce
+1 table spoon of Tikka seasoning
+Croutons (topping, optional)\n\n1) Put everything in a pot on the stove and bring to a boil.
+2) Let simmer for about fifteen minutes, adding the seasonings a little at a time - taste and make adjustments as you cook.
+And you're done!""",
+            """**EASY TACO SOUP** by no-more-ramen\n\n__Ingredients:__
+1 lb ground beef
+2 cans corn
+2 cans diced tomatoes
+2 cans chili beans
+1 packet taco seasoning\n
+1) Brown the beef, then put everything else in. 
+2) Bring it to a boil. 
+And you're done!""",
+            """**SIMPLE FANCY TUNA FISH SALAD** by no-more-ramen\n\n__Ingredients for 2-3 servings:__
+2 cans of oil packed tuna
+1 jar of pesto
+pre-sliced black olives
+fresh spinach
+crunch (I usually use celery, but that requires chopping, so you can add something else or skip this)
+bread\n
+1) Dump the tuna into a bowl without draining and mush with a fork.
+2) Mix in pesto until it’s pretty well coated.  
+3) Add in black olives and your crunch.  
+3) Serve in a sandwich with a few spinach leaves.
+And you're done!""",
+            """**EASY and LOW-COST TUNA & WHITE BEAN SALAD** by Budget Bytes\n\n__Ingredients:__
+1 5oz can of tuna
+1 15oz can of white beans
+1 Tbsp olive oil
+juice of one lemon
+2 whole green onions
+salt and pepper to taste
+Optional: dash of hot sauce\n
+1) Drain the tuna and beans.
+2) Put the tuna and beans into a mixing bowl
+3) Chop the green onions
+4) Add the green onions, lemon juice, olive oil, salt, and pepper to the mixing bowl. Mix to combine.
+That’s it!"""
+        ])
+        await ctx.send(recipes)
 
     @commands.command(aliases=['randomdessert'])
     async def dessert(self, ctx):
@@ -807,6 +854,10 @@ class Fun():
             "Here's your random dessert.\nhttps://giphy.com/gifs/cake-cute-t0iiGOtn2oMak",
             "Here's your random dessert.\nhttps://giphy.com/gifs/cake-dessert-I8iWotgEu6O4g",
             "Here's your random dessert.\nhttps://giphy.com/gifs/l0HlyXQUez0jHop2g",
+            "Here's your random dessert. (credits: therecipepantry)\nhttps://66.media.tumblr.com/61e537f1b6e8f3b3977da83545a1a5b9/tumblr_nlhylywKlY1tbiplio1_500.gif",
+            "Here's your random dessert. (credits: khoroshavina)\nhttps://66.media.tumblr.com/a4f73299cae69351735248d138c6b5c8/tumblr_ngrultfmKH1r13qeyo1_500.gif",
+            "Here's your random dessert. (credits: butteryplanet)\nhttps://66.media.tumblr.com/8ae304bf8bd727da46fcc84ad064b476/tumblr_p3vxq0icCz1u9ooogo1_500.gif",
+            "Here's your random dessert. (credits: butteryplanet)\nhttps://66.media.tumblr.com/9cecff7312ba1fd96878900b7c74f3ff/tumblr_owqx81kdp71u4taepo1_500.gif",
             "Here's your random dessert.\nhttps://giphy.com/gifs/shakingfoodgifs-cookie-food-kawaii-INYRyEM6hPbcQ",
             "Here's your random dessert.\nhttps://giphy.com/gifs/fruit-7z4lmNtTmuREI",
             "Here's your random dessert.\nhttps://giphy.com/gifs/shakingfoodgifs-food-dessert-pie-pdfnRGpNQzePC",
@@ -829,5 +880,4 @@ class Fun():
 bot.add_cog(Info())
 bot.add_cog(Fun())
 bot.add_cog(MentalHealth())
-bot.add_cog(Moderating())
 bot.run(os.getenv('discord_client_key'))
