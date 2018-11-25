@@ -230,7 +230,7 @@ Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
     @help.command(name="Fun")
     async def funmenu(self, ctx):
         em = discord.Embed(title="Fun commands",
-                           description="**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]",
+                           description="**spooniefriendlyrecipe**   -   Gives you a random spoonie-friendly recipe. [sfr]\n**analyze**   -   Show basic info on a user you ping. [user, userinfo]\n**say**   -   Bot repeats what you say. [echo]\n**compliment**   -   Displays a random compliment or says something reassuring. [randomcompliment]\n**dice**   -   Throws a dice. [dicethrow, throwdice]\n**coinflip**   -   Flips a coin. [coin, flipcoin]\n**question**   -   Ask the bot a yes or no question. [ask]\n**dessert**   -   Displays a random gif of a dessert.\n**cornyjoke**   -   Makes a corny joke. [joke, pun, randomjoke, randompun]\n**givecookie**   -   Give someone a cookie. [cookie]\n**hug**   -   Give someone a hug. [givehug, hugs, givehugs]",
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
@@ -767,7 +767,7 @@ class Fun():
         ])
         await ctx.send(quest)
         
-    @commands.command(aliases=['sfr'])
+    @commands.command(aliases=['sfr', 'spooniefriendlyrecipes'])
     async def spooniefriendlyrecipe(self, ctx):
         recipes = random.choice([
             """**MACARONI AND CHEESE IN A MUG** by red-starr\n\n__Ingredients:__
