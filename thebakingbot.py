@@ -246,7 +246,7 @@ class MentalHealth():
     
     @commands.command()
     async def distraction(self, ctx):
-        distractionslist = random.coice([
+        distractionslist = random.choice([
             """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://www.ted.com/""",
             """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://emergencycompliment.com/""",
             """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.pixelthoughts.co/""",
