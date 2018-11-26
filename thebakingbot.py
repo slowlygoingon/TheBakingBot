@@ -222,7 +222,7 @@ Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
     @help.command(name="""MentalHealth""")
     async def mentalhealthmenu(self, ctx):
         em = discord.Embed(title="Mental health commands",
-                           description="**comfort**   -   Tells you something comforting. [comforting, comfortme]\n**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
+                           description="**distraction**   -   Cure boredom or distract yourself from stress.\n**comfort**   -   Tells you something comforting. [comforting, comfortme]\n**whatis** (something)   -   Find a definition on something regarding mental health. [define, definition]\n**anxiety**   -   Breathing gif. [anxious, breathing, calm]\n**grounding**   -   Grounding exercises. [dissociation, panic, flashbacks]\n**emergency**   -   Links to a page with emergency resources. Use this in case of serious suicidal ideation.\n**support**   -   If you need help or advice urgently, check this out. [getsupport, gethelp]\n**positivity**   -   Displays a random nice little gif! [positive]\n**therapy**   -   So you're looking for therapy? (Opens Therapy menu) [therapist, counsellor, counselling]",
                            colour=0x082E6F)
         await ctx.send(embed=em)
 
@@ -243,6 +243,22 @@ Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
 
 
 class MentalHealth():
+    
+    @commands.command()
+    async def distraction(self, ctx):
+        distractionslist = random.coice([
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://www.ted.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://emergencycompliment.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.pixelthoughts.co/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://www.wikihow.com/Distract-Yourself""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://theuselessweb.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://www.boredbutton.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.pointless.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://weirdorconfusing.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://quickdraw.withgoogle.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://goo.gl/11aeqc"""])
+        await ctx.send(distractionslist)
+          
 
     @commands.command()
     async def reminder(self, ctx):
