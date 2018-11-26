@@ -778,7 +778,7 @@ A couple ripe bananas (they have to be at least brownish)
 3) Put them in the blender, and blend until they have a soft-serve-like consistency. If your blender is having trouble add a bit of milk.
 4) You can add cocoa powder, strawberries, chocolate chips, crushed pistachios, aromas or whatever you want!
 And you're done!""",
-            """***SIMPLE "ITALIAN SOUP"*** by megalodont\n\n__Ingredients:__
+            """**SIMPLE "ITALIAN SOUP"** by megalodont\n\n__Ingredients:__
 Can of passata
 ¼ cup Frozen spinach
 A cup of water
@@ -791,18 +791,18 @@ Some salt (if needed)\n\n1) Chop a bit of garlic in tiny pieces.
 2) Heat all ingredients on the stove except pepper and olive oil.
 3) When they're hot enough, serve them in bowls and add a bit of pepper and olive oil, and if you want, some parmesan. Excellent to be eaten with crusty bread.
 And you're done!""",
-            """***EASY ORANGE CHICKEN*** by no-more-ramen\n\n__Ingredients:__
+            """**EASY ORANGE CHICKEN** by no-more-ramen\n\n__Ingredients:__
 Chicken breasts
 Sweet orange jam/marmelade
 1 cup of bbq sauce
 2 tbsp of soy sauce
-(Optional) Rice\n\n\1) Cube or thinly slice the chicken.
+(Optional) Rice\n\n1) Cube or thinly slice the chicken.
 2) Sauté with the orange jam and sauces until thoroughly cooked. 
 3) Serve over rice if you have any. 
 And you're done! This should be enough for 2-3 people.""",
             """Having guests over? Do they happen to be kids or to have a sweet tooth? 
 Try out recipes from this video: https://www.youtube.com/watch?v=8JYNbNYqMTk""",
-            """***TWO-INGREDIENTS CAKE*** by deadbyday.tv\n\n__Ingredients:__
+            """**TWO-INGREDIENTS CAKE** by deadbyday.tv\n\n__Ingredients:__
 4 eggs
 250 g Nutella
 (Optional) A couple teaspoons of baking soda
