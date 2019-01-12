@@ -256,7 +256,20 @@ class MentalHealth():
             """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.pointless.com/""",
             """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://weirdorconfusing.com/""",
             """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://quickdraw.withgoogle.com/""",
-            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://goo.gl/11aeqc"""])
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://goo.gl/11aeqc""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://random.dog/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://dogperday.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://random.cat""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.pixelthoughts.co/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.whatshouldireadnext.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://sloths.arerad.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://theofficestaremachine.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://vladgotlib.com/circular/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.collegehumor.com/tbt""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttps://www.zooborns.com/""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://random.cat""",
+            """Bored or in need of a distraction?\nTry checking out this website:\n\nhttp://www.supercutekawaii.com/super-cute-sites/""",
+        ])
         await ctx.send(distractionslist)
           
 
