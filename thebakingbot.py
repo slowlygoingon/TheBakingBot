@@ -280,7 +280,7 @@ class MentalHealth():
         
     @commands.command()
     async def pluralkit(self, ctx):
-        pkmessage = """<@466378653216014359> is a that allow people with DID/OSDD (formerly known as *Multiple Personality Disorder*, but that is an outdated name!) to give their alters something that resembles a Discord profile, through the use of webhooks. Users choose a "prefix" for each alter, and when an alter is present, they can use such a prefix to type their message. Their name and profile picture will then appear :thumbsup:
+        pkmessage = """<@466378653216014359> is a bot that allows people with DID/OSDD (formerly known as *Multiple Personality Disorder*, but that is an outdated name!) to give their alters something that resembles a Discord profile, through the use of webhooks. Users choose a "prefix" for each alter, and when an alter is present, they can use such a prefix to type their message. Their name and profile picture will then appear :thumbsup:
 Therefore, there is an actual person behind these users that appear as "Bots"."""
         await ctx.send(pkmessage)
         
