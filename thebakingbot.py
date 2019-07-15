@@ -145,6 +145,13 @@ class Info():
     async def source(self, ctx):
         link = "https://github.com/slowlygoingon/TheBakingBot/"
         await ctx.send(link)
+        
+    @commands.command(aliases=['deletionmessage'])
+    async def delmsg(self, *, ctx):
+        text = "Beep boop. Some messages have been deleted to ensure the safety of our members."
+        await ctx.send(text)
+        await client.delete_message(message)
+        await ctx.message.delete()
 
     @commands.command(aliases=['about'])
     async def info(self, ctx):
