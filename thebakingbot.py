@@ -1,4 +1,4 @@
-# Copyright 2018 Slowly/slowlygoingon
+# Copyright 2019 Slowly/slowlygoingon
 
 import discord
 import asyncio
