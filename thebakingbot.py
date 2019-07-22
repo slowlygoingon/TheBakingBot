@@ -249,7 +249,7 @@ Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
         await ctx.send(embed=em)
 
 
-class MentalHealth(commands.cog):
+class MentalHealth(commands.Cog):
     
     @commands.command()
     async def distraction(self, ctx):
@@ -607,7 +607,7 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
             return await ctx.send('Sorry, command timed out!')
 
 
-class Fun(commands.cog):
+class Fun(commands.Cog):
 
     @commands.command(aliases=['coin', 'flip', 'flipcoin'])
     async def coinflip(self, ctx):
