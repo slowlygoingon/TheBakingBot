@@ -128,7 +128,7 @@ async def on_command_error(ctx, error):
         return
 
 
-class Info():
+class Info(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
@@ -249,7 +249,7 @@ Server**\n\nThis is case-sensitive.""", colour=0x082E6F)
         await ctx.send(embed=em)
 
 
-class MentalHealth():
+class MentalHealth(commands.cog):
     
     @commands.command()
     async def distraction(self, ctx):
@@ -607,7 +607,7 @@ The difference from PTSD is that complex trauma is ongoing, often (but not neces
             return await ctx.send('Sorry, command timed out!')
 
 
-class Fun():
+class Fun(commands.cog):
 
     @commands.command(aliases=['coin', 'flip', 'flipcoin'])
     async def coinflip(self, ctx):
