@@ -4,7 +4,7 @@ import discord
 import asyncio
 import random
 import datetime
-from discord.ext.commands import commands
+from discord.ext import commands
 import os
 import sys
 import logging
